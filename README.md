@@ -34,7 +34,7 @@ Our service offers a fast and efficient portal for any user to circulate vehicle
 2. Ensure Proper Comments (2 Hours) - All Devs
 3. Iron Out Bugs (2 Hours) - All Devs
    
-#### **Day 4 - Final Testing **
+#### **Day 4 - Final Testing**
 1. Preform Final Testing (All Day) - All Devs
    
 #### **Day 5 - Presentation**
