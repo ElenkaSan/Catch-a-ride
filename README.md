@@ -4,7 +4,7 @@ Catch A Ride not only opens up multiple avenues to obtain their next vehicle but
 Furthermore, users will have the opportunity to create their own listing, should they want to sell, lease, or rent a vehicle to another customer.
 Our service offers a fast and efficient portal for any user to circulate vehicles with minimal effort.
 
-### Work Plan
+### Work Plan:  **Daily Schedule**
 #### **Day 1 - Back End Development**
 1. Add Spring DI (1 Hour) - Dev 1
 2. Create Models (1 Hour) - Dev 2
@@ -16,8 +16,29 @@ Our service offers a fast and efficient portal for any user to circulate vehicle
 8. Error Handling (2 Hours) - Dev 2
 9. Add Controllers and Mappers (2 Hours) - Dev 3
 10. Debugging (3 Hours) - All Devs
-
-#### **Day 2 - ?**
+    
+#### **Day 2 - Front End Development**
+1. Navigation (2 Hours) - Dev 1
+2. Display Listings (1 Hour) - Dev 2
+3. Add Listing (1 Hour) - Dev 3
+4. Display Users (1 Hour) - Dev 1
+5. Add Users (1 Hour) - Dev 2
+6. Update Listing (2 Hours) - Dev 3
+7. Update Users (2 Hours) - Dev 2
+8. Delete Listing (1 Hour) - Dev 1
+9. Delete User (1 Hour) - Dev 3
+10. Debug (4 Hours) - All Devs
+    
+#### **Day 3 - Refinement**
+1. Clean up Code (2 Hours) - All Devs
+2. Ensure Proper Comments (2 Hours) - All Devs
+3. Iron Out Bugs (2 Hours) - All Devs
+   
+#### **Day 4 - Final Testing **
+1. Preform Final Testing (All Day) - All Devs
+   
+#### **Day 5 - Presentation**
+1. Present Application (All Day) - All Devs
    
 ### Diagrams Maven: 
 #### Class details & design
