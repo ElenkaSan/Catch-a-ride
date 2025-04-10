@@ -179,3 +179,6 @@ Each Card:
 - Car Img, having Make, Model, Year
 
 ```
+
+
+<img width="554" alt="cars" src="https://github.com/user-attachments/assets/5f51ee2c-4388-4798-afac-b6a36a688a0c" />
