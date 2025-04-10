@@ -659,7 +659,7 @@ Loading more when scrolling down
 |                    Login                          |  
 +---------------------------------------------------+  
 | Username: [_____________________________]         |  
-| Password: [_____________________________]         |                       |  
+| Password: [_____________________________]         | 
 +---------------------------------------------------+  
 |                  [ Login ]                        |  
 +---------------------------------------------------+
@@ -694,8 +694,25 @@ Search a car by model, year, dealership, and location
 
 #### View User page 
 ```
-If there are no booked cars: "No cars booked"
+If there are no booked cars:
++---------------------------------------------------+  
+|              "You have no cars booked yet."                        |  
++---------------------------------------------------+ 
+                 OR
 If they booked a car: Show already booked cars
++---------------------------------------------------+  
+|                    Your booked cars                 |  
++---------------------------------------------------+  
+|   Card 1         |   Card 2         |   Card 3     |  
+|   +--------+     |   +--------+     |   +--------+ |  
+|   |  Car 1 |     |   |  Car 2 |     |   |  Car 3 | |  
+|   |   Img  |     |   |   Img  |     |   |   Img  | |  
+|   | Make:  |     |   | Make:  |     |   | Make:  | |  
+|   | Model: |     |   | Model: |     |   | Model: | |  
+|   | Year:  |     |   | Year:  |     |   | Year:  | |  
+|   +--------+     |   +--------+     |   +--------+ |  
+| [ Booked Date]   | [ Booked Date]   |[ Booked Date]| 
++---------------------------------------------------+  
 ```
 
 #### Error Page
