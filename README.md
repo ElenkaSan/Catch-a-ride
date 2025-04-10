@@ -64,6 +64,62 @@ Our service offers a fast and efficient portal for any user to obtain vehicles w
 ### Diagrams Maven: 
 #### Class details & design
 
+### models.BookingType
+
+An enum with two values: Rented or Leased
+
+### models.Booking
+- `private int id`
+- `private int vehicleId`
+- `private int userId`
+- `private int locationId`
+- `private LocalDate startDate`
+- `private LocalDate endDate`
+- `private boolean bookingStatus`
+- `private BookingType bookingType`
+- `private LocalDate dateCreated`
+- Full getters and setters
+- override `equals` and `hashCode`
+
+### models.Location
+- `private int id`
+- `private String city`
+- `private String state`
+- `private int zipCode`
+- Full getters and setters
+- override `equals` and `hashCode`
+
+### models.User
+- `private int id`
+- `private String firstName`
+- `private String lastName`
+- `private String email`
+- `private String password`
+- `private LocalDate dateCreated`
+- `private String address`
+- `private Boolean isAdmin`
+- Full getters and setters
+- override `equals` and `hashCode`
+
+### models.Vehicle
+- `private int id`
+- `private String make`
+- `private String model`
+- `private int year`
+- `private String color`
+- `private String trim`
+- `private int dealershipId`
+- Full getters and setters
+- override `equals` and `hashCode`
+
+### models.dealership
+- `private int id`
+- `private String name`
+- `private String description`
+- `private int locationId`
+- Full getters and setters
+- override `equals` and `hashCode`
+
 ### Data
 - **Booking**: a booking is valid only if the selected car exists and is currently marked as available (is_available = true).
 - **Booking_status**: determines if the car is booked by user.
