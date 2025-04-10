@@ -103,7 +103,7 @@ Our service offers a fast and efficient portal for any user to circulate vehicle
 
 ```
 
-#### database schema
+#### Database Schema
 
 ![image](https://github.com/user-attachments/assets/a5263a3d-1331-4550-9c58-950c9b081203)
 
