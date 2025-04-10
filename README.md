@@ -156,20 +156,26 @@ Our service offers a fast and efficient portal for any user to circulate vehicle
 ### Wireframes: roughly sketch your UI and how one view transitions to another. You can also use design tools to create wireframes
 
 ```
+NAVBAR
+  Catch Ride         [ Home | Available Cars | Add Booking | Login/Signup ]
+                                     |
+                                     v
 
-NAVBAR [ Home | Available Cars | Add Booking | Login ]
-         |
-         v
+                             [ HOME PAGE ]
+                   -----------------------------------------------
+                    |  Card 1  |  Card 2  |  Card 3  |  Card 4  |
+                    | Book Now | Book Now | Book Now | Book Now |
 
-[ HOME PAGE ]
------------------------------------------------
-| Card 1 | Card 2 | Card 3 | Card 4 |
-| Card 5 | Card 6 | Card 7 | Card 8 |
------------------------------------------------
+                    |  Card 5  |  Card 6  |  Card 7  |  Card 8  |
+                    | Book Now | Book Now | Book Now | Book Now |
+                   -----------------------------------------------
 
 Clicking:
 - "Available Cars" → list of only `is_available = true` cars
 - "Add Booking" → form to select car, dates, and user
 - "Login" → login form, separate flows if admin
+
+Each Card:
+- Car Img, having Make, Model, Year
 
 ```
