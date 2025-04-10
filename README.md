@@ -375,11 +375,12 @@ Each Card:
 
 #### View the page for everyone
 
-<img width="554" alt="cars" src="https://github.com/user-attachments/assets/1199777a-5005-4a0c-82d9-385817072a20" />
+<img width="557" alt="Screenshot 2025-04-10 at 5 42 53 PM" src="https://github.com/user-attachments/assets/dff5f600-b139-4692-9a56-0827b189d433" />
 
 #### View the page for Admin
 
-<img width="740" alt="admin" src="https://github.com/user-attachments/assets/6fc24fd9-a3c0-4abf-9f26-33ef32eac8fe" />
+<img width="740" alt="admin" src="https://github.com/user-attachments/assets/b441cb82-ce99-4d73-b9a6-474927125629" />
+
 
 ```
 Clicking:
