@@ -4,13 +4,20 @@ Catch A Ride not only opens up multiple avenues to obtain their next vehicle but
 Furthermore, users will have the opportunity to create their own listing, should they want to sell, lease, or rent a vehicle to another customer.
 Our service offers a fast and efficient portal for any user to circulate vehicles with minimal effort.
 
-1. Add Spring DI (1 Hour)
-2. Create Models (1 Hour)
-3. Build Database (1 Hour)
-4. Build Repositories (2 Hours)
-5. Add Controllers and Mappers (2 Hours)
-6. Add Unit Tests (2 Hours)
-7. Debugging (5 Hours)
+### Work Plan
+#### **Day 1 - Back End Development**
+1. Add Spring DI (1 Hour) - Dev 1
+2. Create Models (1 Hour) - Dev 2
+3. Build Database (1 Hour) - Dev 3
+4. Build Repositories (2 Hours) - Dev 1
+5. Add Repository Unit Tests (2 Hours) - Dev 2
+6. Build Services (2 Hours) - Dev 3
+7. Add Service Unit Tests (2 Hours) - Dev 1
+8. Error Handling (2 Hours) - Dev 2
+9. Add Controllers and Mappers (2 Hours) - Dev 3
+10. Debugging (3 Hours) - All Devs
+
+#### **Day 2 - ?**
    
 ### Diagrams Maven: 
 #### Class details & design
@@ -104,5 +111,7 @@ Our service offers a fast and efficient portal for any user to circulate vehicle
 #### layer
 
 #### flow
+
+#### Test Plan
 
 ### Wireframes: roughly sketch your UI and how one view transitions to another. You can also use design tools to create wireframes
