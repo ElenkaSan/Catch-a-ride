@@ -715,6 +715,8 @@ If they booked a car: Show already booked cars
 +---------------------------------------------------+  
 ```
 
+<img width="568" alt="Screenshot 2025-04-10 at 6 35 14 PM" src="https://github.com/user-attachments/assets/471950d4-4455-4e68-b489-2fff9b14c64f" />
+
 #### Error Page
 
 ```
