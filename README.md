@@ -213,7 +213,7 @@ Clicking:
 |                  [ Submit Booking ]               |  
 +---------------------------------------------------+
 
-The showing -> Booked car with today's date and status will be changed to booked
+After submit button will showing the car -> Booked car with today's date and status will be changed to booked
 ```
 
 #### View the Available Cars page
