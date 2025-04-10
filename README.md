@@ -409,7 +409,7 @@ Clicking:
 After submitting button will show the car -> Booked car with today's date, and the status will be changed to booked
 ```
 
-<img src="https://github.com/user-attachments/assets/cc82c08a-3442-409c-a97f-597209652642" width="500" />
+<img src="https://github.com/user-attachments/assets/cc82c08a-3442-409c-a97f-597209652642" width="600" />
 
 
 #### View the Available Cars page
@@ -478,7 +478,7 @@ OR
 Search a car by model, year, dealership, and location
 ```
 
-![IMG_AD08A6160DDD-1](https://github.com/user-attachments/assets/0c3696e4-fd27-4611-bae6-fed61bf0cc59)
+<img src="https://github.com/user-attachments/assets/0c3696e4-fd27-4611-bae6-fed61bf0cc59" width="600" />
 
 #### View User page 
 ```
