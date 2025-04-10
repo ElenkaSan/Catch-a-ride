@@ -234,6 +234,7 @@ An enum with two values: Rented or Leased
                 │                UserServiceTest.java
                 │                VehicleServiceTest.java
                 │                BookingServiceTest.java
+                |                BookingType.java
                 │                LocationServiceTest.java
                 │                DealershipServiceTest.java
                 │ 
@@ -434,3 +435,37 @@ After submit button will showing the car -> Booked car with today's date and sta
 +---------------------------------------------------+
 etc
 ```
+
+#### View Login/Signup 
+```
++---------------------------------------------------+  
+|                    Login                          |  
++---------------------------------------------------+  
+| Username: [_____________________________]         |  
+| Password: [_____________________________]         |                       |  
++---------------------------------------------------+  
+|                  [ Login ]                        |  
++---------------------------------------------------+
+
+OR
+
++---------------------------------------------------+  
+|                     Signup                        |  
++---------------------------------------------------+  
+| First_name: [_____________________________]       |  
+| Last Name: [_____________________________]        |  
+| Username: [_____________________________]         |  
+| Email: [_____________________________]            |  
+| Address: [_____________________________]          |  
++---------------------------------------------------+  
+|                  [ Signup ]               |  
++---------------------------------------------------+
+
+```
+
+#### View Seaching bar
+
+```
+Seach a car by model, year, dealership, and location
+```
+
