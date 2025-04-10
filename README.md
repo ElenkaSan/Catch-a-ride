@@ -154,7 +154,8 @@ Our service offers a fast and efficient portal for any user to circulate vehicle
 
 #### Database Schema
 
-![image](https://github.com/user-attachments/assets/a5263a3d-1331-4550-9c58-950c9b081203)
+![image](https://github.com/user-attachments/assets/2be87f67-2c25-41fc-80b1-7a86e934e607)
+
 
 ## High-level Requirements and Test Plan
 - As Admin:
