@@ -1,12 +1,12 @@
 # Catch-a-ride
-Catch A Ride is the premier application for catching your next ride. Whether you need to lease, or rent a car, Catch A Ride is here to meet all your vehicular supply needs.
-Catch A Ride opens up multiple avenues to obtain your next vehicle and offloads your inventory as well. Users can create an account and then browse from a wide selection of vehicles. Here, a user may see listings in their local area and then when the options allow; rent, or lease a vehicle.
+Catch A Ride is the premier application for catching your next ride. Whether you need to lease or rent a car, Catch A Ride is here to meet all your vehicular supply needs.
+Catch A Ride opens up multiple avenues to obtain your next vehicle and offloads your inventory as well. Users can create an account and then browse from a wide selection of vehicles. Here, a user may see listings in their local area and then, when the options allow, rent or lease a vehicle.
 Our service offers a fast and efficient portal for any user to obtain vehicles with minimal effort.
 
 ### Work Plan:  **Schedule**
 ## **Back End Development**
 ### **Project Setup**
-1. Create Maven Project (15 minutes)
+1. Create a Maven Project (15 minutes)
 2. Add Spring DI (15 minutes)
 3. Build Database (30 minutes)
 ### **Models**
@@ -34,14 +34,14 @@ Our service offers a fast and efficient portal for any user to obtain vehicles w
 24. Build Booking Mapper (15 minutes)
 25. Build Dealership Mapper (15 minutes)
 26. Build Vehicle Mapper (15 minutes)
-27. Add Repository Unit Tests (2 hour)
+27. Add Repository Unit Tests (2 hours)
 ### **Service Layer**
 28. Build User Service (1 hour)
 29. Build Vehicle Service (1 hour)
 30. Build Booking Service (1 hour)
 31. Build Location Service (1 hour)
 32. Build Dealership Service (1 hour)
-33. Add Service Unit Tests (2 hour)
+33. Add Service Unit Tests (2 hours)
 ## **Front End Development**
 1. Navigation (2 hours)
 2. Login Page (2 hours)
@@ -58,8 +58,8 @@ Our service offers a fast and efficient portal for any user to obtain vehicles w
 ## **Refinement and Final Testing**
 1. Clean up Code (1 hour)
 2. Ensure Proper Comments (1 hour)
-3. Iron Out Bugs (1 Hours)
-4. Preform Final Testing (1 hour)
+3. Iron Out Bugs (1 hour)
+4. Perform Final Testing (1 hour)
    
 ### Diagrams Maven: 
 #### Class details & design
@@ -464,6 +464,8 @@ OR
 ```
 
 #### View Seaching bar
+
+![IMG_09609DDB2AE0-1](https://github.com/user-attachments/assets/c7a5bc17-b328-4d53-8f00-0b3625854c1b)
 
 ```
 Seach a car by model, year, dealership, and location
