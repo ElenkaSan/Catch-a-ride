@@ -696,7 +696,7 @@ Search a car by model, year, dealership, and location
 ```
 If there are no booked cars:
 +---------------------------------------------------+  
-|              "You have no cars booked yet."                        |  
+|              "You have no cars booked yet."       |  
 +---------------------------------------------------+ 
                  OR
 If they booked a car: Show already booked cars
