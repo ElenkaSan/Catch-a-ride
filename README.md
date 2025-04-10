@@ -409,7 +409,7 @@ Clicking:
 After submitting button will show the car -> Booked car with today's date, and the status will be changed to booked
 ```
 
-<img src="https://github.com/user-attachments/assets/cc82c08a-3442-409c-a97f-597209652642" width="300" />
+<img src="https://github.com/user-attachments/assets/cc82c08a-3442-409c-a97f-597209652642" width="500" />
 
 
 #### View the Available Cars page
