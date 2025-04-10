@@ -171,7 +171,7 @@ NAVBAR
 
 Clicking:
 - "Available Cars" → list of only `is_available = true` cars
-- "Add Booking" → form to select car, dates, and user
+- "Add Booking" → form to select car, dates, and user -> if no login, will send to login/signup page
 - "Login" → login form, separate flows if admin
 
 Each Card:
@@ -179,5 +179,9 @@ Each Card:
 
 ```
 
+#### View the page for everyone
+
 <img width="554" alt="cars" src="https://github.com/user-attachments/assets/1199777a-5005-4a0c-82d9-385817072a20" />
+
+#### View the page for Admin
 
