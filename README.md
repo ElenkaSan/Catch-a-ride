@@ -27,7 +27,7 @@ Our service offers a fast and efficient portal for any user to circulate vehicle
         ├───user.http
         |───booking.http
         ├───vehicle.http
-        |───cost.http
+        |───location.http
        sql
         ├───catch-ride-prod.sql
         |───catch-ride-test.sql
@@ -44,7 +44,7 @@ Our service offers a fast and efficient portal for any user to circulate vehicle
 	│   │           │       UserController.java
 	│   │           │       VehicleController.java
 	│   │           │       BookingController.java
-	│   │           │       CostController.java
+	│   │           │       LocationController.java
 	│   │           │
 	│   │           |───data
 	│   │           │       DataException.java
@@ -54,14 +54,14 @@ Our service offers a fast and efficient portal for any user to circulate vehicle
 	│   │           │       VehicleRepository.java
 	│   │           │       BookingtJdbcTemplateRepository.java
 	│   │           │       BookingRepository.java
-	│   │           │       CostJdbcTemplateRepository.java
-	│   │           │       CostRepository.java
+	│   │           │       LocationJdbcTemplateRepository.java
+	│   │           │       LocationRepository.java
 	│   │           │
 	│   │           |───domain
 	│   │           │       UserService.java
 	│   │           │       VehicleService.java
 	│   │           │       BookingService.java
-	│   │           │       Cost.java
+	│   │           │       Location.java
 	│   │           │       Response.java
 	│   │           │       Result.java
         │   │           │       ResultType.java
@@ -70,7 +70,7 @@ Our service offers a fast and efficient portal for any user to circulate vehicle
 	│   │                   User.java
 	│   │                   Vehicle.java
 	│   │                   Booking.java
-	│   │                   Cost.java   
+	│   │                   Location.java   
 	│   │           
 	│   │
 	│   └───resources- > application.properties
@@ -82,21 +82,21 @@ Our service offers a fast and efficient portal for any user to circulate vehicle
                 │       │       UserControllerTest.java
 	        │       │       VehicleControllerTest.java
 	        │       │       BookingControllerTest.java
-                │       │       CostControllerTest.java
+                │       │       LocationControllerTest.java
 	        │       │       GlobalExceptionHandlerTest.java
                 │       │ 
 	        │       ├───data
 	        │       │       UserJdbcTemplateRepositoryTest.java
 	        │       │       VehicleJdbcTemplateRepositoryTest.java
                 │       │       BookingJdbcTemplateRepositoryTest.java
-	        │       │       CostJdbcTemplateRepositoryTest.java
+	        │       │       LocationJdbcTemplateRepositoryTest.java
                 │       │       KnownGoodState.java
                 │       │
                 │       └───domain
                 │                UserServiceTest.java
                 │                VehicleServiceTest.java
                 │                BookingServiceTest.java
-                │                CostServiceTest.java
+                │                LocationServiceTest.java
                 │
                 │ 
                 └───resources- > application.properties
@@ -110,14 +110,15 @@ Our service offers a fast and efficient portal for any user to circulate vehicle
 
 #### Test Plan
 - As Admin:
-   - view all car, all users
+   - view all cars, all users
    - add car, user
    - edit car, user
-   - delete: car, user, booking
+   - delete: car, user, booking, location
 - As User:
-   - view
-   - booking car
+   - view all cars
+   - booking a car
+   - edit booking
    - delete booking
-   - edit user acount and delete account
+   - edit the user account and delete account
 
 ### Wireframes: roughly sketch your UI and how one view transitions to another. You can also use design tools to create wireframes
