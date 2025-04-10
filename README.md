@@ -130,13 +130,13 @@ Our service offers a fast and efficient portal for any user to circulate vehicle
 
 #### Test Plan
 - As Admin:
-   - view all cars, all users
-   - add car, user
-   - edit car, user
+   - view all cars, all users, all bookings, all locations
+   - add car, user, booking, location
+   - edit car, user, booking, location
    - delete: car, user, booking, location
 - As User:
    - view all cars
-   - booking a car
+   - add booking
    - edit booking
    - delete booking
    - edit the user account and delete account
