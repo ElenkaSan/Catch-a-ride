@@ -24,16 +24,22 @@ Our service offers a fast and efficient portal for any user to circulate vehicle
 	│   │           │   App.java
 	│   │           │
 	│   │           |───controllers
+	│   │           │       ErrorResponse.java
+	│   │           │       GlobalExceptionHandler.java
+	│   │           │       UserController.java
+	│   │           │       VehicleController.java
+	│   │           │       BookingController.java
+	│   │           │       CostController.java
 	│   │           │
 	│   │           |───data
 	│   │           │       DataException.java
 	│   │           │       UsertJdbcTemplateRepository.java
 	│   │           │       UserRepository.java
-	│   │           │       VehicletJdbcTemplateRepository.java
+	│   │           │       VehicleJdbcTemplateRepository.java
 	│   │           │       VehicleRepository.java
 	│   │           │       BookingtJdbcTemplateRepository.java
 	│   │           │       BookingRepository.java
-	│   │           │       CosttJdbcTemplateRepository.java
+	│   │           │       CostJdbcTemplateRepository.java
 	│   │           │       CostRepository.java
 	│   │           │
 	│   │           |───domain
@@ -43,40 +49,42 @@ Our service offers a fast and efficient portal for any user to circulate vehicle
 	│   │           │       Cost.java
 	│   │           │       Response.java
 	│   │           │       Result.java
+        │   │           │       ResultType.java
 	│   │           │
-	│   │           |───models
-	│   │           │       User.java
-	│   │           │       Vehicle.java
-	│   │           │       Booking.java
-	│   │           │       Cost.java   
-	│   │           │
-	│   │           └───ui
-	│   │                   ConsoleIO.java
-	│   │                   Controller.java
-	│   │                   GenerateRequest.java
-	│   │                   MainMenuOption.java
-	│   │                   View.java
+	│   │           └───models
+	│   │                   User.java
+	│   │                   Vehicle.java
+	│   │                   Booking.java
+	│   │                   Cost.java   
+	│   │           
 	│   │
 	│   └───resources- > application.properties
 	└───test
 	    └───java
 	        └───learn
-	            └───catch
-	                ├───data
-	                │       UserFileRepositoryTest.java
-	                │       UserRepositoryDouble.java
-	                │       VehicleFileRepositoryTest.java
-	                │       VehicleRepositoryDouble.java
-                        │       BookingFileRepositoryTest.java
-	                │       BookingRepositoryDouble.java
-	                │       CostFileRepositoryTest.java
-	                │       CostRepositoryDouble.java
-	                │
-	                └───domain
-	                        UserServiceTest.java
-	                        VehicleServiceTest.java
-                                BookingServiceTest.java
-                                CostServiceTest.java
+	        │    └───catch
+	        │       |───controllers
+                │       │       UserControllerTest.java
+	        │       │       VehicleControllerTest.java
+	        │       │       BookingControllerTest.java
+                │       │       CostControllerTest.java
+	        │       │       GlobalExceptionHandlerTest.java
+                │       │ 
+	        │       ├───data
+	        │       │       UserJdbcTemplateRepositoryTest.java
+	        │       │       VehicleJdbcTemplateRepositoryTest.java
+                │       │       BookingJdbcTemplateRepositoryTest.java
+	        │       │       CostJdbcTemplateRepositoryTest.java
+                │       │       KnownGoodState.java
+                │       │
+                │       └───domain
+                │                UserServiceTest.java
+                │                VehicleServiceTest.java
+                │                BookingServiceTest.java
+                │                CostServiceTest.java
+                │
+                │ 
+                └───resources- > application.properties
 
 ```
 
