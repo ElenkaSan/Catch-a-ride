@@ -69,6 +69,10 @@ Our service offers a fast and efficient portal for any user to circulate vehicle
 - **Booking_type** is required, must be one of the allowed enum values (1, 2)
 - **Duplicate Booking** a user may not create multiple bookings for the same car with overlapping dates
 
+#### Location-Based Validation
+**Cars** shown by zip code search:
+    - results must be filtered server-side based on the zip code provided by the user
+
 ## Package/Class Overview
   
 ```
@@ -94,6 +98,7 @@ Our service offers a fast and efficient portal for any user to circulate vehicle
 	│   │           │       VehicleController.java
 	│   │           │       BookingController.java
 	│   │           │       LocationController.java
+        │   │           │       DealershipController.java
 	│   │           │
 	│   │           |───data
 	│   │           │       DataException.java
@@ -105,6 +110,8 @@ Our service offers a fast and efficient portal for any user to circulate vehicle
 	│   │           │       BookingRepository.java
 	│   │           │       LocationJdbcTemplateRepository.java
 	│   │           │       LocationRepository.java
+        │   │           │       DealershipJdbcTemplateRepository.java
+	│   │           │       DealershipRepository.java
 	│   │           │
 	│   │           |───domain
 	│   │           │       UserService.java
@@ -114,12 +121,14 @@ Our service offers a fast and efficient portal for any user to circulate vehicle
 	│   │           │       Response.java
 	│   │           │       Result.java
         │   │           │       ResultType.java
+        │   │           │       DealershipService.java
 	│   │           │
 	│   │           └───models
 	│   │                   User.java
 	│   │                   Vehicle.java
 	│   │                   Booking.java
-	│   │                   Location.java   
+	│   │                   Location.java
+        |   |                   Dealership.java   
 	│   │           
 	│   │
 	│   └───resources- > application.properties
@@ -132,6 +141,7 @@ Our service offers a fast and efficient portal for any user to circulate vehicle
 	        │       │       VehicleControllerTest.java
 	        │       │       BookingControllerTest.java
                 │       │       LocationControllerTest.java
+                │       │       DealershipControllerTest.java
 	        │       │       GlobalExceptionHandlerTest.java
                 │       │ 
 	        │       ├───data
@@ -139,6 +149,7 @@ Our service offers a fast and efficient portal for any user to circulate vehicle
 	        │       │       VehicleJdbcTemplateRepositoryTest.java
                 │       │       BookingJdbcTemplateRepositoryTest.java
 	        │       │       LocationJdbcTemplateRepositoryTest.java
+                │       │       DealershipJdbcTemplateRepositoryTest.java
                 │       │       KnownGoodState.java
                 │       │
                 │       └───domain
@@ -146,7 +157,7 @@ Our service offers a fast and efficient portal for any user to circulate vehicle
                 │                VehicleServiceTest.java
                 │                BookingServiceTest.java
                 │                LocationServiceTest.java
-                │
+                │                DealershipServiceTest.java
                 │ 
                 └───resources- > application.properties
 
@@ -154,7 +165,8 @@ Our service offers a fast and efficient portal for any user to circulate vehicle
 
 #### Database Schema
 
-![image](https://github.com/user-attachments/assets/2be87f67-2c25-41fc-80b1-7a86e934e607)
+![catch_ride_db](https://github.com/user-attachments/assets/c4e2be91-d85c-4a15-a17f-77e25f488877)
+
 
 
 ## High-level Requirements and Test Plan
