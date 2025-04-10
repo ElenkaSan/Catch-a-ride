@@ -189,9 +189,11 @@ Each Card:
 
 <img width="740" alt="admin" src="https://github.com/user-attachments/assets/6fc24fd9-a3c0-4abf-9f26-33ef32eac8fe" />
 
+```
 Clicking:
 - "All Booking Cars" → list of booked cars by user, where the admin can edit, delete bookings, and add booking
 - "All Users" → admin can add the user, edit, and delete
 - "All Available Locations" -> list of available locations 
 - "All Cars" → admin can add the car, edit, and delete
+```
 
