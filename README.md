@@ -3,41 +3,63 @@ Catch A Ride is the premier application for catching your next ride. Whether you
 Catch A Ride not only opens up multiple avenues to obtain their next vehicle but also offloads their inventory as well. Users can create an account and then browse from a wide selection of vehicles. Here, a user may see listings in their local area and then when the options allow; rent, buy, or lease a vehicle.
 Our service offers a fast and efficient portal for any user to circulate vehicles with minimal effort.
 
-### Work Plan:  **Daily Schedule**
-#### **Day 1 - Back End Development**
-1. Add Spring DI (1 Hour) - Dev 1
-2. Create Models (1 Hour) - Dev 2
-3. Build Database (1 Hour) - Dev 3
-4. Build Repositories (2 Hours) - Dev 1
-5. Add Repository Unit Tests (2 Hours) - Dev 2
-6. Build Services (2 Hours) - Dev 3
-7. Add Service Unit Tests (2 Hours) - Dev 1
-8. Error Handling (2 Hours) - Dev 2
-9. Add Controllers and Mappers (2 Hours) - Dev 3
-10. Debugging (3 Hours) - All Devs
-    
-#### **Day 2 - Front End Development**
-1. Navigation (2 Hours) - Dev 1
-2. Display Listings (1 Hour) - Dev 2
-3. Add Listing (1 Hour) - Dev 3
-4. Display Users (1 Hour) - Dev 1
-5. Add Users (1 Hour) - Dev 2
-6. Update Listing (2 Hours) - Dev 3
-7. Update Users (2 Hours) - Dev 2
-8. Delete Listing (1 Hour) - Dev 1
-9. Delete User (1 Hour) - Dev 3
-10. Debug (4 Hours) - All Devs
-    
-#### **Day 3 - Refinement**
-1. Clean up Code (2 Hours) - All Devs
-2. Ensure Proper Comments (2 Hours) - All Devs
-3. Iron Out Bugs (2 Hours) - All Devs
-   
-#### **Day 4 - Final Testing**
-1. Perform Final Testing (All Day) - All Devs
-   
-#### **Day 5 - Presentation**
-1. Present Application (All Day) - All Devs
+### Work Plan:  **Schedule**
+## **Back End Development**
+### **Project Setup**
+1. Create Maven Project (15 minutes)
+2. Add Spring DI (15 minutes)
+3. Build Database (30 minutes)
+### **Models**
+4. Create User Model (12 minutes)
+5. Create Vehicle Model (12 minutes)
+6. Create Booking Model (12 minutes)
+7. Create Location Model (12 minutes)
+8. Create Dealership Model (12 minutes)
+### **Data Layer**
+9. Build User Repository (30 minutes)
+10. Build Vehicle Repository (1 hour)
+11. Build Booking Repository (1 hour)
+12. Build Location Repository (1 hour)
+13. Build Dealership Repository (1 hour)
+14. Build Error Response (15 minutes)
+15. Build Global Exception Handler (15 minutes)
+16. Build Authorization Controller (30 minutes)
+17. Build User Controller (30 minutes)
+18. Build Vehicle Controller (30 minutes)
+19. Build Booking Controller (30 minutes)
+20. Build Location Controller (30 minutes)
+21. Build Dealership Controller (30 minutes)
+22. Build User Mapper (15 minutes)
+23. Build Location Mapper (15 minutes)
+24. Build Booking Mapper (15 minutes)
+25. Build Dealership Mapper (15 minutes)
+26. Build Vehicle Mapper (15 minutes)
+27. Add Repository Unit Tests (2 hour)
+### **Service Layer**
+28. Build User Service (1 hour)
+29. Build Vehicle Service (1 hour)
+30. Build Booking Service (1 hour)
+31. Build Location Service (1 hour)
+32. Build Dealership Service (1 hour)
+33. Add Service Unit Tests (2 hour)
+## **Front End Development**
+1. Navigation (2 hours)
+2. Login Page (2 hours)
+3. Admin View (2 hours)
+3. User View (2 hours)
+2. Display Bookings (1 Hour)
+3. Add Booking (1 Hour)
+4. Display Users (1 Hour)
+5. Add Users (1 Hour)
+6. Update Listing (2 Hours)
+7. Update Users (2 Hours)
+8. Delete Listing (1 Hour)
+9. Delete User (1 Hour)
+## **Refinement and Final Testing**
+1. Clean up Code (1 hour)
+2. Ensure Proper Comments (1 hour)
+3. Iron Out Bugs (1 Hours)
+4. Preform Final Testing (1 hour)
    
 ### Diagrams Maven: 
 #### Class details & design
