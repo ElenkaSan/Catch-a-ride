@@ -1,26 +1,39 @@
 # Catch-a-ride
-lease or rent cars
+Catch A Ride is the premier application for catching your next ride. Whether you need to sell, buy, lease, or even just rent a car, Catch A Ride is here to meet all your vehicular supply needs.
+Catch A Ride not only opens up multiple avenues to obtain their next vehicle but also offloads their inventory as well. Users can create an account and then browse from a wide selection of vehicles. Here, a user may see listings in their local area and then when the options allow; rent, buy, or lease a vehicle.
+Furthermore, users will have the opportunity to create their own listing, should they want to sell, lease, or rent a vehicle to another customer.
+Our service offers a fast and efficient portal for any user to circulate vehicles with minimal effort.
 
 
 ### Diagrams Maven: 
 
 ```
-    src
-      ├───main
+       http
+        ├───user.http
+        |───booking.http
+        ├───vehicle.http
+        |───cost.http
+       sql
+        ├───catch-ride-prod.sql
+        |───catch-ride-test.sql
+       src
+        ├───main
 	│   |───java
 	│   │   └───learn
 	│   │       └───catch
 	│   │           │   App.java
 	│   │           │
+	│   │           |───controllers
+	│   │           │
 	│   │           |───data
 	│   │           │       DataException.java
-	│   │           │       UserFileRepository.java
+	│   │           │       UsertJdbcTemplateRepository.java
 	│   │           │       UserRepository.java
-	│   │           │       VehicleFileRepository.java
+	│   │           │       VehicletJdbcTemplateRepository.java
 	│   │           │       VehicleRepository.java
-	│   │           │       BookingFileRepository.java
+	│   │           │       BookingtJdbcTemplateRepository.java
 	│   │           │       BookingRepository.java
-	│   │           │       CostFileRepository.java
+	│   │           │       CosttJdbcTemplateRepository.java
 	│   │           │       CostRepository.java
 	│   │           │
 	│   │           |───domain
@@ -44,7 +57,7 @@ lease or rent cars
 	│   │                   MainMenuOption.java
 	│   │                   View.java
 	│   │
-	│   └───resources- > dependency-configuration.xml
+	│   └───resources- > application.properties
 	└───test
 	    └───java
 	        └───learn
@@ -54,7 +67,7 @@ lease or rent cars
 	                │       UserRepositoryDouble.java
 	                │       VehicleFileRepositoryTest.java
 	                │       VehicleRepositoryDouble.java
-                  │       BookingFileRepositoryTest.java
+                        │       BookingFileRepositoryTest.java
 	                │       BookingRepositoryDouble.java
 	                │       CostFileRepositoryTest.java
 	                │       CostRepositoryDouble.java
@@ -62,8 +75,8 @@ lease or rent cars
 	                └───domain
 	                        UserServiceTest.java
 	                        VehicleServiceTest.java
-                          BookingServiceTest.java
-                          CostServiceTest.java
+                                BookingServiceTest.java
+                                CostServiceTest.java
 
 ```
 
