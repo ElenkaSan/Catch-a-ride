@@ -187,6 +187,8 @@ Each Card:
 
 #### View the page for Admin
 
-<img width="740" alt="admin" src="https://github.com/user-attachments/assets/ecdef88b-3202-43af-8b7f-3c7b34c4ffed" />
+<img width="740" alt="admin" src="https://github.com/user-attachments/assets/6fc24fd9-a3c0-4abf-9f26-33ef32eac8fe" />
+
+
 
 
