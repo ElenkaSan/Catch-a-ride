@@ -701,7 +701,8 @@ If there are no booked cars:
                  OR
 If they booked a car: Show already booked cars
 +---------------------------------------------------+  
-|              You have booked these cars            |  
+|                    Hello ‘Username’!               |
+|             You have booked these Cars             |  
 +---------------------------------------------------+  
 |   Card 1         |   Card 2         |   Card 3     |  
 |   +--------+     |   +--------+     |   +--------+ |  
@@ -715,7 +716,7 @@ If they booked a car: Show already booked cars
 +---------------------------------------------------+  
 ```
 
-<img width="568" alt="Screenshot 2025-04-10 at 6 35 14 PM" src="https://github.com/user-attachments/assets/471950d4-4455-4e68-b489-2fff9b14c64f" />
+<img width="568" alt="Screenshot 2025-04-10 at 6 35 14 PM" src="https://github.com/user-attachments/assets/6549224d-897c-448b-ba0c-b5ed13fc78f0" />
 
 #### Error Page
 
