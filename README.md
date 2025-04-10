@@ -679,6 +679,8 @@ OR
 +---------------------------------------------------+
 
 ```
+<img src="https://github.com/user-attachments/assets/80ef2e2d-bbfa-46c7-b18c-12c355eb0453" width="600" />
+
 
 #### View Search bar
 
