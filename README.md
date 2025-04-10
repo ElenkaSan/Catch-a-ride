@@ -406,8 +406,11 @@ Clicking:
 |                  [ Submit Booking ]               |  
 +---------------------------------------------------+
 
-After submit button will showing the car -> Booked car with today's date and status will be changed to booked
+After submitting button will show the car -> Booked car with today's date, and the status will be changed to booked
 ```
+
+![IMG_32E0FF5D8427-1](https://github.com/user-attachments/assets/cc82c08a-3442-409c-a97f-597209652642)
+
 
 #### View the Available Cars page
 ```
@@ -467,15 +470,27 @@ OR
 
 ```
 
-#### View Seaching bar
+#### View Search bar
 
 ![IMG_09609DDB2AE0-1](https://github.com/user-attachments/assets/c7a5bc17-b328-4d53-8f00-0b3625854c1b)
 
 ```
-Seach a car by model, year, dealership, and location
+Search a car by model, year, dealership, and location
 ```
 
 ![IMG_AD08A6160DDD-1](https://github.com/user-attachments/assets/0c3696e4-fd27-4611-bae6-fed61bf0cc59)
 
+#### View User page 
+```
+If there are no booked cars: "No cars booked"
+If they booked a car: Show already booked cars
+```
 
+#### Error Page
+
+```
++---------------------------------------------------+  
+|              404 Error                            |  
++---------------------------------------------------+  
+```
 
