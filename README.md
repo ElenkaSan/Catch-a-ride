@@ -120,5 +120,35 @@ Our service offers a fast and efficient portal for any user to circulate vehicle
    - edit booking
    - delete booking
    - edit the user account and delete account
+- Booking a Car:
+   - `POST /api/bookings`
+   - Request body: JSON representation of the booking
+- Get All Bookings:
+    `GET /api/bookings`
+- Get Booking by ID:
+    `GET /api/bookings/{bookingId}`
+- Update Booking:
+    `PUT /api/bookings/{bookingId}`
+- Delete Booking:
+    `DELETE /api/bookings/{bookingId}`
 
 ### Wireframes: roughly sketch your UI and how one view transitions to another. You can also use design tools to create wireframes
+
+```
+
+NAVBAR [ Home | Available Cars | Add Booking | Login ]
+         |
+         v
+
+[ HOME PAGE ]
+-----------------------------------------------
+| Card 1 | Card 2 | Card 3 | Card 4 |
+| Card 5 | Card 6 | Card 7 | Card 8 |
+-----------------------------------------------
+
+Clicking:
+- "Available Cars" → list of only `is_available = true` cars
+- "Add Booking" → form to select car, dates, and user
+- "Login" → login form, separate flows if admin
+
+```
