@@ -43,26 +43,31 @@ Our service offers a fast and efficient portal for any user to circulate vehicle
 #### Class details & design
 
 ### Data
-- **Booking**: available if a car exists and has not been booked already
-- **Booking_status**: determines if the car is booked by user
-- **Cars**: name that identifies
-- **Make**: company name
-- **Model**: car's model
-- **Years**: the number of car years
-- **Color**: color of car
-- **Trim**: spacific tear of car
+- **Booking**: a booking is valid only if the selected car exists and is currently marked as available (is_available = true).
+- **Booking_status**: determines if the car is booked by user.
+- **Cars**: each car is uniquely identified by its make, model, and year.
+- **Make**: the car manufacturer (e.g., Toyota, Ford, Honda).
+- **Model**: the specific model of the car (e.g., Camry, Civic, Explorer).
+- **Years**: the manufacturing year of the car.
+- **Color**: color of the car
+- **Trim**: specific variant or tier of a car model (e.g., SE, XLE, Sport).
 
-**Booking_type** is a Java enum, INT NOT NULL, -- 1 for leased, 2 for rented 
+**Booking_type** is a Java enum:
+  - 1 for leased
+  - 2 for rented 
 
 ### Validation
 
-- **Cars** is required and cannot be blank.
+- **Cars** a car must be selected to make a booking; this field cannot be blank
 - **Make** is required and cannot be blank.
 - **Model** is required and cannot be blank.
-- **Year** can be no more than 6 months future year.
-- **Color** is required or any color option?
-- **Booking_type** is required.
-- **Booking** may not be duplicated.
+- **Year**
+   - required and must not be more than 6 months into the future from the current date
+   - must be a valid year (e.g., between 2020 and the current year + 1)
+- **Color** is required, or any color option from the list?
+- **Trim** is optional but must follow valid naming conventions if provided
+- **Booking_type** is required, must be one of the allowed enum values (1, 2)
+- **Duplicate Booking** a user may not create multiple bookings for the same car with overlapping dates
 
 ## Package/Class Overview
   
