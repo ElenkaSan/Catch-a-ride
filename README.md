@@ -422,7 +422,7 @@ After submit button will showing the car -> Booked car with today's date and sta
 |   | Model: |     |   | Model: |     |   | Model: | |  
 |   | Year:  |     |   | Year:  |     |   | Year:  | |  
 |   +--------+     |   +--------+     |   +--------+ |  
-|   [ Book Now ]   |   [ Book Now ]   |   [ Book Now ] |  
+|  [ Book Now ]    |  [ Book Now ]    | [ Book Now ] | 
 +---------------------------------------------------+  
 |   Card 4         |   Card 5         |   Card 6     |  
 |   +--------+     |   +--------+     |   +--------+ |  
@@ -432,10 +432,13 @@ After submit button will showing the car -> Booked car with today's date and sta
 |   | Model: |     |   | Model: |     |   | Model: | |  
 |   | Year:  |     |   | Year:  |     |   | Year:  | |  
 |   +--------+     |   +--------+     |   +--------+ |  
-|   [ Book Now ]   |   [ Book Now ]   |   [ Book Now ] |  
+|  [ Book Now ]    |  [ Book Now ]    | [ Book Now ] |  
 +---------------------------------------------------+
-etc
+Loading more when scrolling down
 ```
+
+<img width="557" alt="Screenshot 2025-04-10 at 5 42 53 PM" src="https://github.com/user-attachments/assets/230acbbe-4df6-493b-9844-b46a1f90fa7e" />
+
 
 #### View Login/Signup 
 ```
