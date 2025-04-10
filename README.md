@@ -701,7 +701,7 @@ If there are no booked cars:
                  OR
 If they booked a car: Show already booked cars
 +---------------------------------------------------+  
-|                    Your booked cars                 |  
+|              You have booked these cars            |  
 +---------------------------------------------------+  
 |   Card 1         |   Card 2         |   Card 3     |  
 |   +--------+     |   +--------+     |   +--------+ |  
