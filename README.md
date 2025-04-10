@@ -347,7 +347,7 @@ An enum with two values: Rented or Leased
 
 ```
 NAVBAR
-  Catch Ride         [ Home | Available Cars | Add Booking | Login/Signup ]
+  Catch Ride         [ Home | Available Cars | Add Booking | Login/Signup | Seaching bar ]
                                      |
                                      v
 
