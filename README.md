@@ -64,6 +64,217 @@ Our service offers a fast and efficient portal for any user to obtain vehicles w
 ### Diagrams Maven: 
 #### Class details & design
 
+### App
+- `public static void main(String[])` -- instantiate all required classes with valid arguments, dependency injection. run controller
+
+
+
+D A T A   L A Y E R
+
+### data.mapper.BookingMapper
+
+- `public Booking mapRow(ResultSet resultSet, int i) throws SQLException`
+
+
+### data.mapper.VehicleMapper
+
+- `public Vehicle mapRow(ResultSet resultSet, int i) throws SQLException`
+
+
+### data.mapper.LocationMapper
+
+- `public Location mapRow(ResultSet resultSet, int i) throws SQLException`
+
+
+### data.mapper.DealershipMapper
+
+- `public Dealership mapRow(ResultSet resultSet, int i) throws SQLException`
+
+
+### data.mapper.UserMapper
+
+- `public User mapRow(ResultSet resultSet, int i) throws SQLException`
+
+
+### data.BookingJdbcTemplateRepository
+- `List<Booking> findAll(String)`
+- `Booking findById(int)`
+- `Booking add(Booking)`
+- `boolean update(Booking)`
+- `boolean deleteById(int)`
+
+### data.BookingRepository implements BookingJdbcTemplateRepository
+
+### data.VehicleJdbcTemplateRepository
+- `List<Vehicle> findAll(String)`
+- `Vehicle findById(int)`
+- `Vehicle add(Vehicle)`
+- `boolean update(Vehicle)`
+- `boolean deleteById(int)`
+
+### data.VehicleRepository implements VehicleJdbcTemplateRepository
+
+### data.LocationJdbcTemplateRepository
+- `List<Location> findAll(String)`
+- `Location findById(int)`
+- `Location add(Location)`
+- `boolean update(Location)`
+- `boolean deleteById(int)`
+
+### data.LocationgRepository implements LocationJdbcTemplateRepository
+
+### data.DealershipJdbcTemplateRepository
+- `List<Dealership> findAll(String)`
+- `Dealership findById(int)`
+- `Dealership add(Dealership)`
+- `boolean update(Dealership)`
+- `boolean deleteById(int)`
+
+### data.DealershipRepository implements DealershipJdbcTemplateRepository
+
+### data.UserJdbcTemplateRepository
+- `List<User> findAll(String)`
+- `User findById(int)`
+- `User add(User)`
+- `boolean update(User)`
+- `boolean deleteById(int)`
+
+### data.UserRepository implements UserJdbcTemplateRepository
+
+
+D O M A I N    L A Y E R
+
+### domain.ResultType
+An enum with three values: SUCCESS, INVALID or NOT_FOUND
+
+### domain.Result
+- `private final ArrayList<String> messages` -- error messages
+- `private T payload` -- an optional payload
+- `private ResultType type = ResultType.SUCCESS;` -- enum
+- `public boolean isSuccess()` -- calculated getter, true if no error messages
+- `public List<String> getMessages()` -- messages getter, create a new list
+- `public T getPayload()` -- payload getter
+- `public void setPayload(T)` -- payload setter
+- `public void addMessage(String, ResultType)` -- adds an error message to messages
+
+### domain.BookingService
+-  `private BookingRepository repository` -- required data dependency
+-  `public BookingService(BookingRepository)` -- constructor
+-  `public List<Booking> findAll(String)` -- pass-through to repository
+-  `public Booking findById(int)` -- pass-through to repository
+-  `public BookingResult add(Booking)` -- validate, then add via repository
+-  `public BookingResult update(Booking)` -- validate, then update via repository
+-  `public BookingResult deleteById(int)` -- pass-through to repository
+-  `private BookingResult validate(Booking)` -- general-purpose validation routine
+
+
+### domain.VehicleService
+-  `private VehicleRepository repository` -- required data dependency
+-  `public VehicleService(VehicleRepository)` -- constructor
+-  `public List<Vehicle> findAll(String)` -- pass-through to repository
+-  `public Vehicle findById(int)` -- pass-through to repository
+-  `public VehicleResult add(Vehicle)` -- validate, then add via repository
+-  `public VehicleResult update(Vehicle)` -- validate, then update via repository
+-  `public VehicleResult deleteById(int)` -- pass-through to repository
+-  `private VehicleResult validate(Vehicle)` -- general-purpose validation routine
+
+### domain.LocationService
+-  `private LocationRepository repository` -- required data dependency
+-  `public LocationService(LocationRepository)` -- constructor
+-  `public List<Location> findAll(String)` -- pass-through to repository
+-  `public Location findById(int)` -- pass-through to repository
+-  `public LocationResult add(Location)` -- validate, then add via repository
+-  `public LocationResult update(Location)` -- validate, then update via repository
+-  `public LocationResult deleteById(int)` -- pass-through to repository
+-  `private LocationResult validate(Location)` -- general-purpose validation routine
+
+### domain.DealershipService
+-  `private DealershipRepository repository` -- required data dependency
+-  `public DealershipService(DealershipRepository)` -- constructor
+-  `public List<Dealership> findAll(String)` -- pass-through to repository
+-  `public Dealership findById(int)` -- pass-through to repository
+-  `public DealershipResult add(Dealership)` -- validate, then add via repository
+-  `public DealershipResult update(Dealership)` -- validate, then update via repository
+-  `public DealershipResult deleteById(int)` -- pass-through to repository
+-  `private DealershipResult validate(Dealership)` -- general-purpose validation routine
+
+### domain.UserService
+-  `private UserRepository repository` -- required data dependency
+-  `public UserService(UserRepository)` -- constructor
+-  `public List<User> findAll(String)` -- pass-through to repository
+-  `public User findById(int)` -- pass-through to repository
+-  `public UserResult add(User)` -- validate, then add via repository
+-  `public UserResult update(User)` -- validate, then update via repository
+-  `public UserResult deleteById(int)` -- pass-through to repository
+-  `private UserResult validate(User)` -- general-purpose validation routine
+
+
+C O N T R O L L E R S
+
+### controller.ErrorResponse
+-  `private final LocalDateTime timestamp` -- registering time of error
+-  `private final String message` -- error message
+-  `public String getTimestamp()`
+-  `public String getMessage()` 
+-  `public ErrorResponse(String message)` -- constructor
+-  `public static ResponseEntity<ErrorResponse> build(String message)` -- http status and error message
+-  `public static <T> ResponseEntity<Object> build(Result<T> result)` -- getting http error from result type
+
+### controller.GlobalExceptionHandler
+-  `public ResponseEntity<ErrorResponse> handleException(DataIntegrityViolationException ex)` -- handling Data Integrity errors
+-  `public ResponseEntity<ErrorResponse> handleException(IllegalArgumentException ex)` -- handling Illegal Argument exceptions
+-  `public ResponseEntity<ErrorResponse> handleException(DataAccessException ex)` -- handling Data Access exceptions
+-  `public ResponseEntity<ErrorResponse> handleException(Exception ex) throws Exception` -- handling general exceptions
+
+### controller.BookingController
+-  `private final BookingService service;` -- required service dependency
+-  `public BookingController(BookingService service)` -- constructor
+-  `public List<Booking> findAll()` -- pass-through to service
+-  `public Booking findById(int bookingId)` -- pass-through to service
+-  `public ResponseEntity<Object> add(Booking booking)` -- give error response in case of failure
+-  `public ResponseEntity<Object> update(int bookingId, Booking booking)` -- validate update and return appropriate response if failure
+-  `public ResponseEntity<Void> deleteById(int bookingId)` -- return either no content or not found in case of error
+
+### controller.VehicleController
+-  `private final VehicleService service;` -- required service dependency
+-  `public VehicleController(VehicleService service)` -- constructor
+-  `public List<Vehicle> findAll()` -- pass-through to service
+-  `public Vehicle findById(int vehicleId)` -- pass-through to service
+-  `public ResponseEntity<Object> add(Vehicle vehicle)` -- give error response in case of failure
+-  `public ResponseEntity<Object> update(int vehicleId, Vehicle vehicle)` -- validate update and return appropriate response if failure
+-  `public ResponseEntity<Void> deleteById(int vehicleId)` -- return either no content or not found in case of error
+
+### controller.LocationController
+-  `private final LocationService service;` -- required service dependency
+-  `public LocationController(LocationService service)` -- constructor
+-  `public List<Location> findAll()` -- pass-through to service
+-  `public Location findById(int locationId)` -- pass-through to service
+-  `public ResponseEntity<Object> add(Location location)` -- give error response in case of failure
+-  `public ResponseEntity<Object> update(int locationId, Location location)` -- validate update and return appropriate response if failure
+-  `public ResponseEntity<Void> deleteById(int locationId)` -- return either no content or not found in case of error
+
+### controller.DealershipController
+-  `private final DealershipService service;` -- required service dependency
+-  `public DealershipController(DealershipService service)` -- constructor
+-  `public List<Dealership> findAll()` -- pass-through to service
+-  `public Dealership findById(int dealershipId)` -- pass-through to service
+-  `public ResponseEntity<Object> add(Dealership dealership)` -- give error response in case of failure
+-  `public ResponseEntity<Object> update(int dealershipId, Dealership dealership)` -- validate update and return appropriate response if failure
+-  `public ResponseEntity<Void> deleteById(int dealershipId)` -- return either no content or not found in case of error
+
+### controller.UserController
+-  `private final UserService service;` -- required service dependency
+-  `public UserController(UserService service)` -- constructor
+-  `public List<User> findAll()` -- pass-through to service
+-  `public User findById(int userId)` -- pass-through to service
+-  `public ResponseEntity<Object> add(User user)` -- give error response in case of failure
+-  `public ResponseEntity<Object> update(int userId, User user)` -- validate update and return appropriate response if failure
+-  `public ResponseEntity<Void> deleteById(int userId)` -- return either no content or not found in case of error
+
+
+
+M O D E L S
+
 ### models.BookingType
 
 An enum with two values: Rented or Leased
@@ -112,14 +323,13 @@ An enum with two values: Rented or Leased
 - Full getters and setters
 - override `equals` and `hashCode`
 
-### models.dealership
+### models.Dealership
 - `private int id`
 - `private String name`
 - `private String description`
 - `private int locationId`
 - Full getters and setters
 - override `equals` and `hashCode`
-
 ### Data
 - **Booking**: a booking is valid only if the selected car exists and is currently marked as available (is_available = true).
 - **Booking_status**: determines if the car is booked by user.
