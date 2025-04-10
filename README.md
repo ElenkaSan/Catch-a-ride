@@ -169,6 +169,8 @@ NAVBAR
                     | Book Now | Book Now | Book Now | Book Now |
                    -----------------------------------------------
 
+On the Home page can see all cars even it already booked.
+
 Clicking:
 - "Available Cars" → list of only `is_available = true` cars
 - "Add Booking" → form to select car, dates, and user -> if no login, will send to login/signup page
@@ -184,4 +186,6 @@ Each Card:
 <img width="554" alt="cars" src="https://github.com/user-attachments/assets/1199777a-5005-4a0c-82d9-385817072a20" />
 
 #### View the page for Admin
+
+
 
