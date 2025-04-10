@@ -108,9 +108,16 @@ Our service offers a fast and efficient portal for any user to circulate vehicle
 ![image](https://github.com/user-attachments/assets/a5263a3d-1331-4550-9c58-950c9b081203)
 
 
-#### layer
-
-
 #### Test Plan
+- As Admin:
+   - view all car, all users
+   - add car, user
+   - edit car, user
+   - delete: car, user, booking
+- As User:
+   - view
+   - booking car
+   - delete booking
+   - edit user acount and delete account
 
 ### Wireframes: roughly sketch your UI and how one view transitions to another. You can also use design tools to create wireframes
