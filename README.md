@@ -746,7 +746,7 @@ OR
 
 <img width="328" alt="Screenshot 2025-04-11 at 1 51 41 PM" src="https://github.com/user-attachments/assets/30b492ab-5982-46a3-8887-1ed30f62bbc1" />
 
-#### View User page 
+#### View User page with edit and delete options
 ```
 If there are no booked cars:
 +---------------------------------------------------+  
@@ -772,7 +772,7 @@ If they booked a car: Show already booked cars
 
 <img width="613" alt="Screenshot 2025-04-11 at 2 07 25 PM" src="https://github.com/user-attachments/assets/1a364fec-1328-42d8-9ea4-27fa4256c1a4" />
 
-- Edit a car or delete
+- Edit booked car
   
 <img width="329" alt="Screenshot 2025-04-11 at 1 52 01 PM" src="https://github.com/user-attachments/assets/e7b1320c-f688-4f5d-9741-b540512e56c6" />
 
