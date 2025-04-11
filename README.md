@@ -384,6 +384,7 @@ An enum with two values: Rented or Leased
 	│   │           │       ErrorResponse.java
 	│   │           │       GlobalExceptionHandler.java
 	│   │           │       UserController.java
+        │   │           │       AuthController.java
 	│   │           │       VehicleController.java
 	│   │           │       BookingController.java
 	│   │           │       LocationController.java
