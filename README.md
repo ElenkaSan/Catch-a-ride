@@ -658,10 +658,12 @@ Clicking:
 
 #### View All Available Locations
 
-#### View All Cars
+#### View All Cars, add, edit, and delete
+
+<img width="620" alt="Screenshot 2025-04-11 at 2 19 00 PM" src="https://github.com/user-attachments/assets/ad2a23b3-e909-4cbf-9107-21e1b89daa4a" />
 
 - Add a car
-- Edit or delete a car
+- Edit a car
 
 #### View the Add Booking page
 
