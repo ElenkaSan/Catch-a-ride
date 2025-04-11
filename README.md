@@ -756,6 +756,8 @@ If they booked a car: Show already booked cars
 
 <img width="568" alt="Screenshot 2025-04-10 at 6 35 14 PM" src="https://github.com/user-attachments/assets/6549224d-897c-448b-ba0c-b5ed13fc78f0" />
 
+- Edit a car or delete
+
 #### Error Page
 
 ```
