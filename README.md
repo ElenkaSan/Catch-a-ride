@@ -654,7 +654,7 @@ Clicking:
 |                  [ Submit Booking ]               |  
 +---------------------------------------------------+
 
-After submitting button will show the car -> Booked car with today's date, and the status will be changed to booked
+After submitting button will show the car -> Booked car with today's date, will dispay the dealership name, and the status will be changed to booked
 ```
 
 <img width="307" alt="Screenshot 2025-04-11 at 11 46 19 AM" src="https://github.com/user-attachments/assets/a34a0970-9960-4312-a0ed-a7fc0406ff66" />
