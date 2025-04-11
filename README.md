@@ -618,7 +618,7 @@ Each Card:
 
 <img width="600" alt="Screenshot 2025-04-11 at 10 46 58 AM" src="https://github.com/user-attachments/assets/37bd09b2-9b36-4474-b780-de8ee9db9622" />
 
-#### Can search car via Search bar
+#### Can search a car viathe the Search bar
 ```
 Search a car by model, year, dealership, and location
 ```
@@ -657,6 +657,9 @@ Clicking:
 - Edit or delete
 
 #### View All Available Locations
+
+<img width="634" alt="Screenshot 2025-04-11 at 2 30 01 PM" src="https://github.com/user-attachments/assets/c905f038-2229-4ac4-8b94-95242eb432a2" />
+
 
 #### View All Cars, add, edit, and delete
 
