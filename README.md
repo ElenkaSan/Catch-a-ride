@@ -406,7 +406,6 @@ An enum with two values: Rented or Leased
 	│   │           │       DealershipRepository.java
 	│   │           │
 	│   │           |───domain
-	│   │           │       UserService.java
 	│   │           │       VehicleService.java
 	│   │           │       BookingService.java
 	│   │           │       Location.java
