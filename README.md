@@ -685,19 +685,6 @@ Clicking:
 #### View the Add Booking page
 
 ```
-+---------------------------------------------------+  
-|                   Add a Booking                   |  
-+---------------------------------------------------+  
-| Car ID: [_____________________________]           |  
-| User ID: [_____________________________]          |  
-| Location ID: [_____________________________]      |  
-| Start Date: [ mm/dd/yyyy ]                        |  
-| End Date: [ mm/dd/yyyy ]                          |
-| Booking Type: Lease or Rent                       |  
-+---------------------------------------------------+  
-|                  [ Submit Booking ]               |  
-+---------------------------------------------------+
-
 After submitting button will show the car -> Booked car with today's date, will dispay the dealership name, and the status will be changed to booked
 ```
 
