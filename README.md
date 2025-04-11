@@ -3,7 +3,9 @@ Catch A Ride is the premier application for catching your next ride. Whether you
 Catch A Ride opens up multiple avenues to obtain your next vehicle and offloads your inventory as well. Users can create an account and then browse from a wide selection of vehicles. Here, a user may see listings in their local area and then, when the options allow, rent or lease a vehicle.
 Our service offers a fast and efficient portal for any user to obtain vehicles with minimal effort.
 
-### Work Plan:  **Schedule**
+### Work Plan:  **Daily Schedule**
+
+# **Day 1**
 ## **Back End Development**
 ### **Project Setup**
 1. Create a Maven Project (15 minutes)
@@ -17,31 +19,41 @@ Our service offers a fast and efficient portal for any user to obtain vehicles w
 8. Create Dealership Model (12 minutes)
 ### **Data Layer**
 9. Build User Repository (30 minutes)
-10. Build Vehicle Repository (1 hour)
-11. Build Booking Repository (1 hour)
-12. Build Location Repository (1 hour)
-13. Build Dealership Repository (1 hour)
-14. Build Error Response (15 minutes)
-15. Build Global Exception Handler (15 minutes)
-16. Build Authorization Controller (30 minutes)
-17. Build User Controller (30 minutes)
-18. Build Vehicle Controller (30 minutes)
-19. Build Booking Controller (30 minutes)
-20. Build Location Controller (30 minutes)
-21. Build Dealership Controller (30 minutes)
-22. Build User Mapper (15 minutes)
-23. Build Location Mapper (15 minutes)
-24. Build Booking Mapper (15 minutes)
-25. Build Dealership Mapper (15 minutes)
-26. Build Vehicle Mapper (15 minutes)
-27. Add Repository Unit Tests (2 hours)
+11. Build Data Exception (15 minutes)
+12. Build Vehicle Repository (1 hour)
+13. Build Booking Repository (1 hour)
+14. Build Location Repository (1 hour)
+15. Build Dealership Repository (1 hour)
+### **Mappers**
+18. Build User Mapper (15 minutes)
+19. Build Location Mapper (15 minutes)
+20. Build Booking Mapper (15 minutes)
+21. Build Dealership Mapper (15 minutes)
+22. Build Vehicle Mapper (15 minutes)
+
+# **Day 2**
+1. Add Repository Unit Tests (2 hours)
 ### **Service Layer**
-28. Build User Service (1 hour)
-29. Build Vehicle Service (1 hour)
-30. Build Booking Service (1 hour)
-31. Build Location Service (1 hour)
-32. Build Dealership Service (1 hour)
-33. Add Service Unit Tests (2 hours)
+2. Build Result (1 hour)
+3. Build Vehicle Service (1 hour)
+4. Build Booking Service (1 hour)
+5. Build Location Service (1 hour)
+6. Build Dealership Service (1 hour)
+### **Security**
+7. Build User Service (1 hour)
+8. Build Security Config (1 hour)
+9. Add Service Unit Tests (2 hours)
+### **Controllers**
+10. Build Error Response (15 minutes)
+11. Build Global Exception Handler (15 minutes)
+12. Build Authorization Controller (30 minutes)
+13. Build User Controller (30 minutes)
+14. Build Vehicle Controller (30 minutes)
+15. Build Booking Controller (30 minutes)
+16. Build Location Controller (30 minutes)
+17. Build Dealership Controller (30 minutes)
+
+# **Day 3**
 ## **Front End Development**
 1. Navigation (2 hours)
 2. Login Page (2 hours)
@@ -55,6 +67,8 @@ Our service offers a fast and efficient portal for any user to obtain vehicles w
 7. Update Users (2 Hours)
 8. Delete Listing (1 Hour)
 9. Delete User (1 Hour)
+
+# **Day 4**
 ## **Refinement and Final Testing**
 1. Clean up Code (1 hour)
 2. Ensure Proper Comments (1 hour)
