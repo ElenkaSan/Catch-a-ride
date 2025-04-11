@@ -632,13 +632,16 @@ Clicking:
 - "All Cars" → admin can add the car, edit, and delete
 ```
 #### View All Booking Cars
-
 <img width="620" alt="Screenshot 2025-04-11 at 11 08 46 AM" src="https://github.com/user-attachments/assets/d2855a0d-6b29-487c-bf87-784cd71e55e7" />
 
 - Add a new Booking Cars (the same as what the user has to add a Booking car)
-<img width="325" alt="Screenshot 2025-04-11 at 11 58 02 AM" src="https://github.com/user-attachments/assets/abdc965f-68dd-4815-96a5-88a80adb980c" />
+<img width="330" alt="Screenshot 2025-04-11 at 1 51 56 PM" src="https://github.com/user-attachments/assets/f2c25ece-7e58-46b0-9214-8bc0095b86d6" />
 
-- Edit Booking Cars or delete
+- Edit Booking Car
+<img width="339" alt="Screenshot 2025-04-11 at 1 52 01 PM" src="https://github.com/user-attachments/assets/3bba7bca-7665-4ae1-bbee-dc0da45dd2f2" />
+
+- Delete Booking Car
+  <img width="620" alt="Screenshot 2025-04-11 at 1 55 40 PM" src="https://github.com/user-attachments/assets/bff5d58d-301e-4424-bbf8-f38c5aed83d4" />
 
 #### View All Users
 - Add User
@@ -669,9 +672,7 @@ Clicking:
 
 After submitting button will show the car -> Booked car with today's date, will dispay the dealership name, and the status will be changed to booked
 ```
-
-<img width="325" alt="Screenshot 2025-04-11 at 11 58 02 AM" src="https://github.com/user-attachments/assets/abdc965f-68dd-4815-96a5-88a80adb980c" />
-
+<img width="334" alt="Screenshot 2025-04-11 at 1 51 56 PM" src="https://github.com/user-attachments/assets/d6266c63-69b0-4976-a4f6-fbbe1abf94b8" />
 
 #### View the Available Cars page
 ```
@@ -730,11 +731,9 @@ OR
 +---------------------------------------------------+
 
 ```
-<img width="340" alt="Screenshot 2025-04-11 at 11 58 06 AM" src="https://github.com/user-attachments/assets/bc4e2d39-6f09-482e-a8c2-1f96d5a399b2" />
+<img width="340" alt="Screenshot 2025-04-11 at 1 51 46 PM" src="https://github.com/user-attachments/assets/4670762e-628e-4366-a0c4-775582375a7b" />
 
-
-<img width="330" alt="Screenshot 2025-04-11 at 12 00 41 PM" src="https://github.com/user-attachments/assets/043e1185-ca72-49e3-8400-c1c5a5193f90" />
-
+<img width="328" alt="Screenshot 2025-04-11 at 1 51 41 PM" src="https://github.com/user-attachments/assets/30b492ab-5982-46a3-8887-1ed30f62bbc1" />
 
 #### View Search bar
 ```
