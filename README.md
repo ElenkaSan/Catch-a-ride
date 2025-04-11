@@ -688,7 +688,7 @@ After submitting button will show the car -> Booked car with today's date, and t
 Loading more when scrolling down
 ```
 
-<img width="557" alt="Screenshot 2025-04-10 at 5 42 53 PM" src="https://github.com/user-attachments/assets/230acbbe-4df6-493b-9844-b46a1f90fa7e" />
+<img width="620" alt="Screenshot 2025-04-11 at 11 48 55 AM" src="https://github.com/user-attachments/assets/7f9c1594-1305-459f-a5ac-d6cc9caf4152" />
 
 
 #### View Login/Signup 
