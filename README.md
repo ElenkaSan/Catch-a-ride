@@ -391,7 +391,8 @@ An enum with two values: Rented or Leased
         │   │           │       DealershipController.java
 	│   │           │
 	│   │           |───data
-        │   │           │    └───mapper -> each one has mapper.java
+        │   │           │      └───mapper -> each one has mapper.java
+        │   │           │      │              
 	│   │           │       DataException.java
 	│   │           │       UsertJdbcTemplateRepository.java
 	│   │           │       UserRepository.java
