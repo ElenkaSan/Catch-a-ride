@@ -618,6 +618,23 @@ Clicking:
 - "All Available Locations" -> list of available locations 
 - "All Cars" → admin can add the car, edit, and delete
 ```
+#### View All Booking Cars
+
+<img width="620" alt="Screenshot 2025-04-11 at 11 08 46 AM" src="https://github.com/user-attachments/assets/d2855a0d-6b29-487c-bf87-784cd71e55e7" />
+
+- Add a new Booking Cars (the same as what the user have to add a Booking car)
+- Edit Booking Cars or delete
+
+#### View All Users
+- Add User
+- Edit or delete
+
+#### View All Available Locations
+
+#### View All Cars
+
+- Add a car
+- Edit or delete a car
 
 #### View the Add Booking page
 
