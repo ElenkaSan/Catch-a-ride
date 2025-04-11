@@ -423,7 +423,7 @@ An enum with two values: Rented or Leased
         |   |           |       Dealership.java
         |   │           │
         │   │           └───security
-        │   |                   AppUserService.java
+        │   |                   UserService.java
         │   |                   SecurityConfig.java
 	│   │
 	│   └───resources
