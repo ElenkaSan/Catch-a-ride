@@ -60,13 +60,12 @@ Our service offers a fast and efficient portal for any user to obtain vehicles w
 2. Ensure Proper Comments (1 hour)
 3. Iron Out Bugs (1 hour)
 4. Perform Final Testing (1 hour)
-   
+
 ### Diagrams Maven: 
 #### Class details & design
 
 ### App
 - `public static void main(String[])` -- instantiate all required classes with valid arguments, dependency injection. run controller
-
 
 
 D A T A   L A Y E R
@@ -330,6 +329,8 @@ An enum with two values: Rented or Leased
 - `private int locationId`
 - Full getters and setters
 - override `equals` and `hashCode`
+
+
 ### Data
 - **Booking**: a booking is valid only if the selected car exists and is currently marked as available (is_available = true).
 - **Booking_status**: determines if the car is booked by user.
@@ -412,15 +413,28 @@ An enum with two values: Rented or Leased
         │   │           │       ResultType.java
         │   │           │       DealershipService.java
 	│   │           │
-	│   │           └───models
-	│   │                   User.java
-	│   │                   Vehicle.java
-	│   │                   Booking.java
-	│   │                   Location.java
-        |   |                   Dealership.java   
-	│   │           
+	│   │           |───models
+	│   │           |       User.java
+	│   │           |       Vehicle.java
+	│   │           |       Booking.java
+	│   │           |       Location.java
+        |   |           |       Dealership.java
+        |   │           │
+        │   │           └───security
+        │   |                   AppUserService.java
+        │   |                   SecurityConfig.java
 	│   │
-	│   └───resources- > application.properties
+	│   └───resources
+        │            │   application.properties
+        │            │
+        │            └───templates
+        │                 │     delete.html
+        │                 │     form.html
+        │                 │     index.html
+        │                 │     not-found.html
+        │                 │
+        │                 └───security
+        │                          login.html
 	└───test
 	    └───java
 	        └───learn
@@ -449,7 +463,8 @@ An enum with two values: Rented or Leased
                 │                LocationServiceTest.java
                 │                DealershipServiceTest.java
                 │ 
-                └───resources- > application.properties
+                └───resources
+                         application.properties
 
 ```
 
