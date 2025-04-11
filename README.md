@@ -623,7 +623,7 @@ Clicking:
 <img width="620" alt="Screenshot 2025-04-11 at 11 08 46 AM" src="https://github.com/user-attachments/assets/d2855a0d-6b29-487c-bf87-784cd71e55e7" />
 
 - Add a new Booking Cars (the same as what the user has to add a Booking car)
-<img width="307" alt="Screenshot 2025-04-11 at 11 46 19 AM" src="https://github.com/user-attachments/assets/a34a0970-9960-4312-a0ed-a7fc0406ff66" />
+<img width="325" alt="Screenshot 2025-04-11 at 11 58 02 AM" src="https://github.com/user-attachments/assets/abdc965f-68dd-4815-96a5-88a80adb980c" />
 
 - Edit Booking Cars or delete
 
@@ -642,7 +642,7 @@ Clicking:
 
 ```
 +---------------------------------------------------+  
-|                     Add Booking                   |  
+|                   Add a Booking                   |  
 +---------------------------------------------------+  
 | Car ID: [_____________________________]           |  
 | User ID: [_____________________________]          |  
@@ -657,7 +657,7 @@ Clicking:
 After submitting button will show the car -> Booked car with today's date, will dispay the dealership name, and the status will be changed to booked
 ```
 
-<img width="307" alt="Screenshot 2025-04-11 at 11 46 19 AM" src="https://github.com/user-attachments/assets/a34a0970-9960-4312-a0ed-a7fc0406ff66" />
+<img width="325" alt="Screenshot 2025-04-11 at 11 58 02 AM" src="https://github.com/user-attachments/assets/abdc965f-68dd-4815-96a5-88a80adb980c" />
 
 
 #### View the Available Cars page
@@ -717,7 +717,10 @@ OR
 +---------------------------------------------------+
 
 ```
-<img src="https://github.com/user-attachments/assets/80ef2e2d-bbfa-46c7-b18c-12c355eb0453" width="600" />
+<img width="340" alt="Screenshot 2025-04-11 at 11 58 06 AM" src="https://github.com/user-attachments/assets/bc4e2d39-6f09-482e-a8c2-1f96d5a399b2" />
+
+
+<img width="330" alt="Screenshot 2025-04-11 at 11 58 10 AM" src="https://github.com/user-attachments/assets/af318afc-6814-48f6-a934-b3e8fc625515" />
 
 
 #### View Search bar
