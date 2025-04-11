@@ -603,12 +603,13 @@ Each Card:
 
 #### View the page for everyone
 
-<img width="557" alt="Screenshot 2025-04-11 at 10 46 58 AM" src="https://github.com/user-attachments/assets/37bd09b2-9b36-4474-b780-de8ee9db9622" />
+<img width="600" alt="Screenshot 2025-04-11 at 10 46 58 AM" src="https://github.com/user-attachments/assets/37bd09b2-9b36-4474-b780-de8ee9db9622" />
 
 #### View the page for Admin
 
-<img width="740" alt="admin" src="https://github.com/user-attachments/assets/b441cb82-ce99-4d73-b9a6-474927125629" />
+<img width="620" alt="Screenshot 2025-04-11 at 10 59 06 AM" src="https://github.com/user-attachments/assets/8e28264c-2b54-4976-827d-5f9cf5e8430b" />
 
+#### CRUD
 
 ```
 Clicking:
