@@ -658,7 +658,7 @@ Clicking:
 
 - Add User
   
-<img width="324" alt="Screenshot 2025-04-11 at 2 41 19 PM" src="https://github.com/user-attachments/assets/9f88fec2-da01-4219-ad23-4138b807f38c" />
+<img width="324" alt="Screenshot 2025-04-11 at 2 46 42 PM" src="https://github.com/user-attachments/assets/1d0219a0-954a-4f05-b0f5-ba38d2f400c5" />
 
 - Edit User
 
@@ -676,11 +676,11 @@ Clicking:
 
 - Add a car
   
-<img width="330" alt="Screenshot 2025-04-11 at 2 25 11 PM" src="https://github.com/user-attachments/assets/7b364ad3-b49f-4b1a-9b71-3110d671098e" />
+<img width="330" alt="Screenshot 2025-04-11 at 2 47 07 PM" src="https://github.com/user-attachments/assets/c9760fba-5a75-467a-9da9-13ebe045ddaf" />
 
 - Edit a car
 
-<img width="211" alt="Screenshot 2025-04-11 at 2 25 15 PM" src="https://github.com/user-attachments/assets/1cb2f05c-af98-4617-817b-5ff67e42926e" />
+<img width="330" alt="Screenshot 2025-04-11 at 2 25 15 PM" src="https://github.com/user-attachments/assets/1cb2f05c-af98-4617-817b-5ff67e42926e" />
 
 #### View the Add Booking page
 
@@ -790,6 +790,10 @@ If they booked a car: Show already booked cars
 ```
 
 <img width="613" alt="Screenshot 2025-04-11 at 2 07 25 PM" src="https://github.com/user-attachments/assets/1a364fec-1328-42d8-9ea4-27fa4256c1a4" />
+
+- Book a new car
+  
+<img width="330" alt="Screenshot 2025-04-11 at 2 50 58 PM" src="https://github.com/user-attachments/assets/77b893eb-cc17-40df-b437-478589b99330" />
 
 - Edit booked car
   
