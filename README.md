@@ -652,9 +652,12 @@ Clicking:
   
 <img width="620" alt="Screenshot 2025-04-11 at 1 55 40 PM" src="https://github.com/user-attachments/assets/bff5d58d-301e-4424-bbf8-f38c5aed83d4" />
 
-#### View All Users
+#### View All Users, add, edit and delete
+
+<img width="622" alt="Screenshot 2025-04-11 at 2 37 50 PM" src="https://github.com/user-attachments/assets/dfa55ac3-559e-4d10-8103-c1475094075e" />
+
 - Add User
-- Edit or delete
+- Edit User
 
 #### View All Available Locations
 
