@@ -603,7 +603,7 @@ Each Card:
 
 #### View the page for everyone
 
-<img width="557" alt="Screenshot 2025-04-10 at 5 42 53 PM" src="https://github.com/user-attachments/assets/dff5f600-b139-4692-9a56-0827b189d433" />
+<img width="486" alt="Screenshot 2025-04-11 at 10 46 58 AM" src="https://github.com/user-attachments/assets/37bd09b2-9b36-4474-b780-de8ee9db9622" />
 
 #### View the page for Admin
 
