@@ -489,8 +489,49 @@ An enum with two values: Rented or Leased
 ![catch_ride_db](https://github.com/user-attachments/assets/c4e2be91-d85c-4a15-a17f-77e25f488877)
 
 
+## Technical Solution:
 
-## High-level Requirements and Test Plan
+Catch-a-Ride is a Java Spring Boot app that’s built in layers where we organized as:
+1. **Controllers / API Layer**: Handle web requests and send back the right response.
+2. **Business Logic / Domain Layer**: Checks rules (like booking dates) and returns results with helpful messages.
+3. **Data Layer**: Talks to the database using JDBC Template and turns rows into Java objects.
+4. **Models**: Represent the main things in the application, which are `Users`, `Cars`, `Bookings`, `Locations`, and `Dealerships`.
+5. **Validation**: Makes sure things like dates, availability, and locations follow the rules.
+6. **Error Handling**: Catches errors in one place and sends useful error messages to the user.
+
+## High-level Requirements 
+1. User Management:
+    - Create, update, delete, and view users.
+    - Support admin accounts for special access.
+
+2. Vehicle Management:
+     - Add and manage vehicles = cars (make, model, year, color, trim, dealership info).
+     - Validate vehicle fields (year must not exceed current year + 1).
+
+3. Booking System:
+     - Users can book cars for rental or lease.
+     - Make sure cars are available and bookings don’t overlap.
+     - Filtering bookings by zip code = location.
+
+4. Location Services:
+     - Add, view, and manage cities, states, and zip codes.
+     - Users can search for cars by zip code.
+
+5. Dealership Listings:
+     - Admin can add, update, and delete cars from the dealership, and view dealerships and their cars.
+       
+6. Admin Features:
+     - Can add, update, and delete bookings, cars, and users.
+
+7. Validation & Error Handling:
+     - Check all forms and data both on the front and back end.
+     - Global exception handling for common data and server errors.
+
+8. REST API Design:
+     - Provide web API endpoints for all features with proper HTTP.
+     - Return clear messages for invalid or failed operations using `ResultType`.
+
+### Test Plan
 - As Admin:
    - display all cars, all users, all bookings, all locations
    - add car, user, booking, location
@@ -513,6 +554,23 @@ An enum with two values: Rented or Leased
     `PUT /api/bookings/{bookingId}`
 - Delete Booking:
     `DELETE /api/bookings/{bookingId}`
+
+## Learning Goals
+
+1. Spring Boot Skills:
+     Build a full-stack app using clean, layered design and REST APIs.
+3. Effective Error Handling:
+     Use `@ControllerAdvice` to manage errors in one place.
+5. Work with Databases:
+     Use `JdbcTemplate` to run SQL and turn results into Java objects.
+7. Apply Business Rules:
+     Add rules and validation in both the domain and controller layers.
+9. Clean Code Design:
+     Use good structure, keep layers separate, and use dependency injection.
+11. Tools:
+      Use `.http` files to test APIs and SQL scripts to manage databases.
+13. Enums and Domain Models:
+      Use `enums` to keep values consistent (like `BookingType` and `ResultType`).
 
 ## Controller Perspectives
 
@@ -796,3 +854,5 @@ If they booked a car: Show already booked cars
 ```
 
 <img width="569" alt="Screenshot 2025-04-11 at 2 44 51 PM" src="https://github.com/user-attachments/assets/fd2d4b01-bbf5-4331-b021-dad9757323a5" />
+
+
