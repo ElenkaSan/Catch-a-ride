@@ -622,7 +622,9 @@ Clicking:
 
 <img width="620" alt="Screenshot 2025-04-11 at 11 08 46 AM" src="https://github.com/user-attachments/assets/d2855a0d-6b29-487c-bf87-784cd71e55e7" />
 
-- Add a new Booking Cars (the same as what the user have to add a Booking car)
+- Add a new Booking Cars (the same as what the user has to add a Booking car)
+<img width="407" alt="Screenshot 2025-04-11 at 11 46 19 AM" src="https://github.com/user-attachments/assets/a34a0970-9960-4312-a0ed-a7fc0406ff66" />
+
 - Edit Booking Cars or delete
 
 #### View All Users
@@ -655,7 +657,7 @@ Clicking:
 After submitting button will show the car -> Booked car with today's date, and the status will be changed to booked
 ```
 
-<img src="https://github.com/user-attachments/assets/cc82c08a-3442-409c-a97f-597209652642" width="600" />
+<img width="407" alt="Screenshot 2025-04-11 at 11 46 19 AM" src="https://github.com/user-attachments/assets/a34a0970-9960-4312-a0ed-a7fc0406ff66" />
 
 
 #### View the Available Cars page
