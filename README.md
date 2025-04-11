@@ -17,6 +17,7 @@ Our service offers a fast and efficient portal for any user to obtain vehicles w
 6. Create Booking Model (12 minutes)
 7. Create Location Model (12 minutes)
 8. Create Dealership Model (12 minutes)
+9. Create Booking Type Enums (12 minutes)
 ### **Data Layer**
 9. Build User Repository (30 minutes)
 11. Build Data Exception (15 minutes)
