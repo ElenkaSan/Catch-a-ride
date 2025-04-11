@@ -618,6 +618,11 @@ Each Card:
 
 <img width="600" alt="Screenshot 2025-04-11 at 10 46 58 AM" src="https://github.com/user-attachments/assets/37bd09b2-9b36-4474-b780-de8ee9db9622" />
 
+#### Can search car via Search bar
+```
+Search a car by model, year, dealership, and location
+```
+
 #### View the page for Admin
 
 <img width="620" alt="Screenshot 2025-04-11 at 10 59 06 AM" src="https://github.com/user-attachments/assets/8e28264c-2b54-4976-827d-5f9cf5e8430b" />
@@ -740,13 +745,6 @@ OR
 <img width="340" alt="Screenshot 2025-04-11 at 1 51 46 PM" src="https://github.com/user-attachments/assets/4670762e-628e-4366-a0c4-775582375a7b" />
 
 <img width="328" alt="Screenshot 2025-04-11 at 1 51 41 PM" src="https://github.com/user-attachments/assets/30b492ab-5982-46a3-8887-1ed30f62bbc1" />
-
-#### View Search bar
-```
-Search a car by model, year, dealership, and location
-```
-
-<img src="https://github.com/user-attachments/assets/0c3696e4-fd27-4611-bae6-fed61bf0cc59" width="600" />
 
 #### View User page 
 ```
