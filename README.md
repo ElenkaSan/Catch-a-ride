@@ -663,7 +663,12 @@ Clicking:
 <img width="620" alt="Screenshot 2025-04-11 at 2 19 00 PM" src="https://github.com/user-attachments/assets/ad2a23b3-e909-4cbf-9107-21e1b89daa4a" />
 
 - Add a car
+  
+<img width="330" alt="Screenshot 2025-04-11 at 2 25 11 PM" src="https://github.com/user-attachments/assets/7b364ad3-b49f-4b1a-9b71-3110d671098e" />
+
 - Edit a car
+
+<img width="211" alt="Screenshot 2025-04-11 at 2 25 15 PM" src="https://github.com/user-attachments/assets/1cb2f05c-af98-4617-817b-5ff67e42926e" />
 
 #### View the Add Booking page
 
