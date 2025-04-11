@@ -641,7 +641,7 @@ Clicking:
 
 - Edit Booking Car
   
-<img width="339" alt="Screenshot 2025-04-11 at 1 52 01 PM" src="https://github.com/user-attachments/assets/3bba7bca-7665-4ae1-bbee-dc0da45dd2f2" />
+<img width="359" alt="Screenshot 2025-04-11 at 1 52 01 PM" src="https://github.com/user-attachments/assets/3bba7bca-7665-4ae1-bbee-dc0da45dd2f2" />
 
 - Delete Booking Car
   
