@@ -657,7 +657,13 @@ Clicking:
 <img width="622" alt="Screenshot 2025-04-11 at 2 37 50 PM" src="https://github.com/user-attachments/assets/dfa55ac3-559e-4d10-8103-c1475094075e" />
 
 - Add User
+  
+<img width="324" alt="Screenshot 2025-04-11 at 2 41 19 PM" src="https://github.com/user-attachments/assets/9f88fec2-da01-4219-ad23-4138b807f38c" />
+
 - Edit User
+
+<img width="324" alt="Screenshot 2025-04-11 at 2 41 15 PM" src="https://github.com/user-attachments/assets/d1668828-b989-4e3e-89b3-2e9a4fa682a5" />
+
 
 #### View All Available Locations
 
@@ -757,7 +763,7 @@ OR
 
 <img width="340" alt="Screenshot 2025-04-11 at 1 51 46 PM" src="https://github.com/user-attachments/assets/4670762e-628e-4366-a0c4-775582375a7b" />
 
-<img width="328" alt="Screenshot 2025-04-11 at 1 51 41 PM" src="https://github.com/user-attachments/assets/30b492ab-5982-46a3-8887-1ed30f62bbc1" />
+<img width="326" alt="Screenshot 2025-04-11 at 2 39 54 PM" src="https://github.com/user-attachments/assets/69b15b66-d6b1-4734-8fd6-b10aade58eb0" />
 
 #### View User page with edit and delete options
 ```
@@ -797,3 +803,4 @@ If they booked a car: Show already booked cars
 +---------------------------------------------------+  
 ```
 
+<img width="569" alt="Screenshot 2025-04-11 at 2 44 51 PM" src="https://github.com/user-attachments/assets/fd2d4b01-bbf5-4331-b021-dad9757323a5" />
