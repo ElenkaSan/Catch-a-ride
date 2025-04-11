@@ -720,13 +720,10 @@ OR
 <img width="340" alt="Screenshot 2025-04-11 at 11 58 06 AM" src="https://github.com/user-attachments/assets/bc4e2d39-6f09-482e-a8c2-1f96d5a399b2" />
 
 
-<img width="330" alt="Screenshot 2025-04-11 at 11 58 10 AM" src="https://github.com/user-attachments/assets/af318afc-6814-48f6-a934-b3e8fc625515" />
+<img width="330" alt="Screenshot 2025-04-11 at 12 00 41 PM" src="https://github.com/user-attachments/assets/043e1185-ca72-49e3-8400-c1c5a5193f90" />
 
 
 #### View Search bar
-
-![IMG_09609DDB2AE0-1](https://github.com/user-attachments/assets/c7a5bc17-b328-4d53-8f00-0b3625854c1b)
-
 ```
 Search a car by model, year, dealership, and location
 ```
