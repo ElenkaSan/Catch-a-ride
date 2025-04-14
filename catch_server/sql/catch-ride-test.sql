@@ -51,13 +51,28 @@ CREATE TABLE booking (
  dealership_location_id INT NOT NULL,
  start_date DATE NOT NULL,
  end_date DATE NOT NULL,
- booking_type INT NOT NULL, -- 1 for leased, 2 for rented
+ booking_type VARCHAR(5) NOT NULL, -- 1 for leased, 2 for rented
  date_created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
  total_cost decimal,
  FOREIGN KEY (vehicle_id) REFERENCES vehicle(vehicle_id),
  FOREIGN KEY (user_id) REFERENCES `user`(user_id),
  FOREIGN KEY (dealership_location_id) REFERENCES location(location_id)
  );
+
+delimiter //
+create procedure set_known_good_state()
+begin
+
+delete from booking;
+alter table booking auto_increment = 1;
+delete from vehicle;
+alter table vehicle auto_increment = 1;
+delete from `user`;
+alter table `user` auto_increment = 1;
+delete from dealership;
+alter table dealership auto_increment = 1;
+delete from location;
+alter table location auto_increment = 1;
 
 insert into location(location_id, address, city, state, zip_code) values
 	(1, '18 Washington Ave', 'Boston','MA', 20235),
@@ -85,13 +100,13 @@ values
 insert into `booking`
 	(booking_id, vehicle_id, user_id, dealership_location_id, start_date, end_date, booking_type, date_created_at, total_cost)
 values
-	(1,1,1,1,'2025/04/14', '2025/04/20',2,'2025/03/12',360),
-	(2,1,2,1,'2025/04/14', '2026/04/20', 1,'2025/01/11',4800),
-    (3,1,1,1,'2025/06/10', '2026/06/20', 2,'2025/03/12',4800);
+	(1,1,1,1,'2025/04/14', '2025/04/20',"LEASE",'2025/03/12',360),
+	(2,1,2,1,'2025/04/14', '2026/04/20', "RENT",'2025/01/11',4800),
+    (3,1,1,1,'2025/06/10', '2026/06/20', "LEASE",'2025/03/12',4800);
 
+end //
 
-
-
+delimiter ;
 
 
 -- DATA POPULATION REQUIRED
