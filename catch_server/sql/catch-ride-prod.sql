@@ -50,7 +50,7 @@ CREATE TABLE booking (
  dealership_location_id INT NOT NULL,
  start_date DATE NOT NULL,
  end_date DATE NOT NULL,
- booking_type INT NOT NULL, -- 1 for leased, 2 for rented
+ booking_type VARCHAR(5) NOT NULL, -- 1 for leased, 2 for rented
  date_created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
  FOREIGN KEY (vehicle_id) REFERENCES vehicle(vehicle_id),
  FOREIGN KEY (user_id) REFERENCES `user`(user_id),
