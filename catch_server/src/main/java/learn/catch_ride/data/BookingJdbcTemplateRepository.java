@@ -48,7 +48,7 @@ public class BookingJdbcTemplateRepository implements BookingRepository{
     @Override
     public Booking add(Booking booking) {
         final String sql = "insert into booking (vehicle_id, user_id, dealership_location_id, start_date, end_date, booking_type, date_created_at, total_cost) "
-                + "values (?, ?, ?, ?, ?, ?, ?, ?);";
+                + "values (?,?,?,?,?,?,?,s?);";
 
         KeyHolder keyHolder = new GeneratedKeyHolder();
         int rowsAffected = jdbcTemplate.update(connection -> {

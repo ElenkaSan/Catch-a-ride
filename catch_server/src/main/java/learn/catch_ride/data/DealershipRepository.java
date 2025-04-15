@@ -6,12 +6,10 @@ import java.util.List;
 
 public interface DealershipRepository {
     Dealership findById(int dealershipId);
-
+    List<Dealership> findByName(String name);
     List<Dealership> findAll();
-
     Dealership add(Dealership dealership);
-
     boolean update(Dealership dealership);
-
     boolean deleteById(int dealershipId);
+    List<Dealership> findByLocationId (int locationId);
 }

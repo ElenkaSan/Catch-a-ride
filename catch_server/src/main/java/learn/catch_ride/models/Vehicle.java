@@ -9,7 +9,7 @@ public class Vehicle {
     private int year;
     private String color;
     private String trim;
-    private int  dealershipId;
+    private int dealershipId;
     private BigDecimal rentRate;
     private BigDecimal leaseRate;
 

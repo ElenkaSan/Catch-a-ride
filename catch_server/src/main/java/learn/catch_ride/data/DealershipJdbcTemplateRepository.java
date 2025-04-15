@@ -16,6 +16,7 @@ import java.util.List;
 @Repository
 public class DealershipJdbcTemplateRepository implements DealershipRepository {
     private final JdbcTemplate jdbcTemplate;
+    private final String DEALERSHIP_COLUMN_NAMES = "dealership_id, `name`, `description`, location_id";
 
     public DealershipJdbcTemplateRepository(JdbcTemplate jdbcTemplate) {
         this.jdbcTemplate = jdbcTemplate;
@@ -24,10 +25,11 @@ public class DealershipJdbcTemplateRepository implements DealershipRepository {
 
     @Override
     public Dealership findById(int dealershipId) {
-        final String sql = "select dealership_id, name, description, location_id "
-                + "from dealership "
-                + "where dealership_id = ?;";
+      //  final String sql = "select dealership_id, `name`, `description`, location_id "
+      //          + "from dealership "
+      //         + "where dealership_id = ?;";
 
+        final String sql = String.format("select %s from dealership where dealership_id = ?;", DEALERSHIP_COLUMN_NAMES);
         Dealership company = jdbcTemplate.query(sql, new DealershipMapper(), dealershipId).stream()
                 .findFirst().orElse(null);
 
@@ -39,15 +41,22 @@ public class DealershipJdbcTemplateRepository implements DealershipRepository {
     }
 
     @Override
+    public List<Dealership> findByName(String name) {
+        final String sql = String.format("select %s from dealership where `name` = ?;", DEALERSHIP_COLUMN_NAMES);
+        return jdbcTemplate.query(sql, new DealershipMapper());
+    }
+
+    @Override
     public List<Dealership> findAll() {
-        final String sql = "select dealership_id, name, description, location_id  "
-                + "from dealership limit 1000;";
+      //  final String sql = "select dealership_id, name, description, location_id  "
+      //          + "from dealership limit 1000;";
+        final String sql = String.format("select %s from dealership limit 1000;", DEALERSHIP_COLUMN_NAMES);
         return jdbcTemplate.query(sql, new DealershipMapper());
     }
 
     @Override
     public Dealership add(Dealership dealership) {
-        final String sql = "insert into dealership (name, description) "
+        final String sql = "insert into dealership (`name`, `description`) "
                 + " values (?,?);";
 
         KeyHolder keyHolder = new GeneratedKeyHolder();
@@ -69,8 +78,8 @@ public class DealershipJdbcTemplateRepository implements DealershipRepository {
     @Override
     public boolean update(Dealership dealership) {
         final String sql = "update dealership set "
-                + "name = ?, "
-                + "description = ? "
+                + "`name` = ?, "
+                + "`description` = ? "
                 + "where dealership_id = ?;";
 
         return jdbcTemplate.update(sql,
@@ -83,6 +92,12 @@ public class DealershipJdbcTemplateRepository implements DealershipRepository {
     public boolean deleteById(int dealershipId) {
         jdbcTemplate.update("delete from vehicle where vehicle_id = ?;", dealershipId);
         return jdbcTemplate.update("delete from dealership where dealership_id = ?;", dealershipId) > 0;
+    }
+
+    @Override
+    public List<Dealership> findByLocationId(int locationId) {
+        final String sql = String.format("select %s from dealership where location_id = ?;", DEALERSHIP_COLUMN_NAMES);
+        return jdbcTemplate.query(sql, new DealershipMapper(), locationId);
     }
 
     private void addVehicle(Dealership company) {
