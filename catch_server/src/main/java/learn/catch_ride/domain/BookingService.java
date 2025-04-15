@@ -25,7 +25,7 @@ public class BookingService {
         }
 
         if (booking.getBookingId() != 0) {
-            result.addMessage("bookingId cannot be set for `add` operation", ResultType.INVALID);
+            result.addMessage("Booking ID cannot be set for `add` operation", ResultType.INVALID);
             return result;
         }
 
@@ -72,7 +72,7 @@ public class BookingService {
         LocalDate today = LocalDate.now();
 
         if (booking == null) {
-            result.addMessage("booking cannot be null.", ResultType.INVALID);
+            result.addMessage("Booking cannot be null.", ResultType.INVALID);
         }
 
         if (booking.getStartDate() == null) {

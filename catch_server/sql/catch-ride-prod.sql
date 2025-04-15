@@ -12,7 +12,7 @@ CREATE TABLE location (
 
  CREATE TABLE dealership (
     dealership_id INT PRIMARY KEY AUTO_INCREMENT,
-    `name` VARCHAR(50),
+    `name` VARCHAR(50) NOT NULL,
     `description` VARCHAR(500),
     location_id INT NOT NULL,
     FOREIGN KEY (location_id) REFERENCES location(location_id)
@@ -37,8 +37,8 @@ CREATE TABLE vehicle (
  year INT NOT NULL,
  color VARCHAR(20),
  trim VARCHAR(20),
- rent_rate DECIMAL(2),
- lease_rate DECIMAL(2),
+ rent_rate DECIMAL(8,2),
+ lease_rate DECIMAL(8,2),
  dealership_id INT NOT NULL,
  FOREIGN KEY (dealership_id) REFERENCES dealership(dealership_id)
  );

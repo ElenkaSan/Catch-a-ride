@@ -22,7 +22,6 @@ public class DealershipJdbcTemplateRepository implements DealershipRepository {
         this.jdbcTemplate = jdbcTemplate;
     }
 
-
     @Override
     public Dealership findById(int dealershipId) {
       //  final String sql = "select dealership_id, `name`, `description`, location_id "
@@ -90,7 +89,8 @@ public class DealershipJdbcTemplateRepository implements DealershipRepository {
 
     @Override
     public boolean deleteById(int dealershipId) {
-        jdbcTemplate.update("delete from vehicle where vehicle_id = ?;", dealershipId);
+    //    jdbcTemplate.update("delete from vehicle where vehicle_id = ?;", dealershipId); wrong..
+        jdbcTemplate.update("delete from vehicle where dealership_id = ?;", dealershipId);
         return jdbcTemplate.update("delete from dealership where dealership_id = ?;", dealershipId) > 0;
     }
 
