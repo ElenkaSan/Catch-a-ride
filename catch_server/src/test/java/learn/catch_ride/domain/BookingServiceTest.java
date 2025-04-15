@@ -5,7 +5,6 @@ import learn.catch_ride.data.DealershipRepository;
 import learn.catch_ride.data.UserRepository;
 import learn.catch_ride.data.VehicleRepository;
 import learn.catch_ride.models.Booking;
-import learn.catch_ride.models.Vehicle;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
