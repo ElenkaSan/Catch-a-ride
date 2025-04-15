@@ -5,6 +5,7 @@ import learn.catch_ride.models.Location;
 import org.springframework.stereotype.Service;
 
 import java.time.LocalDate;
+import java.util.ArrayList;
 import java.util.List;
 
 @Service
@@ -46,6 +47,13 @@ public class LocationService {
         Result<Location> result = new Result<>();
         Location location = findById(locationId);
 
+        if (locationRepository.getUsageCount(locationId) > 0) {
+            result.addMessage("Cannot delete location that is referenced in other tables.", ResultType.INVALID);
+            result.setPayload(location);
+            return result;
+        }
+
+
 
         locationRepository.deleteById(locationId);
 
@@ -61,17 +69,18 @@ public class LocationService {
 
         if (location == null) {
             result.addMessage("location cannot be null.", ResultType.INVALID);
+            return result;
         }
 
-        if (location.getAddress().isEmpty() || location.getAddress() ==  null) {
+        if (Validations.isNullOrBlank(location.getAddress())) {
             result.addMessage("Address is required.", ResultType.INVALID);
         }
 
-        if (location.getCity().isEmpty() || location.getCity() == null) {
+        if (Validations.isNullOrBlank(location.getCity())) {
             result.addMessage("City is required.", ResultType.INVALID);
         }
 
-        if (location.getState().isEmpty() || location.getState() == null) {
+        if (Validations.isNullOrBlank(location.getState())) {
             result.addMessage("State is required.", ResultType.INVALID);
         }
 
