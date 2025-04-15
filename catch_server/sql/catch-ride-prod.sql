@@ -37,10 +37,10 @@ CREATE TABLE vehicle (
  year INT NOT NULL,
  color VARCHAR(20),
  trim VARCHAR(20),
- rent_rate DECIMAL(8,2),
- lease_rate DECIMAL(8,2),
+ rent_rate DECIMAL(8,2) NOT NULL,
+ lease_rate DECIMAL(8,2) NOT NULL,
  dealership_id INT NOT NULL,
- booking_status BOOLEAN,
+ booking_status BOOLEAN NOT NULL,
  FOREIGN KEY (dealership_id) REFERENCES dealership(dealership_id)
  );
 

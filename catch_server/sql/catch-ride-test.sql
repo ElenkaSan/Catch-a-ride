@@ -37,10 +37,10 @@ CREATE TABLE vehicle (
  year INT NOT NULL,
  color VARCHAR(20),
  trim VARCHAR(20),
- rent_rate decimal,
- lease_rate decimal,
+ rent_rate decimal NOT NULL,
+ lease_rate decimal NOT NULL,
  dealership_id INT NOT NULL,
- booking_status BOOLEAN,
+ booking_status BOOLEAN NOT NULL,
  FOREIGN KEY (dealership_id) REFERENCES dealership(dealership_id)
  );
 
@@ -53,7 +53,7 @@ CREATE TABLE booking (
  end_date DATE NOT NULL,
  booking_type VARCHAR(5) NOT NULL, -- 1 for leased, 2 for rented
  date_created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
- total_cost decimal,
+ total_cost decimal NOT NULL,
  FOREIGN KEY (vehicle_id) REFERENCES vehicle(vehicle_id),
  FOREIGN KEY (user_id) REFERENCES `user`(user_id),
  FOREIGN KEY (dealership_location_id) REFERENCES location(location_id)
