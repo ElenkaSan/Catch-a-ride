@@ -16,9 +16,10 @@ public class VehicleMapper implements RowMapper<Vehicle> {
         car.setYear(resultSet.getInt("year"));
         car.setColor(resultSet.getString("color"));
         car.setTrim(resultSet.getString("trim"));
-        car.setDealershipId(resultSet.getInt("dealership_id"));
         car.setRentRate(resultSet.getBigDecimal("rent_rate"));
         car.setLeaseRate(resultSet.getBigDecimal("lease_rate"));
+        car.setDealershipId(resultSet.getInt("dealership_id"));
+        car.setBookingStatus(resultSet.getBoolean("booking_status"));
         return car;
     }
 }
