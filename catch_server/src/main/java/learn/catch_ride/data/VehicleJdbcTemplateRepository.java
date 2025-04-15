@@ -23,6 +23,7 @@ public class VehicleJdbcTemplateRepository implements VehicleRepository {
     @Override
     public Vehicle findById(int vehicleId) {
         final String sql = String.format("select %s from vehicle where vehicle_id = ?;", VEHICLE_COLUMN_NAMES);
+
         Vehicle result = jdbcTemplate.query(sql, new VehicleMapper(), vehicleId).stream()
                 .findAny().orElse(null);
         return result;
