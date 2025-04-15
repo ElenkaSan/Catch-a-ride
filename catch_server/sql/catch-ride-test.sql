@@ -87,8 +87,8 @@ values
 insert into `user`
 	(user_id, first_name, last_name, email, password, date_created_at, location_id, is_admin)
 values
-	(1,'James','Sauven','jamessauven@gmail.com','testpassword', '2017/12/20',1,false),
-	(2,'Jack','Wilson','JackWilson@gmail.com','testpassword1', '2017/9/17',2,true);
+	(1,'James','Sauven','jamessauven@gmail.com','testpassword', '2017-12-20',1,false),
+	(2,'Jack','Wilson','JackWilson@gmail.com','testpassword1', '2017-9-17',2,true);
 
 insert into vehicle
 	(vehicle_id, make, model, year, color, trim, rent_rate, lease_rate, dealership_id, booking_status)
@@ -100,9 +100,9 @@ values
 insert into `booking`
 	(booking_id, vehicle_id, user_id, dealership_location_id, start_date, end_date, booking_type, date_created_at, total_cost)
 values
-	(1,1,1,1,'2025/04/14', '2025/04/20',"LEASE",'2025/03/12',360),
-	(2,1,2,1,'2025/04/14', '2026/04/20', "RENT",'2025/01/11',4800),
-    (3,1,1,1,'2025/06/10', '2026/06/20', "LEASE",'2025/03/12',4800);
+	(1,1,1,1,'2025-04-14', '2025-04-20',"LEASE",'2025-03-12',360),
+	(2,1,2,1,'2025-04-14', '2026-04-20', "RENT",'2025-01-11',4800),
+    (3,1,1,1,'2025-06-10', '2026-06-20', "LEASE",'2025-03-12',4800);
 
 end //
 
