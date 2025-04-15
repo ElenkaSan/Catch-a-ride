@@ -4,7 +4,53 @@
 GET {{url}} HTTP/1.1
 
 ###
-
-GET {{url}}/dealershipId/2 HTTP/1.1
+GET {{url}}/id/1 HTTP/1.1
 
 ###
+GET {{url}}/id/2 HTTP/1.1
+
+###
+GET {{url}}/name?name=Chucklemotor HTTP/1.1
+
+###
+GET {{url}}/location/1 HTTP/1.1
+
+###
+GET {{url}}/location/2 HTTP/1.1
+
+###
+POST {{url}} HTTP/1.1
+Content-Type: application/json
+
+{
+    "name": "Test Name",
+    "locationId": 1
+}
+
+
+###
+POST {{url}} HTTP/1.1
+Content-Type: application/json
+
+{
+    "name": "Test Name",
+    "description": "New Dealership",
+    "locationId": 1
+}
+
+###
+GET {{url}}/dealershipId/4 HTTP/1.1
+
+###
+PUT {{url}}/4 HTTP/1.1
+Content-Type: application/json
+…
+{
+    "dealershipId": 4,
+    "name": "Updated Dealership",
+    "locationId": 2,
+    "dateCreated": "2026-03-12"
+}
+
+###
+DELETE {{url}}/4 HTTP/1.1

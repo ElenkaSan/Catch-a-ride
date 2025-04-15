@@ -13,11 +13,11 @@ import java.util.List;
 @CrossOrigin(origins = {"http://localhost:3000"})
 @RequestMapping("/api/dealership")
 public class DealershipController {
+    private final DealershipService service;
+
     public DealershipController(DealershipService service) {
         this.service = service;
     }
-
-    private final DealershipService service;
 
     @GetMapping
     public List<Dealership> findAll() { return service.findAll(); }
@@ -27,7 +27,7 @@ public class DealershipController {
     //    }
 
 
-    @GetMapping("/{dealershipId}")
+    @GetMapping("/id/{dealershipId}")
     public Dealership findById(@PathVariable int dealershipId) { return service.findById(dealershipId); }
     //    public ResponseEntity<Dealership> findById(@PathVariable int dealershipId) {
     //        Dealership dealership = service.findById(dealershipId);
@@ -36,6 +36,13 @@ public class DealershipController {
     //        }
     //        return ResponseEntity.ok(dealership);
     //    }
+
+   @GetMapping("/name")
+   public List<Dealership> findByName(@RequestParam String name) { return service.findByName(name); }
+
+    @GetMapping("/location/{locationId}")
+    public List<Dealership> findByLocationId(@PathVariable int locationId) { return service.findByLocationId(locationId); }
+
 
     @PostMapping
     public ResponseEntity<Object> add(@RequestBody Dealership dealership) {

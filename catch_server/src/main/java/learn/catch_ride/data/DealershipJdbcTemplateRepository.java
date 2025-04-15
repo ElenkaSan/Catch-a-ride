@@ -16,10 +16,13 @@ import java.util.List;
 @Repository
 public class DealershipJdbcTemplateRepository implements DealershipRepository {
     private final JdbcTemplate jdbcTemplate;
+    private final VehicleJdbcTemplateRepository vehicleRepository;
+
     private final String DEALERSHIP_COLUMN_NAMES = "dealership_id, `name`, `description`, location_id";
 
-    public DealershipJdbcTemplateRepository(JdbcTemplate jdbcTemplate) {
+    public DealershipJdbcTemplateRepository(JdbcTemplate jdbcTemplate, VehicleJdbcTemplateRepository vehicleRepository) {
         this.jdbcTemplate = jdbcTemplate;
+        this.vehicleRepository = vehicleRepository;
     }
 
     @Override
@@ -42,7 +45,11 @@ public class DealershipJdbcTemplateRepository implements DealershipRepository {
     @Override
     public List<Dealership> findByName(String name) {
         final String sql = String.format("select %s from dealership where `name` = ?;", DEALERSHIP_COLUMN_NAMES);
-        return jdbcTemplate.query(sql, new DealershipMapper(), name);
+        List<Dealership> dealerships = jdbcTemplate.query(sql, new DealershipMapper(), name);
+        for (Dealership d : dealerships) {
+            addVehicle(d);
+        }
+        return dealerships;
     }
 
     @Override
@@ -103,11 +110,7 @@ public class DealershipJdbcTemplateRepository implements DealershipRepository {
         return jdbcTemplate.query(sql, new DealershipMapper(), locationId);
     }
 
-    private void addVehicle(Dealership company) {
-        final String sql = "select vehicle_id, make, model, year, color, trim, dealership_id, rent_rate, lease_rate, booking_status  "
-                + "from vehicle "
-                + "where dealership_id = ?;";
-        var cars = jdbcTemplate.query(sql, new VehicleMapper(), company.getDealershipId());
-        company.setCars(cars);
+    private void addVehicle(Dealership dealership) {
+        dealership.setCars(vehicleRepository.findByDealershipId(dealership.getDealershipId()));
     }
 }
