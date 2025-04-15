@@ -10,12 +10,12 @@ public interface BookingRepository {
 
     List<Booking> findByLocation(int locationId);
 
-    Booking findById(int id);
+    Booking findById(int bookingId);
 
     Booking add(Booking booking);
 
     boolean update(Booking booking);
 
     @Transactional
-    boolean deleteById(int id);
+    boolean deleteById(int bookingId);
 }

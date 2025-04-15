@@ -90,6 +90,11 @@ public class VehicleJdbcTemplateRepository implements VehicleRepository {
 
     @Override
     public boolean deleteById(int vehicleId) {
+        final String sql = "select count(*) from booking where vehicle_id = ?;"; //checking if car booked by user
+        Integer count = jdbcTemplate.queryForObject(sql, Integer.class, vehicleId);
+        if (count != null && count > 0) { //if using will not delete
+            return false;
+        }
         return jdbcTemplate.update(
                 "delete from vehicle where vehicle_id = ?;",
                 vehicleId) > 0;
