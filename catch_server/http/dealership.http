@@ -39,12 +39,12 @@ Content-Type: application/json
 }
 
 ###
-GET {{url}}/dealershipId/4 HTTP/1.1
+GET {{url}}/id/4 HTTP/1.1
 
 ###
 PUT {{url}}/3 HTTP/1.1
 Content-Type: application/json
-…
+
 {
     "dealershipId": 3,
     "name": "Updated Dealership",
