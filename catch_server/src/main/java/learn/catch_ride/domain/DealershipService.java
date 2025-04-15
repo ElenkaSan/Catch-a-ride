@@ -1,15 +1,21 @@
 package learn.catch_ride.domain;
 
 import learn.catch_ride.data.DealershipRepository;
+import learn.catch_ride.data.LocationRepository;
+import learn.catch_ride.data.VehicleRepository;
 import learn.catch_ride.models.Dealership;
+import org.springframework.stereotype.Service;
 
 import java.util.List;
 
+@Service
 public class DealershipService {
     private final DealershipRepository dealershipRepository;
+    private final LocationRepository locationRepository;
 
-    public DealershipService(DealershipRepository dealershipRepository) {
+    public DealershipService(DealershipRepository dealershipRepository, LocationRepository locationRepository) {
         this.dealershipRepository = dealershipRepository;
+        this.locationRepository = locationRepository;
     }
 
     public List<Dealership> findAll() { return dealershipRepository.findAll(); }
@@ -87,13 +93,12 @@ public class DealershipService {
             result.addMessage("Name is required", ResultType.INVALID);
         }
 
-/* // need location r for checking if location exists.
         if(dealership.getLocationId() == 0) {
-            result.addMessage("LocationId is required", ResultType.INVALID);
+            result.addMessage("Location ID is required", ResultType.INVALID);
         } else if(locationRepository.findById(dealership.getLocationId()) == null) {
             result.addMessage("Location must exist", ResultType.INVALID);
         }
- */
+
         return result;
     }
 }

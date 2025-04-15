@@ -4,10 +4,12 @@ import learn.catch_ride.data.BookingRepository;
 import learn.catch_ride.data.VehicleRepository;
 import learn.catch_ride.models.Booking;
 import learn.catch_ride.models.Vehicle;
+import org.springframework.stereotype.Service;
 
 import java.util.List;
 import java.util.stream.Collectors;
 
+@Service
 public class VehicleService {
     private final VehicleRepository vehicleRepository;
     private final BookingRepository bookingRepository;
