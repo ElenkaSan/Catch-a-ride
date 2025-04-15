@@ -1,16 +1,32 @@
 package learn.catch_ride.domain;
 
 import learn.catch_ride.data.BookingRepository;
+import learn.catch_ride.data.DealershipRepository;
+import learn.catch_ride.data.UserRepository;
+import learn.catch_ride.data.VehicleRepository;
 import learn.catch_ride.models.Booking;
+import learn.catch_ride.models.BookingType;
+import learn.catch_ride.models.Vehicle;
+import org.springframework.stereotype.Service;
 
+import java.math.BigDecimal;
 import java.time.LocalDate;
 import java.util.List;
 
+@Service
 public class BookingService {
 
     private final BookingRepository bookingRepository;
+    private final VehicleRepository vehicleRepository;
+    private final UserRepository userRepository;
+    private final DealershipRepository dealershipRepository;
 
-    public BookingService(BookingRepository bookingRepository) { this.bookingRepository = bookingRepository; }
+    public BookingService(BookingRepository bookingRepository, VehicleRepository vehicleRepository, UserRepository userRepository, DealershipRepository dealershipRepository) {
+        this.bookingRepository = bookingRepository;
+        this.vehicleRepository = vehicleRepository;
+        this.userRepository = userRepository;
+        this.dealershipRepository = dealershipRepository;
+    }
 
     public List<Booking> findAll() { return bookingRepository.findAll(); }
 
@@ -52,6 +68,11 @@ public class BookingService {
         LocalDate today = LocalDate.now();
         Booking booking = findById(bookingId);
 
+        if (booking == null) {
+            result.addMessage("Booking cannot be null.", ResultType.INVALID);
+            return result;
+        }
+
         if(booking.getStartDate().isBefore(today)) {
             result.addMessage("Cannot cancel reservation after start date.", ResultType.INVALID);
             return result;
@@ -64,7 +85,17 @@ public class BookingService {
         return result;
     }
 
-    //To-Do: Create Function that Calculates Total Cost of Booking.
+    public BigDecimal calculateTotal(Booking booking, Vehicle vehicle) {
+        BigDecimal finalTotal = new BigDecimal("0.00");
+
+        BigDecimal dailyRate = booking.getBookingType() == BookingType.RENT ? vehicle.getRentRate() : vehicle.getLeaseRate();
+
+        for(LocalDate date = booking.getStartDate(); !date.isEqual(booking.getEndDate()); date = date.plusDays(1)) {
+            finalTotal = finalTotal.add(dailyRate);
+        }
+
+        return finalTotal;
+    }
 
     private Result<Booking> validate(Booking booking) {
         Result<Booking> result = new Result<>();
@@ -73,6 +104,7 @@ public class BookingService {
 
         if (booking == null) {
             result.addMessage("Booking cannot be null.", ResultType.INVALID);
+            return result;
         }
 
         if (booking.getStartDate() == null) {
@@ -83,24 +115,34 @@ public class BookingService {
             result.addMessage("End date is required.", ResultType.INVALID);
         }
 
-        //To-Do: Create Validation for checking if user exists.
-        //To-Do: Create Validation for checking if vehicle exists.
-        //To-Do: Create Validation for checking if dealership location exists.
-
-        if (booking.getStartDate().isBefore(today)) {
-           result.addMessage("Start Date must be in the future.", ResultType.INVALID);
-        }
-
-        if (booking.getEndDate().isAfter(booking.getStartDate())) {
-            result.addMessage("End Date must be after start date.", ResultType.INVALID);
-        }
-
-        for(Booking b: bookings) {
-            if((!booking.getEndDate().isBefore(b.getStartDate()) && !b.getEndDate().isBefore(booking.getStartDate())) &&
-                    (booking.getBookingId() != b.getBookingId())) {
-                result.addMessage("Booking dates must not overlap with others.", ResultType.INVALID);
-                break;
+        if(booking.getStartDate() != null && booking.getEndDate() != null) {
+            if (booking.getStartDate().isBefore(today)) {
+                result.addMessage("Start Date must be in the future.", ResultType.INVALID);
             }
+
+            if (booking.getEndDate().isAfter(booking.getStartDate())) {
+                result.addMessage("End Date must be after start date.", ResultType.INVALID);
+            }
+
+            for (Booking b : bookings) {
+                if ((!booking.getEndDate().isBefore(b.getStartDate()) && !b.getEndDate().isBefore(booking.getStartDate())) &&
+                        (booking.getBookingId() != b.getBookingId())) {
+                    result.addMessage("Booking dates must not overlap with others.", ResultType.INVALID);
+                    break;
+                }
+            }
+        }
+
+        if (vehicleRepository.findById(booking.getVehicleId()) == null) {
+            result.addMessage("Vehicle not found in database.", ResultType.INVALID);
+        }
+
+        if (userRepository.findById(booking.getUserId()) == null) {
+            result.addMessage("User not found in database.", ResultType.INVALID);
+        }
+
+        if (dealershipRepository.findByLocationId(booking.getDealershipLocationId()) == null) {
+            result.addMessage("Dealership not found in database.", ResultType.INVALID);
         }
 
         return result;
