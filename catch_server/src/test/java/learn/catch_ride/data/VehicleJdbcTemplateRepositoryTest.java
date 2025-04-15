@@ -7,26 +7,26 @@ import static org.junit.jupiter.api.Assertions.*;
 class VehicleJdbcTemplateRepositoryTest {
 
     @Test
-    void findById() {
+    void shouldFindById() {
     }
 
     @Test
-    void findAll() {
+    void shouldFindAll() {
     }
 
     @Test
-    void add() {
+    void shouldAddVehicle() {
     }
 
     @Test
-    void update() {
+    void shouldUpdateVehicle() {
     }
 
     @Test
-    void deleteById() {
+    void shouldDeleteByIdVehicle() {
     }
 
     @Test
-    void findByDealershipId() {
+    void shouldFindByDealershipId() {
     }
 }

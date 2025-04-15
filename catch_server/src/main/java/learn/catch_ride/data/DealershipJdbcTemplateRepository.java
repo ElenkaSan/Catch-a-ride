@@ -42,7 +42,7 @@ public class DealershipJdbcTemplateRepository implements DealershipRepository {
     @Override
     public List<Dealership> findByName(String name) {
         final String sql = String.format("select %s from dealership where `name` = ?;", DEALERSHIP_COLUMN_NAMES);
-        return jdbcTemplate.query(sql, new DealershipMapper());
+        return jdbcTemplate.query(sql, new DealershipMapper(), name);
     }
 
     @Override
@@ -55,14 +55,15 @@ public class DealershipJdbcTemplateRepository implements DealershipRepository {
 
     @Override
     public Dealership add(Dealership dealership) {
-        final String sql = "insert into dealership (`name`, `description`) "
-                + " values (?,?);";
+        final String sql = "insert into dealership (`name`, `description`, location_id) "
+                + " values (?,?,?);";
 
         KeyHolder keyHolder = new GeneratedKeyHolder();
         int rowsAffected = jdbcTemplate.update(connection -> {
             PreparedStatement ps = connection.prepareStatement(sql, Statement.RETURN_GENERATED_KEYS);
             ps.setString(1, dealership.getName());
             ps.setString(2, dealership.getDescription());
+            ps.setInt(3, dealership.getLocationId());
             return ps;
         }, keyHolder);
 
@@ -78,12 +79,14 @@ public class DealershipJdbcTemplateRepository implements DealershipRepository {
     public boolean update(Dealership dealership) {
         final String sql = "update dealership set "
                 + "`name` = ?, "
-                + "`description` = ? "
+                + "`description` = ?, "
+                + "location_id = ? "
                 + "where dealership_id = ?;";
 
         return jdbcTemplate.update(sql,
                 dealership.getName(),
                 dealership.getDescription(),
+                dealership.getLocationId(),
                 dealership.getDealershipId()) > 0;
     }
 

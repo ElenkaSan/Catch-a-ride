@@ -87,8 +87,8 @@ public class VehicleService {
         }
 
         String yearIsFour = String.valueOf(vehicle.getYear());
-        if (yearIsFour.length() != 4 && vehicle.getYear() < 2010 ) {
-            result.addMessage("Year should be not earlier than 2010", ResultType.INVALID);
+        if (yearIsFour.length() != 4 && vehicle.getYear() < 2020 ) {
+            result.addMessage("Year should be not earlier than 2020", ResultType.INVALID);
         }
 
         if(Validations.isNullOrBlank(vehicle.getColor())) {
