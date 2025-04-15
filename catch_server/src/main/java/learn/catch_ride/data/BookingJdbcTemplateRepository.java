@@ -36,12 +36,12 @@ public class BookingJdbcTemplateRepository implements BookingRepository{
     }
 
     @Override
-    public Booking findById(int id) {
+    public Booking findById(int bookingId) {
         final String sql = "select booking_id, vehicle_id, user_id, dealership_location_id, start_date, end_date, booking_type, date_created_at, total_cost "
                 + "from booking "
                 + "where booking_id = ?;";
 
-        return jdbcTemplate.query(sql, new BookingMapper(), id).stream()
+        return jdbcTemplate.query(sql, new BookingMapper(), bookingId).stream()
                 .findFirst().orElse(null);
     }
 
@@ -97,7 +97,7 @@ public class BookingJdbcTemplateRepository implements BookingRepository{
 
     @Transactional
     @Override
-    public boolean deleteById(int id) {
-        return jdbcTemplate.update("delete from booking where booking_id = ?", id) > 0;
+    public boolean deleteById(int bookingId) {
+        return jdbcTemplate.update("delete from booking where booking_id = ?", bookingId) > 0;
     }
 }
