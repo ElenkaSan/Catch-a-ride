@@ -104,7 +104,7 @@ public class DealershipJdbcTemplateRepository implements DealershipRepository {
     }
 
     private void addVehicle(Dealership company) {
-        final String sql = "select vehicle_id, make, model, year, color, trim, dealership_id, rent_rate, lease_rate  "
+        final String sql = "select vehicle_id, make, model, year, color, trim, dealership_id, rent_rate, lease_rate, booking_status  "
                 + "from vehicle "
                 + "where dealership_id = ?;";
         var cars = jdbcTemplate.query(sql, new VehicleMapper(), company.getDealershipId());

@@ -24,7 +24,7 @@ public class BookingController {
     @GetMapping("/bookingId/{bookingId}")
     public Booking findById(@PathVariable int bookingId) { return service.findById(bookingId); }
 
-    @GetMapping("/locationId/{locationId}")
+    @GetMapping("/location/{locationId}")
     public List<Booking> findByLocationId(@PathVariable int locationId) { return service.findByLocation(locationId); }
 
     @PostMapping

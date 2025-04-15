@@ -71,7 +71,7 @@ class DealershipJdbcTemplateRepositoryTest {
 
     private Dealership makeDealership() {
         Dealership dealership = new Dealership();
-        dealership.setName("Caralin");
+        dealership.setName("Carlin");
         dealership.setDescription("Some info");
         dealership.setLocationId(1);
         return dealership;

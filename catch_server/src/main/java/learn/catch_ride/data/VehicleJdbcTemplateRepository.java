@@ -14,7 +14,7 @@ import java.util.List;
 @Repository
 public class VehicleJdbcTemplateRepository implements VehicleRepository {
     private final JdbcTemplate jdbcTemplate;
-    private final String VEHICLE_COLUMN_NAMES = "vehicle_id, make, model, year, color, trim, dealership_id, rent_rate, lease_rate";
+    private final String VEHICLE_COLUMN_NAMES = "vehicle_id, make, model, year, color, trim, rent_rate, lease_rate, dealership_id, booking_status";
 
     public VehicleJdbcTemplateRepository(JdbcTemplate jdbcTemplate) {
         this.jdbcTemplate = jdbcTemplate;
@@ -22,7 +22,8 @@ public class VehicleJdbcTemplateRepository implements VehicleRepository {
 
     @Override
     public Vehicle findById(int vehicleId) {
-        final String sql = String.format("select %s from vehicle_id " + "where vehicle_id = ?;", VEHICLE_COLUMN_NAMES);
+        final String sql = String.format("select %s from vehicle where vehicle_id = ?;", VEHICLE_COLUMN_NAMES);
+
         Vehicle result = jdbcTemplate.query(sql, new VehicleMapper(), vehicleId).stream()
                 .findAny().orElse(null);
         return result;
@@ -30,7 +31,7 @@ public class VehicleJdbcTemplateRepository implements VehicleRepository {
 
     @Override
     public List<Vehicle> findAll() {
-       // final String sql = "select vehicle_id, make, model, year, color, trim, dealership_id, rent_rate, lease_rate  "
+       // final String sql = "select vehicle_id, make, model, year, color, trim, rent_rate, lease_rate, dealership_id, booking_status  "
         //        + "from vehicle limit 1000;";
         final String sql = String.format("select %s from vehicle limit 1000;", VEHICLE_COLUMN_NAMES);
         return jdbcTemplate.query(sql, new VehicleMapper());
@@ -38,8 +39,8 @@ public class VehicleJdbcTemplateRepository implements VehicleRepository {
 
     @Override
     public Vehicle add(Vehicle vehicle) {
-        final String sql = "insert into vehicle (make, model, year, color, trim, dealership_id, rent_rate, lease_rate) "
-                + " values (?,?,?,?,?,?,?,?);";
+        final String sql = "insert into vehicle (make, model, year, color, trim, rent_rate, lease_rate, dealership_id, booking_status) "
+                + " values (?,?,?,?,?,?,?,?,?);";
 
         KeyHolder keyHolder = new GeneratedKeyHolder();
         int rowsAffected = jdbcTemplate.update(connection -> {
@@ -49,9 +50,10 @@ public class VehicleJdbcTemplateRepository implements VehicleRepository {
             ps.setInt(3, vehicle.getYear());
             ps.setString(4, vehicle.getColor());
             ps.setString(5, vehicle.getTrim());
-            ps.setInt(6, vehicle.getDealershipId());
-            ps.setBigDecimal(7, vehicle.getRentRate());
-            ps.setBigDecimal(8, vehicle.getLeaseRate());
+            ps.setBigDecimal(6, vehicle.getRentRate());
+            ps.setBigDecimal(7, vehicle.getLeaseRate());
+            ps.setInt(8, vehicle.getDealershipId());
+            ps.setBoolean(9, vehicle.isBookingStatus());
             return ps;
         }, keyHolder);
 
@@ -71,9 +73,10 @@ public class VehicleJdbcTemplateRepository implements VehicleRepository {
                 + "year = ?, "
                 + "color = ?, "
                 + "trim = ?, "
-                + "dealership_id = ?, "
                 + "rent_rate = ?, "
-                + "lease_rate = ? "
+                + "lease_rate = ?, "
+                + "dealership_id = ?, "
+                + "booking_status = ? "
                 + "where vehicle_id = ?;";
 
         return jdbcTemplate.update(sql,
@@ -82,9 +85,10 @@ public class VehicleJdbcTemplateRepository implements VehicleRepository {
                 vehicle.getYear(),
                 vehicle.getColor(),
                 vehicle.getTrim(),
-                vehicle.getDealershipId(),
                 vehicle.getRentRate(),
                 vehicle.getLeaseRate(),
+                vehicle.getDealershipId(),
+                vehicle.isBookingStatus(),
                 vehicle.getVehichleId()) > 0;
     }
 
