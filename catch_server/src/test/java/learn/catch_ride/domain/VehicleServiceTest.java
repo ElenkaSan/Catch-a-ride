@@ -1,7 +1,6 @@
 package learn.catch_ride.domain;
 
-import learn.catch_ride.data.DealershipRepository;
-import learn.catch_ride.data.UserRepository;
+import learn.catch_ride.data.BookingRepository;
 import learn.catch_ride.data.VehicleRepository;
 import learn.catch_ride.models.Vehicle;
 import org.junit.jupiter.api.Test;
@@ -10,8 +9,10 @@ import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.boot.test.mock.mockito.MockBean;
 
 import java.math.BigDecimal;
+import java.util.List;
 
 import static org.junit.jupiter.api.Assertions.*;
+import static org.mockito.Mockito.when;
 
 @SpringBootTest(webEnvironment = SpringBootTest.WebEnvironment.NONE)
 class VehicleServiceTest {
@@ -22,64 +23,158 @@ class VehicleServiceTest {
     @MockBean
     VehicleRepository vehicleRepository;
     @MockBean
-    DealershipRepository dealershipRepository;
-    @MockBean
-    UserRepository userRepository;
+    BookingRepository bookingRepository;
 
     @Test
     void shouldNotAddNull() {
+        Result<Vehicle> result = service.add(null);
+        assertFalse(result.isSuccess());
+        assertEquals(ResultType.INVALID, result.getType());
     }
 
     @Test
-    void findById() {
+    void shouldNotAddIfMissingRequired() {
+        Vehicle vehicle = new Vehicle();
+        vehicle.setMake("");
+        vehicle.setModel(null);
+        when(vehicleRepository.findById(1)).thenReturn(new Vehicle());
+        Result<Vehicle> result = service.add(vehicle);
+        assertFalse(result.isSuccess());
+        assertTrue(result.getMessages().contains("Make is required."));
+        assertTrue(result.getMessages().contains("Model is required."));
     }
 
     @Test
-    void findByDealershipId() {
+    void shouldNotAddVehicleWithInvalidYearLength() {
+        Vehicle vehicle = new Vehicle();
+        vehicle.setYear(23);
+        vehicle.setBookingStatus(true);
+
+        Result<Vehicle> result = service.add(vehicle);
+        assertFalse(result.isSuccess());
+        assertTrue(result.getMessages().contains("Year must be 4 digits and between 2020 and 2026."));
+    }
+    @Test
+    void shouldNotAddInvalidYear() {
+        Vehicle vehicle = makeVehicle();
+        vehicle.setYear(2010);
+        vehicle.setBookingStatus(true);
+
+        Result<Vehicle> result = service.add(vehicle);
+        assertFalse(result.isSuccess());
+        assertTrue(result.getMessages().contains("Year must be 4 digits and between 2020 and 2026."));
     }
 
     @Test
-    void add() {
+    void shouldNotAddNegativeRate() {
+        Vehicle vehicle = makeVehicle();
+        vehicle.setRentRate(new BigDecimal("-30.00"));
+        vehicle.setLeaseRate(new BigDecimal("-250.00"));
+        vehicle.setBookingStatus(true);
+
+        Result<Vehicle> result = service.add(vehicle);
+        assertFalse(result.isSuccess());
+        assertTrue(result.getMessages().contains("Rent rate cannot be negative."));
+        assertTrue(result.getMessages().contains("Lease rate cannot be negative."));
     }
 
     @Test
-    void update() {
+    void shouldNotAddMissingDealershipId(){
+        Vehicle vehicle = makeVehicle();
+        vehicle.setDealershipId(0);
+        vehicle.setBookingStatus(true);
+
+        Result<Vehicle> result = service.add(vehicle);
+        assertFalse(result.isSuccess());
+        assertTrue(result.getMessages().contains("Dealership ID is required."));
+    }
+
+    @Test
+    void shouldNotUpdateIfMissingRequired() {
+        Vehicle vehicle = new Vehicle();
+        vehicle.setMake("");
+        vehicle.setModel(null);
+        when(vehicleRepository.findById(1)).thenReturn(new Vehicle());
+        Result<Vehicle> result = service.update(vehicle);
+        assertFalse(result.isSuccess());
+        assertTrue(result.getMessages().contains("Make is required."));
+        assertTrue(result.getMessages().contains("Model is required."));
+    }
+
+    @Test
+    void shouldNotUpdateInvalidYear() {
+        Vehicle vehicle = makeVehicle();
+        vehicle.setVehichleId(1);
+        vehicle.setYear(2015);
+        vehicle.setBookingStatus(true);
+
+        when(vehicleRepository.findById(1)).thenReturn(vehicle);
+        Result<Vehicle> result = service.update(vehicle);
+        assertFalse(result.isSuccess());
+        assertTrue(result.getMessages().contains("Year must be 4 digits and between 2020 and 2026."));
+    }
+
+    @Test
+    void shouldNotUpdateNegativeRate() {
+        Vehicle vehicle = makeVehicle();
+        vehicle.setVehichleId(1);
+        vehicle.setRentRate(new BigDecimal("-30"));
+        vehicle.setLeaseRate(new BigDecimal("-250"));
+        vehicle.setBookingStatus(true);
+
+        when(vehicleRepository.findById(1)).thenReturn(vehicle);
+        Result<Vehicle> result = service.update(vehicle);
+        assertFalse(result.isSuccess());
+        assertTrue(result.getMessages().contains("Rent rate cannot be negative."));
+        assertTrue(result.getMessages().contains("Lease rate cannot be negative."));
+    }
+
+    @Test
+    void shouldNotUpdateMissingDealershipId(){
+        Vehicle vehicle = makeVehicle();
+        vehicle.setVehichleId(1);
+        vehicle.setDealershipId(0);
+        vehicle.setBookingStatus(true);
+
+        when(vehicleRepository.findById(1)).thenReturn(vehicle);
+        Result<Vehicle> result = service.update(vehicle);
+        assertFalse(result.isSuccess());
+        assertTrue(result.getMessages().contains("Dealership ID is required."));
     }
 
     @Test
     void shouldNotUpdateNotChangedFields() {
         Vehicle vehicle = makeVehicle();
-        Vehicle added = vehicleRepository.add(vehicle);
+        vehicle.setVehichleId(1);
 
-        added.setMake("Toyota");
-        added.setModel("Camry");
-        added.setYear(2030);
-        added.setDealershipId(12);
+        when(vehicleRepository.findById(1)).thenReturn(vehicle);
 
-        added.setColor("Green");
-        added.setRentRate(new BigDecimal("75.00"));
-        added.setLeaseRate(new BigDecimal("600.00"));
-        added.setBookingStatus(true);
+        Vehicle updated = makeVehicle();
+        updated.setVehichleId(1);
+        updated.setMake("Toyota");
+        updated.setModel("Camry");
+        updated.setYear(2023);
+        updated.setDealershipId(12);
+        updated.setColor("Green");
+        updated.setRentRate(new BigDecimal("75.00"));
+        updated.setLeaseRate(new BigDecimal("600.00"));
+        updated.setBookingStatus(true);
 
-        assertTrue(vehicleRepository.update(added));
-
-        Vehicle actual = vehicleRepository.findById(added.getVehichleId());
-        assertNotNull(actual);
-
-        assertEquals("Mazda", actual.getMake());
-        assertEquals("Some info", actual.getModel());
-        assertEquals(2025, actual.getYear());
-        assertEquals(1, actual.getDealershipId());
-
-        assertEquals("Green", actual.getColor());
-        assertEquals(new BigDecimal("75.00"), actual.getRentRate());
-        assertEquals(new BigDecimal("600.00"), actual.getLeaseRate());
-        assertTrue(actual.isBookingStatus());
+        Result<Vehicle> result = service.update(updated);
+        System.out.println(result.getMessages());
+        assertFalse(result.isSuccess());
+        System.out.println(result.getMessages());
+        assertTrue(result.getMessages().contains("Make, model, year, and dealership cannot be changed."));
     }
 
-
     @Test
-    void deleteById() {
+    void shouldDeleteById() {
+        int vehicleId = 1;
+        when(bookingRepository.findAll()).thenReturn(List.of());
+        when(vehicleRepository.deleteById(vehicleId)).thenReturn(true);
+
+        boolean deleted = service.deleteById(vehicleId);
+        assertTrue(deleted);
     }
 
     private Vehicle makeVehicle() {

@@ -1,7 +1,5 @@
 package learn.catch_ride.data;
 
-import learn.catch_ride.models.Booking;
-import learn.catch_ride.models.Dealership;
 import learn.catch_ride.models.Vehicle;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;

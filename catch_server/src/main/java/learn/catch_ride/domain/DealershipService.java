@@ -34,7 +34,7 @@ public class DealershipService {
             return result;
         }
 
-        if(dealership.getDealershipId() != 0) {
+        if(dealership.getDealershipId() != 0){
             result.addMessage("Dealership ID cannot be set for `add` operation", ResultType.INVALID);
             return result;
         }
@@ -51,12 +51,12 @@ public class DealershipService {
             return result;
         }
 
-        if(dealership.getDealershipId() <= 0) {
+        if(dealership.getDealershipId() <= 0){
             result.addMessage("Dealership ID must be set for `update` operation", ResultType.INVALID);
             return result;
         }
 
-       if (!dealershipRepository.update(dealership)) {
+       if (!dealershipRepository.update(dealership)){
            String msg = String.format("DealershipId: %s, not found",
                    dealership.getDealershipId());
            result.addMessage(msg, ResultType.NOT_FOUND);
@@ -69,9 +69,8 @@ public class DealershipService {
         Result<Dealership> result = new Result<>();
         Dealership dealership = findById(dealershipId);
 
-        // Validate that the dealership is not in use
-        if (dealership.getCars() != null && !dealership.getCars().isEmpty()) {
-            String message = String.format("DealershipId: %s is in use by vehicles and cannot be deleted.", dealershipId);
+        if (dealership.getCars() != null && !dealership.getCars().isEmpty()){
+            String message = String.format("Dealership ID: %s is in use by vehicles and cannot be deleted.", dealershipId);
             result.addMessage(message, ResultType.INVALID);
             return result;
         }
@@ -81,21 +80,21 @@ public class DealershipService {
         return result;
     }
 
-    private Result<Dealership> validate(Dealership dealership) {
+    private Result<Dealership> validate(Dealership dealership){
         Result<Dealership> result = new Result<>();
 
-        if(dealership == null) {
+        if(dealership == null){
             result.addMessage("Dealership cannot be null", ResultType.INVALID);
             return result;
         }
 
-        if(Validations.isNullOrBlank(dealership.getName())) {
+        if(Validations.isNullOrBlank(dealership.getName())){
             result.addMessage("Name is required", ResultType.INVALID);
         }
 
-        if(dealership.getLocationId() == 0) {
+        if(dealership.getLocationId() == 0){
             result.addMessage("Location ID is required", ResultType.INVALID);
-        } else if(locationRepository.findById(dealership.getLocationId()) == null) {
+        } else if(locationRepository.findById(dealership.getLocationId()) == null){
             result.addMessage("Location must exist", ResultType.INVALID);
         }
 
