@@ -117,18 +117,19 @@ public class BookingService {
 
         if(booking.getStartDate() != null && booking.getEndDate() != null) {
             if (booking.getStartDate().isBefore(today)) {
-                result.addMessage("Start Date must be in the future.", ResultType.INVALID);
+                result.addMessage("Start date must be in the future.", ResultType.INVALID);
             }
 
-            if (booking.getEndDate().isAfter(booking.getStartDate())) {
+            if (!booking.getEndDate().isAfter(booking.getStartDate())) {
                 result.addMessage("End Date must be after start date.", ResultType.INVALID);
             }
 
             for (Booking b : bookings) {
-                if ((!booking.getEndDate().isBefore(b.getStartDate()) && !b.getEndDate().isBefore(booking.getStartDate())) &&
-                        (booking.getBookingId() != b.getBookingId())) {
-                    result.addMessage("Booking dates must not overlap with others.", ResultType.INVALID);
-                    break;
+                if (b.getVehicleId() == booking.getVehicleId() && booking.getBookingId() != b.getBookingId()) {
+                    if (booking.getStartDate().isBefore(b.getEndDate()) && booking.getEndDate().isAfter(b.getStartDate())) {
+                        result.addMessage("Booking dates must not overlap with others.", ResultType.INVALID);
+                        break;
+                    }
                 }
             }
         }
