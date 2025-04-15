@@ -3,37 +3,39 @@ package learn.catch_ride.models;
 import java.math.BigDecimal;
 
 public class Vehicle {
-    private int vehichleId;
+    private int vehicleId;
     private String make;
     private String model;
     private int year;
     private String color;
     private String trim;
-    private int dealershipId;
     private BigDecimal rentRate;
     private BigDecimal leaseRate;
+    private int dealershipId;
+    private boolean bookingStatus;
 
-    public Vehicle(int vehichleId, String make, String model, int year, String color, String trim, int dealershipId, BigDecimal rentRate, BigDecimal leaseRate) {
-        this.vehichleId = vehichleId;
+    public Vehicle(int vehicleId, String make, String model, int year, String color, String trim, BigDecimal rentRate, BigDecimal leaseRate, int dealershipId, boolean bookingStatus) {
+        this.vehicleId = vehicleId;
         this.make = make;
         this.model = model;
         this.year = year;
         this.color = color;
         this.trim = trim;
-        this.dealershipId = dealershipId;
         this.rentRate = rentRate;
         this.leaseRate = leaseRate;
+        this.dealershipId = dealershipId;
+        this.bookingStatus = bookingStatus;
     }
 
     public Vehicle() {
     }
 
     public int getVehichleId() {
-        return vehichleId;
+        return vehicleId;
     }
 
-    public void setVehichleId(int vehichleId) {
-        this.vehichleId = vehichleId;
+    public void setVehichleId(int vehicleId) {
+        this.vehicleId = vehicleId;
     }
 
     public String getMake() {
@@ -98,5 +100,13 @@ public class Vehicle {
 
     public void setLeaseRate(BigDecimal leaseRate) {
         this.leaseRate = leaseRate;
+    }
+
+    public boolean isBookingStatus() {
+        return bookingStatus;
+    }
+
+    public void setBookingStatus(boolean bookingStatus) {
+        this.bookingStatus = bookingStatus;
     }
 }
