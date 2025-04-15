@@ -44,6 +44,15 @@ class UserServiceTest {
     }
 
     @Test
+    void shouldNotAddWithNullUserName() {
+        User user = makeUser();
+        user.setUserName(null);
+
+        Result<User> result = service.add(user);
+        assertFalse(result.isSuccess());
+    }
+
+    @Test
     void shouldNotAddWithNullFirstName() {
         User user = makeUser();
         user.setFirstName(null);
@@ -149,6 +158,19 @@ class UserServiceTest {
         assertTrue(result.isSuccess());
 
         user = null;
+        Result<User> updated = service.update(user);
+
+        assertFalse(updated.isSuccess());
+    }
+
+    @Test
+    void shouldNotUpdateWithNullUserName() {
+        User user = makeUser();
+        Result<User> result = service.add(user);
+
+        assertTrue(result.isSuccess());
+
+        user.setUserName(null);
         Result<User> updated = service.update(user);
 
         assertFalse(updated.isSuccess());
@@ -286,6 +308,7 @@ class UserServiceTest {
         //(1,'James','Sauven','jamessauven@gmail.com','testpassword', '2017-12-20',1,false),
         User user = new User();
         user.setUserId(1);
+        user.setUserName("username");
         user.setFirstName("James");
         user.setLastName("Sauven");
         user.setEmail("jamessauven@gmail.com");

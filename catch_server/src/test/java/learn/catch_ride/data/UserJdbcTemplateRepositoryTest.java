@@ -40,6 +40,7 @@ class UserJdbcTemplateRepositoryTest {
         assertNotNull(user);
 
         assertEquals(1, user.getUserId());
+        assertEquals("username1", user.getUserName());
         assertEquals("James", user.getFirstName());
         assertEquals("Sauven", user.getLastName());
         assertEquals("jamessauven@gmail.com", user.getEmail());
@@ -57,6 +58,7 @@ class UserJdbcTemplateRepositoryTest {
         User actual = repository.add(user);
         assertNotNull(actual);
         assertEquals(NEXT_ID, user.getUserId());
+        assertEquals("username3", user.getUserName());
         assertEquals("testFirstName", user.getFirstName());
         assertEquals("testLastName", user.getLastName());
         assertEquals("testEmail@email.com", user.getEmail());
@@ -88,6 +90,7 @@ class UserJdbcTemplateRepositoryTest {
 
     private User makeUser() {
         User user = new User();
+        user.setUserName("username3");
         user.setFirstName("testFirstName");
         user.setLastName("testLastName");
         user.setEmail("testEmail@email.com");

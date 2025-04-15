@@ -23,7 +23,7 @@ public class UserJdbcTemplateRepository  implements UserRepository{
 
     @Override
     public List<User> findAll() {
-        final String sql = "select user_id, first_name, last_name, email, password, date_created_at, location_id, is_admin "
+        final String sql = "select user_id, user_name, first_name, last_name, email, password, date_created_at, location_id, is_admin "
                 + "from user limit 1000;";
         return jdbcTemplate.query(sql, new UserMapper());
     }
@@ -32,7 +32,7 @@ public class UserJdbcTemplateRepository  implements UserRepository{
     @Transactional
     public User findById(int userId) {
 
-        final String sql = "select user_id, first_name, last_name, email, password, date_created_at, location_id, is_admin "
+        final String sql = "select user_id, user_name, first_name, last_name, email, password, date_created_at, location_id, is_admin "
                 + "from user "
                 + "where user_id = ?;";
 
@@ -46,20 +46,21 @@ public class UserJdbcTemplateRepository  implements UserRepository{
     @Override
     public User add(User user) {
 
-        final String sql = "insert into user (user_id, first_name, last_name, email, password, date_created_at, location_id, is_admin) "
-                + " values (?,?,?,?,?,?,?,?);";
+        final String sql = "insert into user (user_id, user_name, first_name, last_name, email, password, date_created_at, location_id, is_admin) "
+                + " values (?,?,?,?,?,?,?,?,?);";
 
         KeyHolder keyHolder = new GeneratedKeyHolder();
         int rowsAffected = jdbcTemplate.update(connection -> {
             PreparedStatement ps = connection.prepareStatement(sql, Statement.RETURN_GENERATED_KEYS);
             ps.setInt(1, user.getUserId());
-            ps.setString(2, user.getFirstName());
-            ps.setString(3, user.getLastName());
-            ps.setString(4, user.getEmail());
-            ps.setString(5, user.getPassword());
-            ps.setDate(6, java.sql.Date.valueOf(user.getDateCreatedAt().toString()));
-            ps.setInt(7, user.getLocationId());
-            ps.setBoolean(8, user.isAdmin());
+            ps.setString(2,user.getUserName());
+            ps.setString(3, user.getFirstName());
+            ps.setString(4, user.getLastName());
+            ps.setString(5, user.getEmail());
+            ps.setString(6, user.getPassword());
+            ps.setDate(7, java.sql.Date.valueOf(user.getDateCreatedAt().toString()));
+            ps.setInt(8, user.getLocationId());
+            ps.setBoolean(9, user.isAdmin());
             return ps;
         }, keyHolder);
 
@@ -75,6 +76,7 @@ public class UserJdbcTemplateRepository  implements UserRepository{
     public boolean update(User user) {
 
         final String sql = "update user set "
+                + "user_name = ?, "
                 + "first_name = ?, "
                 + "last_name = ?, "
                 + "email = ?, "
@@ -85,6 +87,7 @@ public class UserJdbcTemplateRepository  implements UserRepository{
                 + "where user_id = ?;";
 
         return jdbcTemplate.update(sql,
+                user.getUserName(),
                 user.getFirstName(),
                 user.getLastName(),
                 user.getEmail(),
