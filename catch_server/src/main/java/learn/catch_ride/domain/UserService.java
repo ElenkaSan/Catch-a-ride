@@ -8,12 +8,18 @@ import learn.catch_ride.models.User;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
 @Service
 public class UserService {
     private final UserRepository userRepository;
+    private final LocationRepository locationRepository;
 
-    public UserService(UserRepository userRepository) { this.userRepository = userRepository; }
+    public UserService(UserRepository userRepository, LocationRepository locationRepository) {
+        this.userRepository = userRepository;
+        this.locationRepository = locationRepository;
+    }
 
     public List<User> findAll() { return userRepository.findAll(); }
 
@@ -63,24 +69,39 @@ public class UserService {
 
         if (user == null) {
             result.addMessage("user cannot be null.", ResultType.INVALID);
+            return result;
         }
 
-        if (user.getFirstName().isEmpty() || user.getFirstName() ==  null) {
+        if (Validations.isNullOrBlank(user.getFirstName())) {
             result.addMessage("First Name is required.", ResultType.INVALID);
         }
 
-        if (user.getLastName().isEmpty() || user.getLastName() ==  null) {
+        if (Validations.isNullOrBlank(user.getLastName())) {
             result.addMessage("Last Name is required.", ResultType.INVALID);
         }
 
-        if (user.getEmail().isEmpty() || user.getEmail() ==  null) {
+        if (Validations.isNullOrBlank(user.getEmail())) {
             result.addMessage("Email is required.", ResultType.INVALID);
         }
 
-        //TO-DO password Validation
 
-        //TO-DO locationId Validation
+        if (Validations.isNullOrBlank(user.getPassword())) {
+            result.addMessage("Password is required.", ResultType.INVALID);
+            return result;
+        }
 
+
+        if(!isAllPresent(user.getPassword())){
+            result.addMessage("Password must contain uppercase and lowercase characters, special characters and numeric values", ResultType.INVALID);
+        }
+
+        if(user.getPassword().length() < 9){
+            result.addMessage("Password is too short! It must be longer than 8 characters.", ResultType.INVALID);
+        }
+
+        if (locationRepository.findById(user.getLocationId()) == null) {
+            result.addMessage("Location not found in database.", ResultType.INVALID);
+        }
 
 
         for(User u: users) {
@@ -95,5 +116,38 @@ public class UserService {
 
         return result;
 
+    }
+
+    //Helper methods
+    public static boolean
+    isAllPresent(String str)
+    {
+        // ReGex to check if a string
+        // contains uppercase, lowercase
+        // special character & numeric value
+        String regex = "^(?=.*[a-z])(?=."
+                + "*[A-Z])(?=.*\\d)"
+                + "(?=.*[-+_!@#$%^&*., ?]).+$";
+
+        // Compile the ReGex
+        Pattern p = Pattern.compile(regex);
+
+        // If the string is empty
+        // then print No
+        if (str == null) {
+            System.out.println("No");
+            return false;
+        }
+
+        // Find match between given string
+        // & regular expression
+        Matcher m = p.matcher(str);
+
+        // Print Yes if string
+        // matches ReGex
+        if (m.matches())
+            return true;
+        else
+            return false;
     }
 }
