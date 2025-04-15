@@ -56,3 +56,33 @@ CREATE TABLE booking (
  FOREIGN KEY (user_id) REFERENCES `user`(user_id),
  FOREIGN KEY (dealership_location_id) REFERENCES location(location_id)
  );
+ 
+ insert into location(location_id, address, city, state, zip_code) values
+	(1, '18 Washington Ave', 'Boston','MA', 20235),
+	(2, '13 Saragota St', 'New York','Ny', 19235);
+
+
+insert into dealership (dealership_id, `name`, `description`, location_id)
+values
+	(1, 'Autoloco', 'Here for all your vehicular needs', 1),
+	(2, 'Chucklemotor', 'Serving people since 1980', 1);
+
+insert into `user`
+	(user_id, first_name, last_name, email, password, date_created_at, location_id, is_admin)
+values
+	(1,'James','Sauven','jamessauven@gmail.com','testpassword', '2017/12/20',1,false),
+	(2,'Jack','Wilson','JackWilson@gmail.com','testpassword1', '2017/9/17',2,true);
+
+insert into vehicle
+	(vehicle_id, make, model, year, color, trim, rent_rate, lease_rate, dealership_id, booking_status)
+values
+	(1, 'Ford', 'Maverick', '2021', 'Blue', 'Sport', 60.00, 480.00, 1, true),
+	(2, 'Honda', 'Si Base', '2023', 'Silver', 'SE', 50.00, 400.00, 2, true),
+    (3, 'Toyota', 'Camri', '2024', 'Red', 'LE', 50.00, 400.00, 2, false);
+
+insert into `booking`
+	(booking_id, vehicle_id, user_id, dealership_location_id, start_date, end_date, booking_type, date_created_at, total_cost)
+values
+	(1,1,1,1,'2025/04/14', '2025/04/20',"LEASE",'2025/03/12',360),
+	(2,1,2,1,'2025/04/14', '2026/04/20', "RENT",'2025/01/11',4800),
+    (3,1,1,1,'2025/06/10', '2026/06/20', "LEASE",'2025/03/12',4800);
