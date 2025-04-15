@@ -16,6 +16,7 @@ public class UserService {
     private final UserRepository userRepository;
     private final LocationRepository locationRepository;
 
+
     public UserService(UserRepository userRepository, LocationRepository locationRepository) {
         this.userRepository = userRepository;
         this.locationRepository = locationRepository;
@@ -54,6 +55,12 @@ public class UserService {
         Result<User> result = new Result<>();
         User user = findById(userId);
 
+        if (userRepository.getUsageCount(userId) > 0) {
+            result.addMessage("Cannot delete location that is referenced in other tables.", ResultType.INVALID);
+            result.setPayload(user);
+            return result;
+        }
+
 
         userRepository.deleteById(userId);
 
@@ -70,6 +77,10 @@ public class UserService {
         if (user == null) {
             result.addMessage("user cannot be null.", ResultType.INVALID);
             return result;
+        }
+
+        if (Validations.isNullOrBlank(user.getUserName())) {
+            result.addMessage("Username is required.", ResultType.INVALID);
         }
 
         if (Validations.isNullOrBlank(user.getFirstName())) {

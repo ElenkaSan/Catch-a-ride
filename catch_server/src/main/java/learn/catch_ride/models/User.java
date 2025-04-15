@@ -5,6 +5,7 @@ import java.util.Objects;
 
 public class User {
     private int userId;
+    private String userName;
     private String firstName;
     private String lastName;
     private String email;
@@ -12,6 +13,14 @@ public class User {
     private LocalDate dateCreatedAt;
     private boolean isAdmin;
     private int locationId;
+
+    public String getUserName() {
+        return userName;
+    }
+
+    public void setUserName(String userName) {
+        this.userName = userName;
+    }
 
     public int getLocationId() {
         return locationId;

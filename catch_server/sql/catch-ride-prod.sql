@@ -20,6 +20,7 @@ CREATE TABLE location (
 
 CREATE TABLE `user` (
     user_id INT PRIMARY KEY AUTO_INCREMENT,
+    user_name VARCHAR(50) NOT NULL,
     first_name VARCHAR(50) NOT NULL,
     last_name VARCHAR(50) NOT NULL,
     email VARCHAR(100) UNIQUE NOT NULL,
@@ -70,10 +71,10 @@ values
 	(2, 'Chucklemotor', 'Serving people since 1980', 1);
 
 insert into `user`
-	(user_id, first_name, last_name, email, password, date_created_at, location_id, is_admin)
+	(user_id, user_name, first_name, last_name, email, password, date_created_at, location_id, is_admin)
 values
-	(1,'James','Sauven','jamessauven@gmail.com','testpassword', '2017-12-20',1,false),
-	(2,'Jack','Wilson','JackWilson@gmail.com','testpassword1', '2017-9-17',2,true);
+	(1,'username1','James','Sauven','jamessauven@gmail.com','testpassword', '2017-12-20',1,false),
+	(2,'username2','Jack','Wilson','JackWilson@gmail.com','testpassword1', '2017-9-17',2,true);
 
 insert into vehicle
 	(vehicle_id, make, model, year, color, trim, rent_rate, lease_rate, dealership_id, booking_status)
