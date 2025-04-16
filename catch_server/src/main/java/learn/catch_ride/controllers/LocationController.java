@@ -12,8 +12,7 @@ import java.util.List;
 @RestController
 @CrossOrigin(origins = {"http://localhost:3000"})
 @RequestMapping("/api/location")
-public class LocationController {
-    private final LocationService service;
+public class LocationController { private final LocationService service;
 
     public LocationController(LocationService service) { this.service = service; }
 
