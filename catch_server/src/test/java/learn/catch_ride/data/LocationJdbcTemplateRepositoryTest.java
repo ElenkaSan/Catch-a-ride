@@ -15,7 +15,7 @@ import static learn.catch_ride.models.BookingType.LEASE;
 import static learn.catch_ride.models.BookingType.RENT;
 import static org.junit.jupiter.api.Assertions.*;
 
-@SpringBootTest(webEnvironment = SpringBootTest.WebEnvironment.NONE)
+@SpringBootTest(webEnvironment = SpringBootTest.WebEnvironment.MOCK)
 class LocationJdbcTemplateRepositoryTest {
 
     final static int NEXT_ID = 3;

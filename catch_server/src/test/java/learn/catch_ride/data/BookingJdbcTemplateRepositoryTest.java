@@ -13,7 +13,7 @@ import java.util.List;
 import static learn.catch_ride.models.BookingType.*;
 import static org.junit.jupiter.api.Assertions.*;
 
-@SpringBootTest(webEnvironment = SpringBootTest.WebEnvironment.NONE)
+@SpringBootTest(webEnvironment = SpringBootTest.WebEnvironment.MOCK)
 class BookingJdbcTemplateRepositoryTest {
 
     final static int NEXT_ID = 4;
