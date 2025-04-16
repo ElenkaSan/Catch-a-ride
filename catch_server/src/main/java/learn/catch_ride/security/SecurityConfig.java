@@ -4,6 +4,7 @@ import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.http.HttpMethod;
 import org.springframework.security.authentication.AuthenticationManager;
+import org.springframework.security.config.annotation.method.configuration.EnableGlobalMethodSecurity;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
@@ -15,6 +16,7 @@ import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
 
 @Configuration
 @EnableWebSecurity
+@EnableGlobalMethodSecurity(prePostEnabled = true)
 public class SecurityConfig extends WebSecurityConfigurerAdapter {
 
     private final JwtConverter converter;
@@ -30,29 +32,30 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
         http.cors();
 
         http.authorizeRequests() // 2
-                .antMatchers("/authenticate").permitAll()
-                .antMatchers("/register").permitAll()
+                .antMatchers("/api/auth/authenticate").permitAll()
+                .antMatchers("/api/auth/register").permitAll()
                 .antMatchers("/refresh_token").authenticated()
-                .antMatchers(HttpMethod.GET, "/booking", "/booking/*").permitAll()
-                .antMatchers(HttpMethod.POST, "/booking").hasAnyRole("USER", "ADMIN")
-                .antMatchers(HttpMethod.PUT, "/booking/*").hasAnyRole("USER", "ADMIN")
-                .antMatchers(HttpMethod.DELETE, "/booking/*").hasAnyRole("USER", "ADMIN")
-                .antMatchers(HttpMethod.GET, "/dealership", "/dealership/*").hasRole("ADMIN")
-                .antMatchers(HttpMethod.POST, "/dealership").hasRole("ADMIN")
-                .antMatchers(HttpMethod.PUT, "/dealership/*").hasRole("ADMIN")
-                .antMatchers(HttpMethod.DELETE, "/dealership/*").hasRole("ADMIN")
-                .antMatchers(HttpMethod.GET, "/vehicle", "/vehicle/*").permitAll()
-                .antMatchers(HttpMethod.POST, "/vehicle").hasRole("ADMIN")
-                .antMatchers(HttpMethod.PUT, "/vehicle/*").hasRole("ADMIN")
-                .antMatchers(HttpMethod.DELETE, "/vehicle/*").hasRole("ADMIN")
-                .antMatchers(HttpMethod.GET, "/location", "/location/*").hasRole("ADMIN")
-                .antMatchers(HttpMethod.POST, "/location").hasRole("ADMIN")
-                .antMatchers(HttpMethod.PUT, "/location/*").hasRole("ADMIN")
-                .antMatchers(HttpMethod.DELETE, "/location/*").hasRole("ADMIN")
-                .antMatchers(HttpMethod.GET, "/user", "/user/*").hasRole("ADMIN")
-                .antMatchers(HttpMethod.POST, "/user").hasRole("ADMIN")
-                .antMatchers(HttpMethod.PUT, "/user/*").hasRole("ADMIN")
-                .antMatchers(HttpMethod.DELETE, "/user/*").hasRole("ADMIN")
+                .antMatchers(HttpMethod.GET, "/api/booking", "/booking/**").permitAll()
+                .antMatchers(HttpMethod.POST, "/api/booking").hasAnyRole("USER", "ADMIN")
+                .antMatchers(HttpMethod.PUT, "/api/booking/**").hasAnyRole("USER", "ADMIN")
+                .antMatchers(HttpMethod.DELETE, "/api/booking/**").hasAnyRole("USER", "ADMIN")
+                .antMatchers(HttpMethod.GET, "/api/dealership", "/api/dealership/**", "/api/dealership/id/*").hasRole("ADMIN")
+                .antMatchers(HttpMethod.POST, "/api/dealership").hasRole("ADMIN")
+                .antMatchers(HttpMethod.PUT, "/api/dealership/**").hasRole("ADMIN")
+                .antMatchers(HttpMethod.DELETE, "/api/dealership/**").hasRole("ADMIN")
+                .antMatchers(HttpMethod.GET, "/api/vehicle", "/api/vehicle/**", "/api/dealership/id/*").permitAll()
+                .antMatchers(HttpMethod.POST, "/api/vehicle").hasRole("ADMIN")
+                .antMatchers(HttpMethod.PUT, "/api/vehicle/**").hasRole("ADMIN")
+                .antMatchers(HttpMethod.DELETE, "/api/vehicle/**").hasRole("ADMIN")
+                .antMatchers(HttpMethod.GET, "/api/location", "/location/**").hasRole("ADMIN")
+                .antMatchers(HttpMethod.POST, "/api/location").hasRole("ADMIN")
+                .antMatchers(HttpMethod.PUT, "/api/location/**").hasRole("ADMIN")
+                .antMatchers(HttpMethod.DELETE, "/api/location/**").hasRole("ADMIN")
+                .antMatchers(HttpMethod.GET, "/api/user", "/user/**").hasRole("ADMIN")
+                .antMatchers(HttpMethod.POST, "/api/user").hasRole("ADMIN")
+                .antMatchers(HttpMethod.PUT, "/api/user/**").hasRole("ADMIN")
+                .antMatchers(HttpMethod.DELETE, "/api/user/**").hasRole("ADMIN")
+                .anyRequest().authenticated()
                 .and()
                 .addFilter(new JwtRequestFilter(authenticationManager(), converter)) // 3
                 .sessionManagement() // 4

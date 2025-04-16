@@ -100,11 +100,17 @@ values
 insert into app_role (`name`) values
     ('USER'),
     ('ADMIN');
+    
 
 insert into app_user (app_user_id, username, password_hash, disabled)
 values
-    (1, 'username1', 'testpassword', false),
-    (2, 'username2', 'testpassword1', false);
+    (1, 'admin', '$2a$12$bBSa76Ak4yzWXWH4H.jMhurg/qj.axe7L1.PbnEasegj8b.vMcFr6', false),
+    (2, 'username', '$2a$12$SQ1hVzFCyqanbDZFrm8sFOeOmXDLHyIlBidVznOnBOZSUx..O1yPq', false);
+    
+    insert into app_user_role (app_user_id, app_role_id) 
+values
+	(1,2),
+    (2,1);
 
 insert into `user`
 	(user_id, first_name, last_name, email, date_created_at, location_id, app_user_id)

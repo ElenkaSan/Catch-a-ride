@@ -2,6 +2,7 @@
 
 
 GET {{url}} HTTP/1.1
+Authorization: Bearer eyJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJjYXRjaC1yaWRlIiwic3ViIjoiYWRtaW4iLCJhdXRob3JpdGllcyI6IlJPTEVfQURNSU4iLCJleHAiOjE3NDQ4NDAwNjB9.jwpjnMUSXfaQQHRbTREBEByhNfKreHTUJHvb4arTn6o
 
 ###
 GET {{url}}/id/1 HTTP/1.1
