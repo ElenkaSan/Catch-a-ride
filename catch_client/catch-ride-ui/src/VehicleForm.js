@@ -59,6 +59,7 @@ function VehicleForm() {
             setVehicle({
                 ...vehicle,
                 imageCar: reader.result, // Base64 encoded string
+                imageCarFile: File
             });
         };
         reader.readAsDataURL(file);
@@ -72,13 +73,17 @@ function VehicleForm() {
         console.log("fetching API:", id);
         console.log("Submitting:", JSON.stringify(vehicle, null, 2));
 
+        const formData = new FormData();
+        formData.append("vehicle", new Blob([JSON.stringify(vehicle)], { type: "application/json" }));
+    
+        if (vehicle.imageCarFile) {
+            formData.append("file", vehicle.imageCarFile);
+        }
+
         fetch(apiUrl, 
             {
             method: method,
-            headers: {
-                "Content-Type": "application/json",
-            },
-            body: JSON.stringify(vehicle),
+            body: formData,
         })
         .then((response) => {
             if (method === "POST") {
