@@ -9,7 +9,6 @@ import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.boot.test.mock.mockito.MockBean;
 
 import java.math.BigDecimal;
-import java.util.List;
 
 import static org.junit.jupiter.api.Assertions.*;
 import static org.mockito.Mockito.when;
@@ -28,6 +27,8 @@ class VehicleServiceTest {
     @Test
     void shouldNotAddNull() {
         Result<Vehicle> result = service.add(null);
+        System.out.println(result.getMessages());
+        assertFalse(result.isSuccess());
         assertFalse(result.isSuccess());
         assertEquals(ResultType.INVALID, result.getType());
     }
@@ -87,6 +88,16 @@ class VehicleServiceTest {
         Result<Vehicle> result = service.add(vehicle);
         assertFalse(result.isSuccess());
         assertTrue(result.getMessages().contains("Dealership ID is required."));
+    }
+
+    @Test
+    void shouldAddValidVehicle() {
+        Vehicle vehicle = makeVehicle();
+        when(vehicleRepository.add(vehicle)).thenReturn(vehicle);
+        Result<Vehicle> result = service.add(vehicle);
+
+        assertTrue(result.isSuccess());
+        assertEquals(vehicle, result.getPayload());
     }
 
     @Test
