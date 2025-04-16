@@ -31,7 +31,7 @@ function Vehicle() {
              </div>
           )}
             <section className="container justify-content-md-center">
-              <Link className="btn btn-lg btn-secondary mt-2 mb-4" to={'/vehicle/add'}>Add New Vehicle</Link>  
+              {/* <Link className="btn btn-lg btn-secondary mt-2 mb-4" to={'/vehicle/add'}>Add New Vehicle</Link>   */}
               <table className="table table-striped table-hover">
                 <thead>
                     <tr>
