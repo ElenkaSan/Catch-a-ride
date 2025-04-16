@@ -13,9 +13,9 @@ public class Vehicle {
     private BigDecimal leaseRate;
     private int dealershipId;
     private boolean bookingStatus;
-    private String imageCar;
+    private String imageUrl;
 
-    public Vehicle(int vehicleId, String make, String model, int year, String color, String trim, BigDecimal rentRate, BigDecimal leaseRate, int dealershipId, boolean bookingStatus, String imageCar) {
+    public Vehicle(int vehicleId, String make, String model, int year, String color, String trim, BigDecimal rentRate, BigDecimal leaseRate, int dealershipId, boolean bookingStatus, String imageUrl) {
         this.vehicleId = vehicleId;
         this.make = make;
         this.model = model;
@@ -26,7 +26,7 @@ public class Vehicle {
         this.leaseRate = leaseRate;
         this.dealershipId = dealershipId;
         this.bookingStatus = bookingStatus;
-        this.imageCar = imageCar;
+        this.imageUrl = imageUrl;
     }
 
     public Vehicle() {
@@ -112,11 +112,12 @@ public class Vehicle {
         this.bookingStatus = bookingStatus;
     }
 
-    public String getImageCar() {
-        return imageCar;
+    public String getImageUrl() { 
+        return imageUrl; 
     }
 
-    public void setImageCar(String imageCar) {
-        this.imageCar = imageCar;
+    public void setImageUrl(String imageUrl) { 
+        this.imageUrl = imageUrl; 
     }
+
 }
