@@ -1,6 +1,5 @@
 package learn.catch_ride.controllers;
 
-import learn.catch_ride.domain.BookingService;
 import learn.catch_ride.domain.Result;
 import learn.catch_ride.domain.UserService;
 import learn.catch_ride.models.User;

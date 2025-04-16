@@ -5,21 +5,27 @@ import java.util.Objects;
 
 public class User {
     private int userId;
-    private String userName;
     private String firstName;
     private String lastName;
     private String email;
-    private String password;
     private LocalDate dateCreatedAt;
-    private boolean isAdmin;
     private int locationId;
+    private int appUserId;
 
-    public String getUserName() {
-        return userName;
+    public int getAppUserId() {
+        return appUserId;
     }
 
-    public void setUserName(String userName) {
-        this.userName = userName;
+    public void setAppUserId(int appUserId) {
+        this.appUserId = appUserId;
+    }
+
+    public Location getLocation() {
+        return location;
+    }
+
+    public void setLocation(Location location) {
+        this.location = location;
     }
 
     public int getLocationId() {
@@ -30,13 +36,7 @@ public class User {
         this.locationId = locationId;
     }
 
-    public boolean isAdmin() {
-        return isAdmin;
-    }
 
-    public void setAdmin(boolean admin) {
-        isAdmin = admin;
-    }
 
     public LocalDate getDateCreatedAt() {
         return dateCreatedAt;
@@ -46,13 +46,6 @@ public class User {
         this.dateCreatedAt = dateCreatedAt;
     }
 
-    public String getPassword() {
-        return password;
-    }
-
-    public void setPassword(String password) {
-        this.password = password;
-    }
 
     public String getEmail() {
         return email;
