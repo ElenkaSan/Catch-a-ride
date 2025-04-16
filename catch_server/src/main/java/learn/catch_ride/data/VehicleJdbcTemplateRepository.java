@@ -15,7 +15,8 @@ import java.util.List;
 @Repository
 public class VehicleJdbcTemplateRepository implements VehicleRepository {
     private final JdbcTemplate jdbcTemplate;
-    private final String VEHICLE_COLUMN_NAMES = "vehicle_id, make, model, year, color, trim, rent_rate, lease_rate, dealership_id, booking_status, image_car";
+
+    private final String VEHICLE_COLUMN_NAMES = "vehicle_id, make, model, year, color, trim, rent_rate, lease_rate, dealership_id, booking_status, image_url";
 
     public VehicleJdbcTemplateRepository(JdbcTemplate jdbcTemplate) {
         this.jdbcTemplate = jdbcTemplate;
@@ -40,7 +41,8 @@ public class VehicleJdbcTemplateRepository implements VehicleRepository {
 
     @Override
     public Vehicle add(Vehicle vehicle) {
-        final String sql = "insert into vehicle (make, model, year, color, trim, rent_rate, lease_rate, dealership_id, booking_status, image_car) "
+
+        final String sql = "insert into vehicle (make, model, year, color, trim, rent_rate, lease_rate, dealership_id, booking_status, image_url) "
                 + " values (?,?,?,?,?,?,?,?,?,?);";
 
         KeyHolder keyHolder = new GeneratedKeyHolder();
@@ -55,7 +57,7 @@ public class VehicleJdbcTemplateRepository implements VehicleRepository {
             ps.setBigDecimal(7, vehicle.getLeaseRate());
             ps.setInt(8, vehicle.getDealershipId());
             ps.setBoolean(9, vehicle.isBookingStatus());
-            ps.setString(10, vehicle.getImageCar());
+            ps.setString(10, vehicle.getImageUrl());
             return ps;
         }, keyHolder);
 
@@ -79,7 +81,7 @@ public class VehicleJdbcTemplateRepository implements VehicleRepository {
                 + "lease_rate = ?, "
                 + "dealership_id = ?, "
                 + "booking_status = ?, "
-                + "image_car = ? "
+                + "image_url = ? "
                 + "where vehicle_id = ?;";
 
         return jdbcTemplate.update(sql,
@@ -92,7 +94,7 @@ public class VehicleJdbcTemplateRepository implements VehicleRepository {
                 vehicle.getLeaseRate(),
                 vehicle.getDealershipId(),
                 vehicle.isBookingStatus(),
-                vehicle.getImageCar(),
+                vehicle.getImageUrl(),
                 vehicle.getVehicleId()) > 0;
     }
 
