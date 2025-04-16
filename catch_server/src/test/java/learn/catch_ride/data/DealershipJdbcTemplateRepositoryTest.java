@@ -1,6 +1,7 @@
 package learn.catch_ride.data;
 
 import learn.catch_ride.models.Dealership;
+import learn.catch_ride.models.Vehicle;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -16,7 +17,10 @@ class DealershipJdbcTemplateRepositoryTest {
     final static int NEXT_ID = 3;
 
     @Autowired
-    DealershipJdbcTemplateRepository repository;
+    DealershipJdbcTemplateRepository dealershipRepository;
+
+    @Autowired
+    VehicleJdbcTemplateRepository vehicleRepository;
 
     @Autowired
     KnownGoodState knownGoodState;
@@ -26,7 +30,7 @@ class DealershipJdbcTemplateRepositoryTest {
 
     @Test
     void shouldFindById() {
-        Dealership dealership = repository.findById(2);
+        Dealership dealership = dealershipRepository.findById(2);
         assertNotNull(dealership);
         assertEquals("Chucklemotor", dealership.getName());
         assertEquals("Serving people since 1980", dealership.getDescription());
@@ -34,15 +38,31 @@ class DealershipJdbcTemplateRepositoryTest {
     }
 
     @Test
-    void findByName() {
-        List<Dealership> dealership = repository.findByName("Autoloco");
+    void shouldFindByIdWithVehicles() {
+        Dealership dealership = dealershipRepository.findById(1);
         assertNotNull(dealership);
-        assertTrue(dealership.size() >= 1);
+        assertEquals("Autoloco", dealership.getName());
+
+        List<Vehicle> cars = dealership.getCars();
+        assertNotNull(cars);
+        assertTrue(cars.size() > 0, "Should load cars via vehicleRepository");
+    }
+
+    @Test
+    void shouldFindByName() {
+        List<Dealership> dealerships = dealershipRepository.findByName("Autoloco");
+        assertNotNull(dealerships);
+        assertTrue(dealerships.size() >= 1);
+
+        for (Dealership d : dealerships) {
+            assertNotNull(d.getCars());
+            assertTrue(d.getCars().size() > 0, "Should have cars loaded from vehicleRepository");
+        }
     }
 
     @Test
     void shouldFindAll() {
-        List<Dealership> dealership = repository.findAll();
+        List<Dealership> dealership = dealershipRepository.findAll();
         assertNotNull(dealership);
         assertTrue(dealership.size() >= 2);
     }
@@ -50,7 +70,7 @@ class DealershipJdbcTemplateRepositoryTest {
     @Test
     void shouldAddDealership() {
         Dealership dealership = makeDealership();
-        Dealership actual = repository.add(dealership);
+        Dealership actual = dealershipRepository.add(dealership);
         assertNotNull(actual);
         assertEquals(NEXT_ID, actual.getDealershipId());
     }
@@ -58,15 +78,15 @@ class DealershipJdbcTemplateRepositoryTest {
     @Test
     void shouldUpdateDealership() {
         Dealership dealership = makeDealership();
-        Dealership added = repository.add(dealership);
+        Dealership added = dealershipRepository.add(dealership);
         added.setName("Updated Name");
-        assertTrue(repository.update(added));
+        assertTrue(dealershipRepository.update(added));
     }
 
     @Test
     void deleteById() {
-        assertTrue(repository.deleteById(2));
-        assertFalse(repository.deleteById(2));
+        assertTrue(dealershipRepository.deleteById(2));
+        assertFalse(dealershipRepository.deleteById(2));
     }
 
     private Dealership makeDealership() {

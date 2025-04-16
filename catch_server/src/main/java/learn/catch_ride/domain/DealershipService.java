@@ -2,7 +2,6 @@ package learn.catch_ride.domain;
 
 import learn.catch_ride.data.DealershipRepository;
 import learn.catch_ride.data.LocationRepository;
-import learn.catch_ride.data.VehicleRepository;
 import learn.catch_ride.models.Dealership;
 import org.springframework.stereotype.Service;
 
