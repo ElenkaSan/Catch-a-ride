@@ -2,7 +2,6 @@ package learn.catch_ride.data;
 
 
 import learn.catch_ride.data.mappers.DealershipMapper;
-import learn.catch_ride.data.mappers.VehicleMapper;
 import learn.catch_ride.models.Dealership;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.jdbc.support.GeneratedKeyHolder;

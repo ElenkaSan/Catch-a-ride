@@ -61,7 +61,7 @@ public class VehicleJdbcTemplateRepository implements VehicleRepository {
             return null;
         }
 
-        vehicle.setVehichleId(keyHolder.getKey().intValue());
+        vehicle.setVehicleId(keyHolder.getKey().intValue());
         return vehicle;
     }
 
@@ -89,7 +89,7 @@ public class VehicleJdbcTemplateRepository implements VehicleRepository {
                 vehicle.getLeaseRate(),
                 vehicle.getDealershipId(),
                 vehicle.isBookingStatus(),
-                vehicle.getVehichleId()) > 0;
+                vehicle.getVehicleId()) > 0;
     }
 
     @Override

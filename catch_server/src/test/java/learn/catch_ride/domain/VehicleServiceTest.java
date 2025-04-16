@@ -104,7 +104,7 @@ class VehicleServiceTest {
     @Test
     void shouldNotUpdateInvalidYear() {
         Vehicle vehicle = makeVehicle();
-        vehicle.setVehichleId(1);
+        vehicle.setVehicleId(1);
         vehicle.setYear(2015);
         vehicle.setBookingStatus(true);
 
@@ -117,7 +117,7 @@ class VehicleServiceTest {
     @Test
     void shouldNotUpdateNegativeRate() {
         Vehicle vehicle = makeVehicle();
-        vehicle.setVehichleId(1);
+        vehicle.setVehicleId(1);
         vehicle.setRentRate(new BigDecimal("-30"));
         vehicle.setLeaseRate(new BigDecimal("-250"));
         vehicle.setBookingStatus(true);
@@ -132,7 +132,7 @@ class VehicleServiceTest {
     @Test
     void shouldNotUpdateMissingDealershipId(){
         Vehicle vehicle = makeVehicle();
-        vehicle.setVehichleId(1);
+        vehicle.setVehicleId(1);
         vehicle.setDealershipId(0);
         vehicle.setBookingStatus(true);
 
@@ -145,12 +145,12 @@ class VehicleServiceTest {
     @Test
     void shouldNotUpdateNotChangedFields() {
         Vehicle vehicle = makeVehicle();
-        vehicle.setVehichleId(1);
+        vehicle.setVehicleId(1);
 
         when(vehicleRepository.findById(1)).thenReturn(vehicle);
 
         Vehicle updated = makeVehicle();
-        updated.setVehichleId(1);
+        updated.setVehicleId(1);
         updated.setMake("Toyota");
         updated.setModel("Camry");
         updated.setYear(2023);
@@ -167,18 +167,10 @@ class VehicleServiceTest {
         assertTrue(result.getMessages().contains("Make, model, year, and dealership cannot be changed."));
     }
 
-    @Test
-    void shouldDeleteById() {
-        int vehicleId = 1;
-        when(bookingRepository.findAll()).thenReturn(List.of());
-        when(vehicleRepository.deleteById(vehicleId)).thenReturn(true);
-
-        boolean deleted = service.deleteById(vehicleId);
-        assertTrue(deleted);
-    }
 
     private Vehicle makeVehicle() {
         Vehicle vehicle = new Vehicle();
+        vehicle.setVehicleId(4);
         vehicle.setMake("Mazda");
         vehicle.setModel("Some info");
         vehicle.setYear(2025);

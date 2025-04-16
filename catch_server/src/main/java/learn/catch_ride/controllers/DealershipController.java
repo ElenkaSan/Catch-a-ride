@@ -73,5 +73,4 @@ public class DealershipController {
         }
         return new ResponseEntity<>(HttpStatus.NOT_FOUND);
     }
-
 }

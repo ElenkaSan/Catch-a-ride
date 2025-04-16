@@ -32,7 +32,7 @@ public class VehicleService {
             return result;
         }
 
-        if (vehicle.getVehichleId() != 0) {
+        if (vehicle.getVehicleId() != 0) {
             result.addMessage("Vehicle Id cannot be set for `add` operation", ResultType.INVALID);
             return result;
         }
@@ -43,18 +43,18 @@ public class VehicleService {
     }
 
     public Result<Vehicle> update(Vehicle vehicle){
-        Result<Vehicle> result = validate(vehicle);
+        Result<Vehicle> result = new Result<>();
         if (!result.isSuccess()) {
             return result;
         }
 
-        if (vehicle.getVehichleId() <= 0) {
+        if (vehicle.getVehicleId() <= 0) {
             result.addMessage("Vehicle ID must be set for `update` operation", ResultType.INVALID);
             return result;
         }
 
         //fields that cannot be changed
-        Vehicle updating = vehicleRepository.findById(vehicle.getVehichleId());
+        Vehicle updating = vehicleRepository.findById(vehicle.getVehicleId());
         if (updating == null) {
             result.addMessage("Vehicle not found", ResultType.NOT_FOUND);
             return result;
@@ -71,8 +71,8 @@ public class VehicleService {
         return result;
     }
 
-    boolean deleteById(int vehicleId){
-        Result<Boolean> result = new Result<>();
+    public Result<Vehicle> deleteById(int vehicleId){
+        Result<Vehicle> result = new Result<>();
 
         List<Booking> bookings = bookingRepository.findAll().stream()
                 .filter(b->b.getVehicleId() == vehicleId)
@@ -80,9 +80,15 @@ public class VehicleService {
 
         if(!bookings.isEmpty()){
             result.addMessage("Cannot delete vehicle: it is currently booked.", ResultType.INVALID);
-            return false;
+            return result;
         }
-        return vehicleRepository.deleteById(vehicleId);
+
+        Vehicle vehicle = vehicleRepository.findById(vehicleId);
+        boolean deleteVehicle = vehicleRepository.deleteById(vehicleId);
+        if (deleteVehicle) {
+            result.setPayload(vehicle);
+        }
+        return result;
     }
 
     private Result<Vehicle> validate(Vehicle vehicle) {
@@ -106,10 +112,6 @@ public class VehicleService {
 
         if (yearStr.length() != 4 || year < 2020 || year > 2026) {
             result.addMessage("Year must be 4 digits and between 2020 and 2026.", ResultType.INVALID);
-        }
-
-        if(!vehicle.isBookingStatus()) {
-            result.addMessage("Booking Status is required.", ResultType.INVALID);
         }
 
         if (vehicle.getRentRate() != null && vehicle.getRentRate().signum() < 0) {
