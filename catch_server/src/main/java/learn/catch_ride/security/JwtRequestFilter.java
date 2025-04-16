@@ -12,7 +12,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 
-public class JwtRequestFilter extends BasicAuthenticationFilter {
+/*public class JwtRequestFilter extends BasicAuthenticationFilter {
 
     private final JwtConverter converter;
 
@@ -47,4 +47,4 @@ public class JwtRequestFilter extends BasicAuthenticationFilter {
         // 5. Keep the chain going.
         chain.doFilter(request, response);
     }
-}
+}*/

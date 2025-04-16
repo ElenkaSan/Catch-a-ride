@@ -1,6 +1,7 @@
 package learn.catch_ride.controllers;
 
-import learn.catch_ride.security.JwtConverter;
+import learn.catch_ride.domain.UserService;
+import learn.catch_ride.models.User;
 import org.springframework.dao.DuplicateKeyException;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -8,7 +9,6 @@ import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.AuthenticationException;
-import org.springframework.security.core.userdetails.User;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -19,18 +19,18 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-@RestController
+/*@RestController
 @RequestMapping("/api/user")
 public class AuthController {
 
     private final AuthenticationManager authenticationManager;
     private final JwtConverter converter;
-    private final AppUserService appUserService;
+    private final UserService userService;
 
-    public AuthController(AuthenticationManager authenticationManager, JwtConverter converter, AppUserService appUserService) {
+    public AuthController(AuthenticationManager authenticationManager, JwtConverter converter, UserService userService) {
         this.authenticationManager = authenticationManager;
         this.converter = converter;
-        this.appUserService = appUserService;
+        this.userService = userService;
     }
 
     @PostMapping("/authenticate")
@@ -43,7 +43,7 @@ public class AuthController {
             Authentication authentication = authenticationManager.authenticate(authToken);
 
             if (authentication.isAuthenticated()) {
-                String jwtToken = converter.getTokenFromUser((User) authentication.getPrincipal());
+                String jwtToken = converter.getTokenFromUser((org.springframework.security.core.userdetails.User) authentication.getPrincipal());
 
                 HashMap<String, String> map = new HashMap<>();
                 map.put("jwt_token", jwtToken);
@@ -60,13 +60,13 @@ public class AuthController {
 
     @PostMapping("/register")
     public ResponseEntity<?> createAccount(@RequestBody Map<String, String> credentials) {
-        AppUser appUser = null;
+        User user = null;
 
         try {
             String username = credentials.get("username");
             String password = credentials.get("password");
 
-            appUser = appUserService.create(username, password);
+            user = userService.add(user).getPayload();
         } catch (ValidationException ex) {
             return new ResponseEntity<>(List.of(ex.getMessage()), HttpStatus.BAD_REQUEST);
         } catch (DuplicateKeyException ex) {
@@ -76,8 +76,8 @@ public class AuthController {
         // happy path...
 
         HashMap<String, Integer> map = new HashMap<>();
-        map.put("appUserId", appUser.getAppUserId());
+        map.put("appUserId", user.getUserId());
 
         return new ResponseEntity<>(map, HttpStatus.CREATED);
     }
-}
+}*/

@@ -12,7 +12,7 @@ import java.util.Date;
 import java.util.List;
 import java.util.stream.Collectors;
 
-public class JwtConverter {
+/*public class JwtConverter {
     // 1. Signing key
     private Key key = Keys.secretKeyFor(SignatureAlgorithm.HS256);
     // 2. "Configurable" constants
@@ -65,4 +65,4 @@ public class JwtConverter {
 
         return null;
     }
-}
+}*/

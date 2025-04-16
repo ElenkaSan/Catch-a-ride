@@ -40,14 +40,6 @@ class UserServiceTest {
         assertFalse(result.isSuccess());
     }
 
-    @Test
-    void shouldNotAddWithNullUserName() {
-        User user = makeUser();
-        user.setUserName(null);
-
-        Result<User> result = service.add(user);
-        assertFalse(result.isSuccess());
-    }
 
     @Test
     void shouldNotAddWithNullFirstName() {
@@ -76,54 +68,6 @@ class UserServiceTest {
         assertFalse(result.isSuccess());
     }
 
-    @Test
-    void shouldNotAddWithNullPassword() {
-        User user = makeUser();
-        user.setPassword(null);
-
-        Result<User> result = service.add(user);
-        assertFalse(result.isSuccess());
-    }
-
-    @Test
-    void shouldNotAddWithInvalidPassword() {
-        User user = makeUser();
-        user.setPassword("123456789");
-
-        Result<User> result = service.add(user);
-        assertFalse(result.isSuccess());
-
-        user.setPassword("timmyturner");
-
-        result = service.add(user);
-        assertFalse(result.isSuccess());
-
-
-        user.setPassword("TimmyTurner");
-
-        result = service.add(user);
-        assertFalse(result.isSuccess());
-
-        user.setPassword("TimmyTurner1");
-
-        result = service.add(user);
-        assertFalse(result.isSuccess());
-
-        user.setPassword("Timm");
-
-        result = service.add(user);
-        assertFalse(result.isSuccess());
-
-    }
-
-    @Test
-    void shouldAddValidPassword(){
-        User user = makeUser();
-        user.setPassword("TimmyTurner1!");
-
-        Result<User> result = service.add(user);
-        assertTrue(result.isSuccess());
-    }
 
     @Test
     void shouldNotAddWhenLocationNotFound() {
@@ -160,18 +104,6 @@ class UserServiceTest {
         assertFalse(updated.isSuccess());
     }
 
-    @Test
-    void shouldNotUpdateWithNullUserName() {
-        User user = makeUser();
-        Result<User> result = service.add(user);
-
-        assertTrue(result.isSuccess());
-
-        user.setUserName(null);
-        Result<User> updated = service.update(user);
-
-        assertFalse(updated.isSuccess());
-    }
 
     @Test
     void shouldNotUpdateWithNullFirstName() {
@@ -212,67 +144,9 @@ class UserServiceTest {
         assertFalse(updated.isSuccess());
     }
 
-    @Test
-    void shouldNotUpdateWithNullPassword() {
-        User user = makeUser();
-        Result<User> result = service.add(user);
-
-        assertTrue(result.isSuccess());
-
-        user.setPassword(null);
-        Result<User> updated = service.update(user);
-
-        assertFalse(updated.isSuccess());
-    }
-
-    @Test
-    void shouldNotUpdateWithInvalidPassword() {
-        User user = makeUser();
-        Result<User> result = service.add(user);
-
-        assertTrue(result.isSuccess());
 
 
 
-        user.setPassword("123456789");
-
-        result = service.update(user);
-        assertFalse(result.isSuccess());
-
-        user.setPassword("timmyturner");
-
-        result = service.update(user);
-        assertFalse(result.isSuccess());
-
-
-        user.setPassword("TimmyTurner");
-
-        result = service.update(user);
-        assertFalse(result.isSuccess());
-
-        user.setPassword("TimmyTurner1");
-
-        result = service.update(user);
-        assertFalse(result.isSuccess());
-
-        user.setPassword("Timm");
-
-        result = service.update(user);
-        assertFalse(result.isSuccess());
-
-    }
-
-    @Test
-    void shouldUpdateValidPassword(){
-        User user = makeUser();
-        Result<User> result = service.add(user);
-        assertTrue(result.isSuccess());
-
-        user.setPassword("TimmyTurner1!");
-
-        result = service.update(user);
-        assertTrue(result.isSuccess());
-    }
 
     @Test
     void shouldNotUpdateWhenLocationNotFound() {
@@ -302,17 +176,15 @@ class UserServiceTest {
 
 
     User makeUser() {
-        //(1,'James','Sauven','jamessauven@gmail.com','testpassword', '2017-12-20',1,false),
+        //(1,'James','Sauven','jamessauven@gmail.com', '2017-12-20',1,1),
         User user = new User();
         user.setUserId(1);
-        user.setUserName("username");
         user.setFirstName("James");
         user.setLastName("Sauven");
         user.setEmail("jamessauven@gmail.com");
-        user.setPassword("TestPassword127!");
         user.setDateCreatedAt(LocalDate.now());
         user.setLocationId(1);
-        user.setAdmin(false);
+        user.setAppUserId(1);
         return user;
     }
 }
