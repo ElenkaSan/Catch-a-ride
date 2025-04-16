@@ -48,7 +48,7 @@ class BookingJdbcTemplateRepositoryTest {
         Booking booking = repository.findById(1);
         assertEquals(1, booking.getBookingId());
         assertEquals(1, booking.getUserId());
-        assertEquals(LEASE, booking.getBookingType());
+        assertEquals(RENT, booking.getBookingType());
         assertEquals(new BigDecimal("360"), booking.getTotal());
     }
 
