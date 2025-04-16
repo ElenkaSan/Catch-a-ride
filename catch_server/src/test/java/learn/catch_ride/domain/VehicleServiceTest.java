@@ -15,7 +15,7 @@ import static org.mockito.Mockito.when;
 
 import java.math.BigDecimal;
 
-@SpringBootTest(webEnvironment = SpringBootTest.WebEnvironment.NONE)
+@SpringBootTest(webEnvironment = SpringBootTest.WebEnvironment.MOCK)
 class VehicleServiceTest {
 
     @Autowired

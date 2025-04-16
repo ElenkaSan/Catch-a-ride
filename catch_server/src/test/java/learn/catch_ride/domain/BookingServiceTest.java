@@ -7,6 +7,7 @@ import learn.catch_ride.data.VehicleRepository;
 import learn.catch_ride.models.Booking;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.boot.test.autoconfigure.web.servlet.AutoConfigureMockMvc;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.boot.test.mock.mockito.MockBean;
 
@@ -15,7 +16,7 @@ import java.time.LocalDate;
 import static learn.catch_ride.models.BookingType.RENT;
 import static org.junit.jupiter.api.Assertions.*;
 
-@SpringBootTest(webEnvironment = SpringBootTest.WebEnvironment.NONE)
+@SpringBootTest(webEnvironment = SpringBootTest.WebEnvironment.MOCK)
 class BookingServiceTest {
 
     @Autowired
