@@ -30,11 +30,11 @@ public class Vehicle {
     public Vehicle() {
     }
 
-    public int getVehichleId() {
+    public int getVehicleId() {
         return vehicleId;
     }
 
-    public void setVehichleId(int vehicleId) {
+    public void setVehicleId(int vehicleId) {
         this.vehicleId = vehicleId;
     }
 

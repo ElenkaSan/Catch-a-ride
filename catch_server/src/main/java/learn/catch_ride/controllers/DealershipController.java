@@ -1,12 +1,76 @@
 package learn.catch_ride.controllers;
 
-import org.springframework.web.bind.annotation.CrossOrigin;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import learn.catch_ride.domain.DealershipService;
+import learn.catch_ride.domain.Result;
+import learn.catch_ride.models.Dealership;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.*;
+
+import java.util.List;
 
 @RestController
 @CrossOrigin(origins = {"http://localhost:3000"})
 @RequestMapping("/api/dealership")
 public class DealershipController {
+    private final DealershipService service;
 
+    public DealershipController(DealershipService service) {
+        this.service = service;
+    }
+
+    @GetMapping
+    public List<Dealership> findAll() { return service.findAll(); }
+    //public ResponseEntity<List<Dealership>> findAll() {
+    //        List<Dealership> dealership = service.findAll();
+    //        return new ResponseEntity<>(dealership, HttpStatus.OK);
+    //    }
+
+
+    @GetMapping("/id/{dealershipId}")
+    public Dealership findById(@PathVariable int dealershipId) { return service.findById(dealershipId); }
+    //    public ResponseEntity<Dealership> findById(@PathVariable int dealershipId) {
+    //        Dealership dealership = service.findById(dealershipId);
+    //        if (dealership == null) {
+    //            return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+    //        }
+    //        return ResponseEntity.ok(dealership);
+    //    }
+
+   @GetMapping("/name")
+   public List<Dealership> findByName(@RequestParam String name) { return service.findByName(name); }
+
+    @GetMapping("/location/{locationId}")
+    public List<Dealership> findByLocationId(@PathVariable int locationId) { return service.findByLocationId(locationId); }
+
+
+    @PostMapping
+    public ResponseEntity<Object> add(@RequestBody Dealership dealership) {
+        Result<Dealership> result = service.add(dealership);
+        if (result.isSuccess()) {
+            return new ResponseEntity<>(result.getPayload(), HttpStatus.CREATED);
+        }
+        return ErrorResponse.build(result);
+    }
+
+    @PutMapping("/{dealershipId}")
+    public ResponseEntity<Object> update(@PathVariable int dealershipId, @RequestBody Dealership dealership) {
+        if(dealershipId != dealership.getDealershipId()) {
+            return new ResponseEntity<>(HttpStatus.CONFLICT);
+        }
+
+        Result<Dealership> result = service.update(dealership);
+        if(result.isSuccess()) {
+            return new ResponseEntity<>(HttpStatus.NO_CONTENT);
+        }
+        return ErrorResponse.build(result);
+    }
+
+    @DeleteMapping("/{dealershipId}")
+    public ResponseEntity<Void> deleteById(@PathVariable int dealershipId) {
+        if (service.deleteById(dealershipId).isSuccess()) {
+            return new ResponseEntity<>(HttpStatus.NO_CONTENT);
+        }
+        return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+    }
 }

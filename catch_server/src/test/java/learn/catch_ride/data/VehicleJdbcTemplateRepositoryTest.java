@@ -1,7 +1,5 @@
 package learn.catch_ride.data;
 
-import learn.catch_ride.models.Booking;
-import learn.catch_ride.models.Dealership;
 import learn.catch_ride.models.Vehicle;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
@@ -52,7 +50,7 @@ class VehicleJdbcTemplateRepositoryTest {
         Vehicle vehicle = makeVehicle();
         Vehicle actual = repository.add(vehicle);
         assertNotNull(actual);
-        assertEquals(NEXT_ID, actual.getVehichleId());
+        assertEquals(NEXT_ID, actual.getVehicleId());
     }
 
     @Test
@@ -71,7 +69,7 @@ class VehicleJdbcTemplateRepositoryTest {
         Vehicle vehicle = makeVehicle(); // Helper method to set fields
         vehicle = repository.add(vehicle);
         assertNotNull(vehicle);
-        boolean success = repository.deleteById(vehicle.getVehichleId());
+        boolean success = repository.deleteById(vehicle.getVehicleId());
         assertTrue(success);
     }
 

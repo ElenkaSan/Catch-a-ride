@@ -32,7 +32,7 @@ public class VehicleService {
             return result;
         }
 
-        if (vehicle.getVehichleId() != 0) {
+        if (vehicle.getVehicleId() != 0) {
             result.addMessage("Vehicle Id cannot be set for `add` operation", ResultType.INVALID);
             return result;
         }
@@ -43,22 +43,23 @@ public class VehicleService {
     }
 
     public Result<Vehicle> update(Vehicle vehicle){
-        Result<Vehicle> result = validate(vehicle);
+        Result<Vehicle> result = new Result<>();
         if (!result.isSuccess()) {
             return result;
         }
 
-        if (vehicle.getVehichleId() <= 0) {
+        if (vehicle.getVehicleId() <= 0) {
             result.addMessage("Vehicle ID must be set for `update` operation", ResultType.INVALID);
             return result;
         }
 
         //fields that cannot be changed
-        Vehicle updating = vehicleRepository.findById(vehicle.getVehichleId());
+        Vehicle updating = vehicleRepository.findById(vehicle.getVehicleId());
         if (updating == null) {
             result.addMessage("Vehicle not found", ResultType.NOT_FOUND);
             return result;
         }
+
         if (!updating.getMake().equals(vehicle.getMake())
                 || !updating.getModel().equals(vehicle.getModel())
                 || updating.getYear() != vehicle.getYear()
@@ -70,8 +71,8 @@ public class VehicleService {
         return result;
     }
 
-    boolean deleteById(int vehicleId){
-        Result<Boolean> result = new Result<>();
+    public Result<Vehicle> deleteById(int vehicleId){
+        Result<Vehicle> result = new Result<>();
 
         List<Booking> bookings = bookingRepository.findAll().stream()
                 .filter(b->b.getVehicleId() == vehicleId)
@@ -79,34 +80,38 @@ public class VehicleService {
 
         if(!bookings.isEmpty()){
             result.addMessage("Cannot delete vehicle: it is currently booked.", ResultType.INVALID);
-            return false;
+            return result;
         }
-        return vehicleRepository.deleteById(vehicleId);
+
+        Vehicle vehicle = vehicleRepository.findById(vehicleId);
+        boolean deleteVehicle = vehicleRepository.deleteById(vehicleId);
+        if (deleteVehicle) {
+            result.setPayload(vehicle);
+        }
+        return result;
     }
 
     private Result<Vehicle> validate(Vehicle vehicle) {
         Result<Vehicle> result = new Result<>();
 
         if(vehicle == null) {
-            result.addMessage("Vehicle cannot be null", ResultType.INVALID);
+            result.addMessage("Vehicle cannot be null.", ResultType.INVALID);
             return result;
         }
 
         if(Validations.isNullOrBlank(vehicle.getMake())) {
-            result.addMessage("Make is required", ResultType.INVALID);
+            result.addMessage("Make is required.", ResultType.INVALID);
         }
 
         if(Validations.isNullOrBlank(vehicle.getModel())) {
-            result.addMessage("Model is required", ResultType.INVALID);
+            result.addMessage("Model is required.", ResultType.INVALID);
         }
 
-        String yearIsFour = String.valueOf(vehicle.getYear());
-        if (yearIsFour.length() != 4 && vehicle.getYear() < 2020 ) {
-            result.addMessage("Year should be not earlier than 2020", ResultType.INVALID);
-        }
+        int year = vehicle.getYear();
+        String yearStr = String.valueOf(year);
 
-        if(!vehicle.isBookingStatus()) {
-            result.addMessage("Booking Status is required", ResultType.INVALID);
+        if (yearStr.length() != 4 || year < 2020 || year > 2026) {
+            result.addMessage("Year must be 4 digits and between 2020 and 2026.", ResultType.INVALID);
         }
 
         if (vehicle.getRentRate() != null && vehicle.getRentRate().signum() < 0) {
@@ -120,25 +125,6 @@ public class VehicleService {
         if (vehicle.getDealershipId() <= 0) {
             result.addMessage("Dealership ID is required.", ResultType.INVALID);
         }
-
-        //fields that cannot be changed
-      //  Vehicle updating = vehicleRepository.findById(vehicle.getVehichleId());
-     //   if (!vehicle.getMake().equals(updating.getMake())) {
-     //       result.addMessage("Make cannot be changed.", ResultType.INVALID);
-      //  }
-
-    //    if (!vehicle.getModel().equals(updating.getModel())) {
-      //      result.addMessage("Model cannot be changed.", ResultType.INVALID);
-      //  }
-
-    //    if (vehicle.getYear() != updating.getYear()) {
-      //      result.addMessage("Year cannot be changed.", ResultType.INVALID);
-      //  }
-
-     //   if (vehicle.getDealershipId() != updating.getDealershipId()) {
-     //       result.addMessage("Dealership ID cannot be changed.", ResultType.INVALID);
-     //   }
-
 
         if (result.isSuccess()) {
             result.setPayload(vehicle);

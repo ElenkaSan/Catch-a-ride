@@ -1,6 +1,7 @@
 package learn.catch_ride.data;
 
 import learn.catch_ride.models.Dealership;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
 
@@ -10,6 +11,7 @@ public interface DealershipRepository {
     List<Dealership> findAll();
     Dealership add(Dealership dealership);
     boolean update(Dealership dealership);
+    @Transactional
     boolean deleteById(int dealershipId);
     List<Dealership> findByLocationId (int locationId);
 }

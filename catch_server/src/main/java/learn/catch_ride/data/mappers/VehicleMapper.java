@@ -10,7 +10,7 @@ public class VehicleMapper implements RowMapper<Vehicle> {
     @Override
     public Vehicle mapRow(ResultSet resultSet, int i) throws SQLException {
         Vehicle car = new Vehicle();
-        car.setVehichleId(resultSet.getInt("vehicle_id"));
+        car.setVehicleId(resultSet.getInt("vehicle_id"));
         car.setMake(resultSet.getString("make"));
         car.setModel(resultSet.getString("model"));
         car.setYear(resultSet.getInt("year"));
