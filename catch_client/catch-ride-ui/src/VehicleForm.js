@@ -1,7 +1,7 @@
 import { useState, useEffect } from "react";
 import { useNavigate, useParams, Link } from "react-router-dom";
 
-const VIHICLE_DEFAULT = {
+const VEHICLE_DEFAULT = {
     make: "",
     model: "",
     year: 0,
@@ -10,8 +10,8 @@ const VIHICLE_DEFAULT = {
     bookStatus: false,
 }
 
-function VihicleForm() {
-    const [vihicle, setVihicle] = useState(VIHICLE_DEFAULT);
+function VehicleForm() {
+    const [vehicle, setVehicle] = useState(VEHICLE_DEFAULT);
     const [errors, setErrors] = useState([]);
   
     const url = "http://localhost:8080/api/vehicle";
@@ -30,11 +30,11 @@ function VihicleForm() {
             }
           })
           .then((data) => {
-            setVihicle(data);
+            setVehicle(data);
           })
           .catch(console.log);
       } else {
-        setVihicle(VIHICLE_DEFAULT);
+        setVehicle(VIHICLE_DEFAULT);
       }
     }, [id]); // Hey React, please call my useEffect function every time the id route in the url parameter changes
     
