@@ -110,7 +110,6 @@ class BookingServiceTest {
         booking.setStartDate(LocalDate.parse("2025-06-18"));
         booking.setEndDate(LocalDate.parse("2025-06-22"));
 
-
         Result<Booking> result = service.add(booking);
         assertFalse(result.isSuccess());
     }

@@ -1,7 +1,6 @@
 package learn.catch_ride.domain;
 
 import learn.catch_ride.data.*;
-import learn.catch_ride.models.Booking;
 import learn.catch_ride.models.Dealership;
 import learn.catch_ride.models.Location;
 import org.junit.jupiter.api.Test;
@@ -82,6 +81,24 @@ class DealershipServiceTest {
         Result<Dealership> result = service.add(dealership);
         assertFalse(result.isSuccess());
         assertTrue(result.getMessages().contains("Location must exist"));
+    }
+
+    @Test
+    void shouldDelete() {
+        Dealership dealership = new Dealership(0, "Name one", "Some info", 1);
+        Dealership mockOut = new Dealership(5, "Name one", "Some info", 1);
+
+        when(locationRepository.findById(1)).thenReturn(new Location()); //if location exists
+        when(dealershipRepository.add(dealership)).thenReturn(mockOut); //dealership added
+        when(dealershipRepository.findById(5)).thenReturn(mockOut); //if dealership exists
+        when(dealershipRepository.findById(6)).thenReturn(null); //null if dealership does not exist
+        when(dealershipRepository.deleteById(6)).thenReturn(false);
+        when(dealershipRepository.deleteById(5)).thenReturn(true);
+
+        Result<Dealership> result = service.add(dealership);
+        assertTrue(result.isSuccess());
+        Result<Dealership> updated = service.deleteById(result.getPayload().getDealershipId());
+        assertTrue(updated.isSuccess());
     }
 
 }

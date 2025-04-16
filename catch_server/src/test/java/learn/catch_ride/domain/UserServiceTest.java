@@ -1,9 +1,6 @@
 package learn.catch_ride.domain;
 
-import learn.catch_ride.data.LocationRepository;
 import learn.catch_ride.data.UserRepository;
-import learn.catch_ride.models.Booking;
-import learn.catch_ride.models.Location;
 import learn.catch_ride.models.User;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
