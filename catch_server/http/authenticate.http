@@ -3,6 +3,15 @@ POST http://localhost:8080/api/auth/authenticate HTTP/1.1
 Content-Type: application/json
 
 {
-    "username": "your-username",
-    "password": "your-password"
+    "username": "username1",
+    "password": "testpassword"
+}
+
+### registering
+POST http://localhost:8080/api/auth/register HTTP/1.1
+Content-Type: application/json
+
+{
+    "username": "usernameTest",
+    "password": "TestPassword127!"
 }
