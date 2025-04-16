@@ -20,6 +20,7 @@ public class VehicleMapper implements RowMapper<Vehicle> {
         car.setLeaseRate(resultSet.getBigDecimal("lease_rate"));
         car.setDealershipId(resultSet.getInt("dealership_id"));
         car.setBookingStatus(resultSet.getBoolean("booking_status"));
+        car.setImageCar(resultSet.getString("image_car"));
         return car;
     }
 }

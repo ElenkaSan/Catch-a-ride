@@ -66,6 +66,7 @@ CREATE TABLE vehicle (
  lease_rate decimal NOT NULL,
  dealership_id INT NOT NULL,
  booking_status BOOLEAN NOT NULL,
+ image_car TEXT,
  FOREIGN KEY (dealership_id) REFERENCES dealership(dealership_id)
  );
 
