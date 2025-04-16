@@ -15,6 +15,7 @@ import java.util.List;
 @Repository
 public class VehicleJdbcTemplateRepository implements VehicleRepository {
     private final JdbcTemplate jdbcTemplate;
+
     private final String VEHICLE_COLUMN_NAMES = "vehicle_id, make, model, year, color, trim, rent_rate, lease_rate, dealership_id, booking_status, image_url";
 
     public VehicleJdbcTemplateRepository(JdbcTemplate jdbcTemplate) {
@@ -32,7 +33,7 @@ public class VehicleJdbcTemplateRepository implements VehicleRepository {
 
     @Override
     public List<Vehicle> findAll() {
-       // final String sql = "select vehicle_id, make, model, year, color, trim, rent_rate, lease_rate, dealership_id, booking_status  "
+        // final String sql = "select vehicle_id, make, model, year, color, trim, rent_rate, lease_rate, dealership_id, booking_status, image_car  "
         //        + "from vehicle limit 1000;";
         final String sql = String.format("select %s from vehicle limit 1000;", VEHICLE_COLUMN_NAMES);
         return jdbcTemplate.query(sql, new VehicleMapper());
@@ -40,6 +41,7 @@ public class VehicleJdbcTemplateRepository implements VehicleRepository {
 
     @Override
     public Vehicle add(Vehicle vehicle) {
+
         final String sql = "insert into vehicle (make, model, year, color, trim, rent_rate, lease_rate, dealership_id, booking_status, image_url) "
                 + " values (?,?,?,?,?,?,?,?,?,?);";
 

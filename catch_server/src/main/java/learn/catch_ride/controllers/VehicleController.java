@@ -13,6 +13,14 @@ import java.io.File;
 import java.io.IOException;
 import java.util.List;
 
+import org.springframework.web.multipart.MultipartFile;
+import java.nio.file.Files;
+import java.nio.file.Path;
+import java.nio.file.Paths;
+import java.io.IOException;
+import java.util.UUID;
+
+
 @RestController
 @CrossOrigin(origins = {"http://localhost:3000"})
 @RequestMapping("/api/vehicle")
@@ -101,4 +109,21 @@ public class VehicleController {
         }
         return new ResponseEntity<>(HttpStatus.NOT_FOUND);
     }
+
+    @PostMapping("/upload-image")
+    public ResponseEntity<String> uploadImage(@RequestParam("file") MultipartFile file) {
+        try {
+            String uploadDir = "uploads/";
+            String fileName = UUID.randomUUID() + "_" + file.getOriginalFilename();
+            Path path = Paths.get(uploadDir + fileName);
+            Files.createDirectories(path.getParent());
+            Files.write(path, file.getBytes());
+
+            return ResponseEntity.ok("/uploads/" + fileName); // Return the public URL path to be stored in frontend db
+        } catch (IOException e) {
+            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR)
+                    .body("Failed to upload image: " + e.getMessage()); //specific for img only
+        }
+    }
+
 }

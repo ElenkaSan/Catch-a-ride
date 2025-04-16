@@ -1,6 +1,7 @@
 package learn.catch_ride.security;
 
 import org.springframework.context.annotation.Bean;
+import org.springframework.context.annotation.Configuration;
 import org.springframework.http.HttpMethod;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
@@ -12,7 +13,8 @@ import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.web.servlet.config.annotation.CorsRegistry;
 import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
 
-/*@EnableWebSecurity
+@Configuration
+@EnableWebSecurity
 public class SecurityConfig extends WebSecurityConfigurerAdapter {
 
     private final JwtConverter converter;
@@ -29,6 +31,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 
         http.authorizeRequests() // 2
                 .antMatchers("/authenticate").permitAll()
+                .antMatchers("/register").permitAll()
                 .antMatchers("/refresh_token").authenticated()
                 .antMatchers(HttpMethod.GET, "/booking", "/booking/*").permitAll()
                 .antMatchers(HttpMethod.POST, "/booking").hasAnyRole("USER", "ADMIN")
@@ -78,4 +81,4 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
             }
         };
     }
-}*/
+}

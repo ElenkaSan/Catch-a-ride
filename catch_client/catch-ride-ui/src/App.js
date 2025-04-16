@@ -1,9 +1,9 @@
-
 import './App.css';
 import { BrowserRouter as Router, Routes, Route} from 'react-router-dom';
 import Navbar from "./Navbar";
 import Home from "./Home";
 import Vehicle from "./Vehicle";
+import VehicleForm from "./VehicleForm";
 import NotFound from "./NotFound";
 
 
@@ -13,7 +13,9 @@ function App() {
             <Navbar/>
             <Routes>
               <Route path="/" element={<Home/>}/>
-              <Route path="/vehicle/add" element={<Vehicle/>}/>
+              <Route path="/vehicle/add" element={<VehicleForm/>}/>
+              <Route path="/vehicle/edit/:id" element={<VehicleForm/>}/>
+              <Route path="/vehicles/" element={<Vehicle/>}/>
               <Route path="*" element={<NotFound/>}/>
             </Routes>
         </Router>

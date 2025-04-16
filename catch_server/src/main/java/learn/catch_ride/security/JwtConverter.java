@@ -1,10 +1,12 @@
 package learn.catch_ride.security;
 
+
 import io.jsonwebtoken.*;
 import io.jsonwebtoken.security.Keys;
 import org.springframework.security.core.GrantedAuthority;
-import org.springframework.security.core.userdetails.User;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
+import org.springframework.security.core.userdetails.User;
+import org.springframework.stereotype.Component;
 
 import java.security.Key;
 import java.util.Arrays;
@@ -12,13 +14,16 @@ import java.util.Date;
 import java.util.List;
 import java.util.stream.Collectors;
 
-/*public class JwtConverter {
+@Component
+public class JwtConverter {
     // 1. Signing key
     private Key key = Keys.secretKeyFor(SignatureAlgorithm.HS256);
     // 2. "Configurable" constants
-    private final String ISSUER = "field-agent";
+    private final String ISSUER = "catch-ride";
     private final int EXPIRATION_MINUTES = 15;
     private final int EXPIRATION_MILLIS = EXPIRATION_MINUTES * 60 * 1000;
+
+
 
     public String getTokenFromUser(User user) {
 
@@ -65,4 +70,4 @@ import java.util.stream.Collectors;
 
         return null;
     }
-}*/
+}
