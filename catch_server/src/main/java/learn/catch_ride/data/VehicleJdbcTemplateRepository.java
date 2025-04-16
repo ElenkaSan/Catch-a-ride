@@ -6,6 +6,7 @@ import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.jdbc.support.GeneratedKeyHolder;
 import org.springframework.jdbc.support.KeyHolder;
 import org.springframework.stereotype.Repository;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.sql.PreparedStatement;
 import java.sql.Statement;
@@ -92,6 +93,7 @@ public class VehicleJdbcTemplateRepository implements VehicleRepository {
                 vehicle.getVehicleId()) > 0;
     }
 
+    @Transactional
     @Override
     public boolean deleteById(int vehicleId) {
         final String sql = "select count(*) from booking where vehicle_id = ?;"; //checking if car booked by user

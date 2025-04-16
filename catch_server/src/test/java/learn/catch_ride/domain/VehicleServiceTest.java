@@ -4,14 +4,15 @@ import learn.catch_ride.data.BookingRepository;
 import learn.catch_ride.data.VehicleRepository;
 import learn.catch_ride.models.Vehicle;
 import org.junit.jupiter.api.Test;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.boot.test.mock.mockito.MockBean;
 
-import java.math.BigDecimal;
-
 import static org.junit.jupiter.api.Assertions.*;
 import static org.mockito.Mockito.when;
+
+import java.math.BigDecimal;
 
 @SpringBootTest(webEnvironment = SpringBootTest.WebEnvironment.NONE)
 class VehicleServiceTest {
@@ -178,6 +179,15 @@ class VehicleServiceTest {
         assertTrue(result.getMessages().contains("Make, model, year, and dealership cannot be changed."));
     }
 
+    @Test
+    void shouldDeleteById() {
+        Vehicle vehicle = makeVehicle();
+        Result<Vehicle> result = service.add(vehicle);
+        assertTrue(result.isSuccess());
+
+        Result<Vehicle> deleted = service.deleteById(1);
+        assertTrue(deleted.isSuccess());
+    }
 
     private Vehicle makeVehicle() {
         Vehicle vehicle = new Vehicle();

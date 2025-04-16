@@ -1,6 +1,5 @@
 package learn.catch_ride.data;
 
-import learn.catch_ride.models.Location;
 import learn.catch_ride.models.User;
 import org.springframework.transaction.annotation.Transactional;
 

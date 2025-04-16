@@ -7,6 +7,7 @@ import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.jdbc.support.GeneratedKeyHolder;
 import org.springframework.jdbc.support.KeyHolder;
 import org.springframework.stereotype.Repository;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.sql.PreparedStatement;
 import java.sql.Statement;
@@ -96,6 +97,7 @@ public class DealershipJdbcTemplateRepository implements DealershipRepository {
                 dealership.getDealershipId()) > 0;
     }
 
+    @Transactional
     @Override
     public boolean deleteById(int dealershipId) {
     //    jdbcTemplate.update("delete from vehicle where vehicle_id = ?;", dealershipId); wrong..
