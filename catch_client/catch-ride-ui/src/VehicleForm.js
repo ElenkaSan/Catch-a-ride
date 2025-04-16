@@ -4,12 +4,13 @@ import { useNavigate, useParams, Link } from "react-router-dom";
 const VEHICLE_DEFAULT = {
     make: "",
     model: "",
-    year: 0,
+    year: "",
     color: "",
     trim: "",
     rentRate: "",
     leaseRate: "",
     bookStatus: false,
+    dealershipId: "",
     imageCar: "", 
 }
 
@@ -21,28 +22,28 @@ function VehicleForm() {
     const navigate = useNavigate();
     const { id } = useParams();
     
-    // useEffect
+    // useEffect to fetch the vehicle data when in edit mode (id exists)
     useEffect(() => {
-      console.log("v_Id:", id);
-      if (id) {
-        fetch(`${url}/${id}`)
-          .then((response) => {
-            console.log("Fetch response status:", response.status);
-            if (response.status === 200) {
-              return response.json();
-            } else {
-              return Promise.reject(`Unexpected StatusCode: ${response.status}`);
-            }
-          })
-          .then((data) => {
-            console.log("Fetched agent data:", data);
-            setVehicle(data);
-          })
-          .catch(console.log);
-      } else {
-        setVehicle(VEHICLE_DEFAULT);
-      }
-    }, [id]); // Hey React, please call my useEffect function every time the id route in the url parameter changes
+        console.log("v_Id:", id);
+        if (id) {
+            fetch(`${url}/id/${id}`)
+                .then((response) => {
+                    console.log("Fetch response status:", response.status);
+                    if (response.status === 200) {
+                        return response.json();
+                    } else {
+                        return Promise.reject(`Unexpected StatusCode: ${response.status}`);
+                    }
+                })
+                .then((data) => {
+                    console.log("Fetched agent data:", data);
+                    setVehicle(data);
+                })
+                .catch(console.log);
+        } else {
+            setVehicle(VEHICLE_DEFAULT);
+        }
+    }, [id]);
 
     const handleChange = (event) => {
         setVehicle({
@@ -65,10 +66,14 @@ function VehicleForm() {
 
     const handleSubmit = (event) => {
         event.preventDefault();
-        const method = id ? "PUT" : "POST"; //using fetch to POST the new agent's information to the Field Agent API and fetch to PUT the updated agent’s info
+        const method = id ? "PUT" : "POST"; 
         const apiUrl = id ? `${url}/${id}` : url;
 
-        fetch(apiUrl, {
+        console.log("fetching API:", id);
+        console.log("Submitting:", JSON.stringify(vehicle, null, 2));
+
+        fetch(apiUrl, 
+            {
             method: method,
             headers: {
                 "Content-Type": "application/json",
@@ -91,27 +96,31 @@ function VehicleForm() {
                     return Promise.reject(`Unexpected StatusCode: ${response.status}`);
                 }
             }
-        }
-        )
-        .then((data) => {
-            if (method === "POST" && data) { //add a new agent - 201
-                setGetMessage(`Vehicle ${data.make} ${data.model} was successfully added!`);
-            } else if (method === "PUT") { //update an agent - 204
-                setGetMessage(`Vehicle ${vehicle.make} ${vehicle.model} was successfully updated!`);
-            }
-            window.scrollTo({ top: 0, behavior: "smooth" });
-            setTimeout(() => setGetMessage(""), 3000);
-            navigate("/vehicle");
         })
-        .catch((error) => {
-            console.log(error);
-            if (error.status === 400) {
-                setError(error.data);
+        .then((data) => {
+            if (method === "POST" && data) { 
+                if (Array.isArray(data)) { 
+                    setError(data);
+                } else {
+                    setGetMessage(`Vehicle ${data.make} ${data.model} for dealership ID #${data.dealershipId} was successfully added!`);
+                    setTimeout(() => {
+                        setGetMessage("");
+                        navigate("/vehicles");
+                    }, 1500);
+                }
+            } else if (method === "PUT" && !data) { 
+                setGetMessage(`Vehicle was successfully updated!`);
+                setTimeout(() => {
+                    setGetMessage("");
+                    navigate("/vehicles");
+                }, 1500);
+            } else {
+                setError(data);
             }
-        });
-    }
+        })
+        .catch(console.log);
+    };
 
-    
     return (
         <div>
             {getMessage && (
@@ -141,6 +150,7 @@ function VehicleForm() {
                            name="make" 
                            value={vehicle.make} 
                            onChange={handleChange} 
+                           disabled={!!id}
                            required/>    
                        </div>    
                        <div className="mb-3">
@@ -151,6 +161,7 @@ function VehicleForm() {
                            name="model" 
                            value={vehicle.model} 
                            onChange={handleChange} 
+                           disabled={!!id}
                            required/>    
                        </div>    
                           <div className="mb-3">
@@ -161,6 +172,7 @@ function VehicleForm() {
                             name="year" 
                             value={vehicle.year} 
                             onChange={handleChange} 
+                            disabled={!!id}
                             required/>
                         </div>
                         <div className="mb-3">
@@ -182,34 +194,45 @@ function VehicleForm() {
                             onChange={handleChange} />
                         </div> 
                         <div className="mb-3">
-                            <label htmlFor="rent" className="form-label">Rent Rate:</label>
+                            <label htmlFor="rentRate" className="form-label">Rent Rate:</label>
                             <input type="text" 
                             className="form-control" 
-                            id="rent" 
-                            name="rent" 
-                            value={vehicle.rent} 
+                            id="rentRate" 
+                            name="rentRate" 
+                            value={vehicle.rentRate} 
                             onChange={handleChange} 
                             required/>
                         </div> 
                         <div className="mb-3">
-                            <label htmlFor="lease" className="form-label">Lease Rate:</label>
+                            <label htmlFor="leaseRate" className="form-label">Lease Rate:</label>
                             <input type="text" 
                             className="form-control" 
-                            id="lease" 
-                            name="lease" 
-                            value={vehicle.lease} 
+                            id="leaseRate" 
+                            name="leaseRate" 
+                            value={vehicle.leaseRate} 
                             onChange={handleChange} 
                             required/>
                         </div>  
                         <div className="mb-3">
-                            <label htmlFor="bookStatus" className="form-label">Book Status:</label>
+                            <label htmlFor="bookingStatus" className="form-label">Book Status:</label>
                             <input type="checkbox" 
                             className="form-check-input" 
-                            id="bookStatus" 
-                            name="bookStatus" 
-                            checked={vehicle.bookStatus} 
-                            onChange={(event) => setVehicle({ ...vehicle, bookStatus: event.target.checked })} 
+                            id="bookingStatus" 
+                            name="bookingStatus" 
+                            checked={vehicle.bookingStatus} 
+                            onChange={(event) => setVehicle({ ...vehicle, bookingStatus: event.target.checked })} 
                             />
+                        </div>
+                        <div className="mb-3">
+                            <label htmlFor="dealershipId" className="form-label">Dealership ID:</label>
+                            <input type="text"
+                            className="form-control"
+                            id="dealershipId"
+                            name="dealershipId"
+                            value={vehicle.dealershipId}
+                            onChange={handleChange}
+                            disabled={!!id}
+                            required/>
                         </div>
                         <p className="text-center text-info">Choose options:</p>
                         <div className="mb-3">
@@ -253,4 +276,4 @@ function VehicleForm() {
     );
 }
 
-export default VehicleForm;
+export default VehicleForm; 
