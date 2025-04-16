@@ -1,10 +1,5 @@
 package learn.catch_ride.security;
 
-import io.jsonwebtoken.*;
-import io.jsonwebtoken.security.Keys;
-import org.springframework.security.core.GrantedAuthority;
-import org.springframework.security.core.userdetails.User;
-import org.springframework.security.core.authority.SimpleGrantedAuthority;
 
 import java.security.Key;
 import java.util.Arrays;
