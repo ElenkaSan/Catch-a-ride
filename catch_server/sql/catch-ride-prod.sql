@@ -2,6 +2,33 @@ drop database if exists catch_ride_db;
 create database catch_ride_db;
 use catch_ride_db;
 
+
+create table app_user (
+    app_user_id int primary key auto_increment,
+    username varchar (50) not null unique,
+    password_hash varchar (2048) not null,
+    disabled boolean not null default (0)
+);
+
+create table app_role (
+    app_role_id int primary key auto_increment,
+    `name` varchar (50) not null unique
+);
+
+create table app_user_role (
+    app_user_id int not null,
+    app_role_id int not null,
+    constraint pk_app_user_role
+        primary key (app_user_id, app_role_id),
+    constraint fk_app_user_role_user_id
+        foreign key (app_user_id)
+        references app_user(app_user_id),
+	constraint fk_app_user_role_role_id
+        foreign key (app_role_id)
+        references app_role(app_role_id)
+);
+
+
 CREATE TABLE location (
     location_id INT PRIMARY KEY AUTO_INCREMENT,
     address VARCHAR(100) NOT NULL,
@@ -20,15 +47,14 @@ CREATE TABLE location (
 
 CREATE TABLE `user` (
     user_id INT PRIMARY KEY AUTO_INCREMENT,
-    user_name VARCHAR(50) NOT NULL,
     first_name VARCHAR(50) NOT NULL,
     last_name VARCHAR(50) NOT NULL,
     email VARCHAR(100) UNIQUE NOT NULL,
-    password VARCHAR(255) NOT NULL,
     date_created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
     location_id INT NOT NULL,
-    is_admin BOOLEAN,
-    FOREIGN KEY (location_id) REFERENCES location(location_id)
+    app_user_id INT NOT NULL,
+    FOREIGN KEY (location_id) REFERENCES location(location_id),
+    FOREIGN KEY (app_user_id) REFERENCES app_user(app_user_id)
 );
 
 CREATE TABLE vehicle (
@@ -69,12 +95,21 @@ insert into dealership (dealership_id, `name`, `description`, location_id)
 values
 	(1, 'Autoloco', 'Here for all your vehicular needs', 1),
 	(2, 'Chucklemotor', 'Serving people since 1980', 1);
+    
+insert into app_role (`name`) values
+    ('USER'),
+    ('ADMIN');
+
+insert into app_user (app_user_id, username, password_hash, disabled)
+values
+    (1, 'username1', 'testpassword', false),
+    (2, 'username2', 'testpassword1', false);
 
 insert into `user`
-	(user_id, user_name, first_name, last_name, email, password, date_created_at, location_id, is_admin)
+	(user_id, first_name, last_name, email, date_created_at, location_id, app_user_id)
 values
-	(1,'username1','James','Sauven','jamessauven@gmail.com','testpassword', '2017-12-20',1,false),
-	(2,'username2','Jack','Wilson','JackWilson@gmail.com','testpassword1', '2017-9-17',2,true);
+	(1,'James','Sauven','jamessauven@gmail.com', '2017-12-20',1,1),
+	(2,'Jack','Wilson','JackWilson@gmail.com', '2017-9-17',2,2);
 
 insert into vehicle
 	(vehicle_id, make, model, year, color, trim, rent_rate, lease_rate, dealership_id, booking_status)
