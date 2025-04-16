@@ -34,7 +34,7 @@ function VehicleForm() {
           })
           .catch(console.log);
       } else {
-        setVehicle(VIHICLE_DEFAULT);
+        setVehicle(VEHICLE_DEFAULT);
       }
     }, [id]); // Hey React, please call my useEffect function every time the id route in the url parameter changes
     
@@ -47,4 +47,4 @@ function VehicleForm() {
     );
 }
 
-export default VihicleForm;
+export default VehicleForm;
