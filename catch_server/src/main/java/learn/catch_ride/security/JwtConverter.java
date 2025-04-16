@@ -17,7 +17,9 @@ import java.util.stream.Collectors;
 @Component
 public class JwtConverter {
     // 1. Signing key
-    private Key key = Keys.secretKeyFor(SignatureAlgorithm.HS256);
+    private static final String SECRET_KEY = "MySpecialSuperSecureSecretKey123!@#"; // make it long & random
+
+    private Key key = Keys.hmacShaKeyFor(SECRET_KEY.getBytes());
     // 2. "Configurable" constants
     private final String ISSUER = "catch-ride";
     private final int EXPIRATION_MINUTES = 15;

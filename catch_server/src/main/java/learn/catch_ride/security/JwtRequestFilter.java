@@ -32,6 +32,7 @@ public class JwtRequestFilter extends BasicAuthenticationFilter {
         if (authorization != null && authorization.startsWith("Bearer ")) {
 
             // 3. The value looks okay, confirm it with JwtConverter.
+
             User user = converter.getUserFromToken(authorization);
             if (user == null) {
                 response.setStatus(403); // Forbidden

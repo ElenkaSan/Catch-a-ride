@@ -1,10 +1,20 @@
-### POST http://localhost:8080/authenticate HTTP/1.1
+### POST http://localhost:8080/authenticate HTTP/1.1 FOR ADMIN
 POST http://localhost:8080/api/auth/authenticate HTTP/1.1
 Content-Type: application/json
 
 {
-    "username": "username1",
-    "password": "testpassword"
+    "username": "admin",
+    "password": "AdminPassword332!"
+}
+
+
+### POST http://localhost:8080/authenticate HTTP/1.1 FOR USER
+POST http://localhost:8080/api/auth/authenticate HTTP/1.1
+Content-Type: application/json
+
+{
+    "username": "username",
+    "password": "testpassword132!"
 }
 
 ### registering
@@ -12,6 +22,6 @@ POST http://localhost:8080/api/auth/register HTTP/1.1
 Content-Type: application/json
 
 {
-    "username": "usernameTest",
-    "password": "TestPassword127!"
+    "username": "usernameTest2",
+    "password": "MySpecialSuperSecureSecretKey123!@#"
 }
