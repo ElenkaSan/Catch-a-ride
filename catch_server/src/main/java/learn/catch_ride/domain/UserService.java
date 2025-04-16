@@ -4,7 +4,6 @@ package learn.catch_ride.domain;
 import learn.catch_ride.data.LocationRepository;
 import learn.catch_ride.data.UserRepository;
 import learn.catch_ride.models.User;
-import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
