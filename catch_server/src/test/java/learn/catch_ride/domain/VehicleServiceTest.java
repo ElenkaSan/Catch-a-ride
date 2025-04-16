@@ -1,6 +1,7 @@
 package learn.catch_ride.domain;
 
 import learn.catch_ride.data.BookingRepository;
+import learn.catch_ride.data.DealershipRepository;
 import learn.catch_ride.data.VehicleRepository;
 import learn.catch_ride.models.Vehicle;
 import org.junit.jupiter.api.Test;
@@ -24,6 +25,8 @@ class VehicleServiceTest {
     VehicleRepository vehicleRepository;
     @MockBean
     BookingRepository bookingRepository;
+    @MockBean
+    DealershipRepository dealershipRepository;
 
     @Test
     void shouldNotAddNull() {
