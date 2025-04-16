@@ -15,7 +15,8 @@ import java.util.List;
 @Repository
 public class VehicleJdbcTemplateRepository implements VehicleRepository {
     private final JdbcTemplate jdbcTemplate;
-    private final String VEHICLE_COLUMN_NAMES = "vehicle_id, make, model, year, color, trim, rent_rate, lease_rate, dealership_id, booking_status";
+
+    private final String VEHICLE_COLUMN_NAMES = "vehicle_id, make, model, year, color, trim, rent_rate, lease_rate, dealership_id, booking_status, image_url";
 
     public VehicleJdbcTemplateRepository(JdbcTemplate jdbcTemplate) {
         this.jdbcTemplate = jdbcTemplate;
@@ -32,7 +33,7 @@ public class VehicleJdbcTemplateRepository implements VehicleRepository {
 
     @Override
     public List<Vehicle> findAll() {
-       // final String sql = "select vehicle_id, make, model, year, color, trim, rent_rate, lease_rate, dealership_id, booking_status  "
+        // final String sql = "select vehicle_id, make, model, year, color, trim, rent_rate, lease_rate, dealership_id, booking_status, image_car  "
         //        + "from vehicle limit 1000;";
         final String sql = String.format("select %s from vehicle limit 1000;", VEHICLE_COLUMN_NAMES);
         return jdbcTemplate.query(sql, new VehicleMapper());
@@ -40,8 +41,9 @@ public class VehicleJdbcTemplateRepository implements VehicleRepository {
 
     @Override
     public Vehicle add(Vehicle vehicle) {
-        final String sql = "insert into vehicle (make, model, year, color, trim, rent_rate, lease_rate, dealership_id, booking_status) "
-                + " values (?,?,?,?,?,?,?,?,?);";
+
+        final String sql = "insert into vehicle (make, model, year, color, trim, rent_rate, lease_rate, dealership_id, booking_status, image_url) "
+                + " values (?,?,?,?,?,?,?,?,?,?);";
 
         KeyHolder keyHolder = new GeneratedKeyHolder();
         int rowsAffected = jdbcTemplate.update(connection -> {
@@ -55,6 +57,7 @@ public class VehicleJdbcTemplateRepository implements VehicleRepository {
             ps.setBigDecimal(7, vehicle.getLeaseRate());
             ps.setInt(8, vehicle.getDealershipId());
             ps.setBoolean(9, vehicle.isBookingStatus());
+            ps.setString(10, vehicle.getImageUrl());
             return ps;
         }, keyHolder);
 
@@ -77,7 +80,8 @@ public class VehicleJdbcTemplateRepository implements VehicleRepository {
                 + "rent_rate = ?, "
                 + "lease_rate = ?, "
                 + "dealership_id = ?, "
-                + "booking_status = ? "
+                + "booking_status = ?, "
+                + "image_url = ? "
                 + "where vehicle_id = ?;";
 
         return jdbcTemplate.update(sql,
@@ -90,6 +94,7 @@ public class VehicleJdbcTemplateRepository implements VehicleRepository {
                 vehicle.getLeaseRate(),
                 vehicle.getDealershipId(),
                 vehicle.isBookingStatus(),
+                vehicle.getImageUrl(),
                 vehicle.getVehicleId()) > 0;
     }
 
