@@ -43,7 +43,7 @@ function Vehicle({ showAvailableOnly = false }) {
         })
         .catch(console.log);
     }
-  };  
+  }; 
   return (
     <div className="container">
       <h2 className="text-center text-info p-4">Vehicles List</h2>
@@ -92,6 +92,9 @@ function Vehicle({ showAvailableOnly = false }) {
                   {vehicle.bookingStatus ? "Booked" : "Available"}
                 </p>
                 <div className="mt-auto">
+                  <Link to={`/booking/add`} state={{vehicleId: vehicle.vehicleId, userId: 1, dealershipLocationId: vehicle.dealershipId}} className="btn btn-success btn-sm mt-2" disabled={vehicle.bookingStatus}>
+                    Book
+                  </Link>
                   <Link to={`/vehicle/edit/${vehicle.vehicleId}`} className="btn btn-info btn-sm me-2">
                     Edit
                   </Link>
