@@ -1,5 +1,6 @@
 import { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
+import axios from './axiosConfig';
 
 function Vehicle() {
     const [getVehicles, setGetVehicles] = useState([]);
@@ -7,30 +8,22 @@ function Vehicle() {
     const url = "http://localhost:8080/api/vehicle";
 
     useEffect(() => {
-        fetch(url)
-          .then((response) => {
-            if (response.status === 200) {
-              return response.json();
-            } else {
-              return Promise.reject(`Unexpected Status Code: ${response.status}`);
-            }
-          })
-          .then((data) => {
-            console.log("Fetched vehicles:", data); // checked what the returned data vehicles
-            setGetVehicles(data);
-          })
-          .catch(console.log);
-      }, []); //this will run once on page load
+      axios.get(url)
+        .then((response) => {
+          console.log("Fetched vehicles:", response.data);
+          setGetVehicles(response.data);
+        })
+        .catch((error) => {
+          console.error("Error fetching vehicles:", error);
+        });
+  }, []);
 
 
         //Methods
     const handleDeleteVehicle = (vehicleId) => {
         const vehicle = getVehicles.find((v) => v.vehicleId === vehicleId); //find matching by id
         if(window.confirm(`Delete Vehicle ${vehicle.make} ${vehicle.model} ${vehicle.year}?`))
-            {const init = {
-                method: "DELETE",
-            };
-            fetch(`${url}/${vehicleId}`, init)
+            {axios.delete(`${url}/${vehicleId}`)
               .then((response) => {
                 if (response.status === 204) {
                     const seeVehicle = getVehicles.filter(

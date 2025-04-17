@@ -6,6 +6,7 @@ import Vehicle from "./Vehicle";
 import VehicleForm from "./VehicleForm";
 import NotFound from "./NotFound";
 import Login from './Login';
+import './axiosConfig';
 
 
 function App() {
