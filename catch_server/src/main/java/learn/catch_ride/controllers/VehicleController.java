@@ -89,14 +89,7 @@ public class VehicleController {
                 Vehicle existing = service.findById(vehicleId);
                 vehicle.setImageUrl(existing.getImageUrl());
             }
-            System.out.println("Updating vehicle:");
-            System.out.println("Vehicle ID: " + vehicle.getVehicleId());
-            System.out.println("Make: " + vehicle.getMake());
-            System.out.println("Model: " + vehicle.getModel());
-            System.out.println("Trim: " + vehicle.getTrim());
             Result<Vehicle> result = service.update(vehicle);
-            System.out.println("Update successful? " + result.isSuccess());
-            System.out.println("Messages: " + result.getMessages());
             if (result.isSuccess()) {
                 return new ResponseEntity<>(HttpStatus.NO_CONTENT);
             }

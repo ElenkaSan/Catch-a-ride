@@ -1,9 +1,9 @@
 package learn.catch_ride.config;
 
 import org.springframework.boot.context.properties.ConfigurationProperties;
-import org.springframework.context.annotation.Configuration;
+import org.springframework.stereotype.Component;
 
-@Configuration
+@Component
 @ConfigurationProperties(prefix = "aws")
 public class AwsProperties {
 
@@ -43,4 +43,5 @@ public class AwsProperties {
     public void setS3Bucket(String s3Bucket) {
         this.s3Bucket = s3Bucket;
     }
+
 }
