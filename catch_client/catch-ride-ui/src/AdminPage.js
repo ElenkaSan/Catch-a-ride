@@ -71,7 +71,7 @@ function AdminPage() {
       <section className="mt-5">
         <div className="d-flex justify-content-between align-items-center">
           <h2>All Users</h2>
-          <Link to="/register" className="btn btn-info">Add User</Link>
+          <Link to="/user/add" className="btn btn-info">Add User</Link>
         </div>
         <table className="table table-bordered mt-3">
           <thead className="table-info">

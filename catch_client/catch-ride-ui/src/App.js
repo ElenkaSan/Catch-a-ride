@@ -9,6 +9,7 @@ import Login from './Login';
 import './axiosConfig';
 import RegisterComponent from './RegisterComponent';
 import AdminPage from './AdminPage'; //just for now then late will do if user or admin will be logged in
+import UserInfoForm from './UserInfoForm';
 
 
 function App() {
@@ -23,6 +24,8 @@ function App() {
               <Route path="/login/" element={<Login/>}/>
               <Route path="register/" element={<RegisterComponent/>}/>
               <Route path="/admin" element={<AdminPage />} />
+              <Route path="/user/edit/:userId" element={<UserInfoForm />} />
+              <Route path="/user/add" element={<UserInfoForm />} />
               <Route path="*" element={<NotFound/>}/>
             </Routes>
         </Router>

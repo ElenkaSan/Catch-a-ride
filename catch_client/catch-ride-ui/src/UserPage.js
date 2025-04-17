@@ -15,11 +15,6 @@ import ProfileForm from "./ProfileForm";
 import PackingList from "../tripPage/PackingList"
 import CountDownTrip from "../tripPage/CountDownTrip"
 
-//Profile UserPage shows the user's information that is saved in the backend.
-//It also shows the flights / hotels that they have saved to if any. 
-//The data is updated upon new flights / hotels being added throughout the app. 
-//The user can also choose to update their profile here.
-
 
   const UserPage = ( updateUser ) => {
     const { isLoggedIn } = useContext(UserContext);
