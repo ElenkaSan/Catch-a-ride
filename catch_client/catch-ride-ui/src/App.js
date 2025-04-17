@@ -8,6 +8,7 @@ import NotFound from "./NotFound";
 import Login from './Login';
 import './axiosConfig';
 import RegisterComponent from './RegisterComponent';
+import AdminPage from './AdminPage'; //just for now then late will do if user or admin will be logged in
 
 
 function App() {
@@ -21,6 +22,7 @@ function App() {
               <Route path="/vehicles/" element={<VehicleList/>}/>
               <Route path="/login/" element={<Login/>}/>
               <Route path="register/" element={<RegisterComponent/>}/>
+              <Route path="/admin" element={<AdminPage />} />
               <Route path="*" element={<NotFound/>}/>
             </Routes>
         </Router>
