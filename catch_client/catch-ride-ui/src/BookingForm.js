@@ -21,9 +21,10 @@ function BookingForm() {
     const location = useLocation();
 
     useEffect(() => {
+        console.log("Incoming state:", location.state);
         console.log("b_Id:", bookingId);
         if (bookingId) {
-            fetch(`${url}/id/${bookingId}`)
+            fetch(`${url}/bookingId/${bookingId}`)
                 .then((response) => {
                     console.log("Fetch response status:", response.status);
                     if (response.status === 200) {
