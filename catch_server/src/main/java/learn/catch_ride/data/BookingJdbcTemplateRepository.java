@@ -11,6 +11,7 @@ import org.springframework.transaction.annotation.Transactional;
 import java.sql.Date;
 import java.sql.PreparedStatement;
 import java.sql.Statement;
+import java.time.LocalDate;
 import java.util.List;
 
 @Repository
@@ -59,7 +60,7 @@ public class BookingJdbcTemplateRepository implements BookingRepository{
             ps.setDate(4, Date.valueOf(booking.getStartDate()));
             ps.setDate(5, Date.valueOf(booking.getEndDate()));
             ps.setString(6, booking.getBookingType().toString());
-            ps.setDate(7, Date.valueOf(booking.getDateCreated()));
+            ps.setDate(7, Date.valueOf(LocalDate.now()));
             ps.setBigDecimal(8, booking.getTotal());
             return ps;
         }, keyHolder);
