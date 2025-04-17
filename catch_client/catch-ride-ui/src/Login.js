@@ -16,10 +16,14 @@ const LoginComponent = () => {
     
             console.log('Login response:', response);
     
-            const token = response.data.jwt_token;
-            if (token) {
-                localStorage.setItem('token', token);
-                navigate('/'); 
+            const { jwt_token, roles, appUserId } = response.data;
+    
+            localStorage.setItem('token', jwt_token);
+            localStorage.setItem('roles', JSON.stringify(roles));
+            localStorage.setItem('appUserId', appUserId);
+    
+            if (jwt_token) {
+                navigate('/');
             } else {
                 setMessage('Invalid credentials');
             }

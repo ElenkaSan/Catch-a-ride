@@ -10,6 +10,7 @@ import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.AuthenticationException;
+import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.userdetails.User;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -20,6 +21,7 @@ import javax.validation.ValidationException;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.stream.Collectors;
 
 @RestController
 @RequestMapping("/api/auth")
@@ -36,7 +38,7 @@ public class AuthController {
     }
 
     @PostMapping("/authenticate")
-    public ResponseEntity<Map<String, String>> authenticate(@RequestBody Map<String, String> credentials) {
+    public ResponseEntity<Map<String, Object>> authenticate(@RequestBody Map<String, String> credentials) {
 
         UsernamePasswordAuthenticationToken authToken =
                 new UsernamePasswordAuthenticationToken(credentials.get("username"), credentials.get("password"));
@@ -45,10 +47,22 @@ public class AuthController {
             Authentication authentication = authenticationManager.authenticate(authToken);
 
             if (authentication.isAuthenticated()) {
+                User user = (User) authentication.getPrincipal();
                 String jwtToken = converter.getTokenFromUser((User) authentication.getPrincipal());
 
-                HashMap<String, String> map = new HashMap<>();
+
+                List<String> roles = user.getAuthorities()
+                        .stream()
+                        .map(GrantedAuthority::getAuthority)
+                        .collect(Collectors.toList());
+
+                AppUser appUser = (AppUser) appUserService.loadUserByUsername(user.getUsername()); // or however you fetch it
+                int appUserId = appUser.getAppUserId();
+
+                Map<String, Object> map = new HashMap<>();
                 map.put("jwt_token", jwtToken);
+                map.put("roles", roles);
+                map.put("appUserId", appUserId);
 
                 return new ResponseEntity<>(map, HttpStatus.OK);
             }
