@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { useNavigate, Link } from 'react-router-dom';
 import axios from './axiosConfig';
 
@@ -12,8 +12,15 @@ const RegisterComponent = () => {
         locationId: ''
     });
 
+    const [locations, setLocations] = useState([]);
     const [message, setMessage] = useState('');
     const navigate = useNavigate();
+
+    useEffect(() => {
+        axios.get('/api/location')
+            .then(res => setLocations(res.data))
+            .catch(err => console.error('Failed to fetch locations:', err));
+    }, []);
 
     const handleChange = (e) => {
         setFormData({ ...formData, [e.target.name]: e.target.value });
@@ -22,33 +29,20 @@ const RegisterComponent = () => {
     const handleRegister = async (e) => {
         e.preventDefault();
         try {
-            // Step 1: Register app user
-            console.log("Registering app user:", {
-                username: formData.username,
-                password: formData.password
-            });
             const registerRes = await axios.post('/api/auth/register', {
                 username: formData.username,
                 password: formData.password
             });
 
-            const appUserId = registerRes.data.appUserId; // Assuming your backend returns this ID
+            const appUserId = registerRes.data.appUserId;
             if (!appUserId) throw new Error("Missing app_user_id from registration response");
 
-            // Step 2: Create user business info
-            console.log("Sending user details:", {
-                firstName: formData.firstName,
-                lastName: formData.lastName,
-                email: formData.email,
-                locationId: formData.locationId,
-                appUserId
-            });
             await axios.post('/api/user', {
                 firstName: formData.firstName,
                 lastName: formData.lastName,
                 email: formData.email,
                 locationId: parseInt(formData.locationId),
-                appUserId: appUserId
+                appUserId
             });
 
             setMessage("Registration successful!");
@@ -89,8 +83,15 @@ const RegisterComponent = () => {
                                     <input type="email" name="email" className="form-control" value={formData.email} onChange={handleChange} required />
                                 </div>
                                 <div className="form-group">
-                                    <label>Location ID</label>
-                                    <input type="number" name="locationId" className="form-control" value={formData.locationId} onChange={handleChange} required />
+                                    <label>Choose a Location</label>
+                                    <select name="locationId" className="form-control" value={formData.locationId} onChange={handleChange} required>
+                                        <option value="">-- Select a Location --</option>
+                                        {locations.map(loc => (
+                                            <option key={loc.locationId} value={loc.locationId}>
+                                                {loc.address}, {loc.city}, {loc.state} {loc.zipCode}
+                                            </option>
+                                        ))}
+                                    </select>
                                 </div>
                                 <button type="submit" className="btn btn-primary mt-3">Register</button>
                             </form>
