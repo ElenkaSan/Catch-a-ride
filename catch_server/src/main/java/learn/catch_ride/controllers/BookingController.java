@@ -27,6 +27,11 @@ public class BookingController {
     @GetMapping("/location/{locationId}")
     public List<Booking> findByLocationId(@PathVariable int locationId) { return service.findByLocation(locationId); }
 
+    @GetMapping("/user/{userId}") //added need to get UserPages
+    public List<Booking> findByUserId(@PathVariable int userId) {
+        return service.findByUserId(userId);
+    }
+
     @PostMapping
     public ResponseEntity<Object> add(@RequestBody Booking booking) {
         Result<Booking> result = service.add(booking);

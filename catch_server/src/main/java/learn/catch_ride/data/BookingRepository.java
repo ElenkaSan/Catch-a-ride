@@ -18,4 +18,6 @@ public interface BookingRepository {
 
     @Transactional
     boolean deleteById(int bookingId);
+
+    List<Booking> findByUserId(int userId);
 }

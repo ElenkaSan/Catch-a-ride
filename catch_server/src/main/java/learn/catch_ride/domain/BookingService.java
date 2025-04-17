@@ -34,6 +34,10 @@ public class BookingService {
 
     public Booking findById(int bookingId) { return bookingRepository.findById(bookingId); }
 
+    public List<Booking> findByUserId(int userId) { //for userPage
+        return bookingRepository.findByUserId(userId);
+    }
+
     public Result<Booking> add(Booking booking) {
         Result<Booking> result = validate(booking);
         if (!result.isSuccess()) {
