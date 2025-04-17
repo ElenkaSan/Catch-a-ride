@@ -4,7 +4,7 @@ import axios from './axiosConfig';
 
 import defaultImg from "./logo.png"; // Placeholder image
 
-function Vehicle({ showAvailableOnly = false }) {
+function Vehicle() {
   const [getVehicles, setGetVehicles] = useState([]);
   const [getMessage, setGetMessage] = useState("");
   const url = "http://localhost:8080/api/vehicle";
@@ -32,22 +32,26 @@ function Vehicle({ showAvailableOnly = false }) {
   //     .catch(console.log);
   // }, []);
 
-  const handleDeleteVehicle = (vehicleId) => {
-    const vehicle = getVehicles.find((v) => v.vehicleId === vehicleId);
-    if (window.confirm(`Delete Vehicle ${vehicle.make} ${vehicle.model} ${vehicle.year}?`)) {
-      axios.delete(`${url}/${vehicleId}`)
-        .then((response) => {
-          if (response.status === 204) {
-            const updated = getVehicles.filter((v) => v.vehicleId !== vehicleId);
-            setGetVehicles(updated);
-            setGetMessage(`Vehicle ${vehicle.make} ${vehicle.model} ${vehicle.year} was deleted.`);
-          } else {
-            return Promise.reject(`Unexpected Status Code: ${response.status}`);
-          }
-        })
-        .catch(console.log);
-    }
-  };  
+        //Methods
+    const handleDeleteVehicle = (vehicleId) => {
+        const vehicle = getVehicles.find((v) => v.vehicleId === vehicleId); //find matching by id
+        if(window.confirm(`Delete Vehicle ${vehicle.make} ${vehicle.model} ${vehicle.year}?`))
+            {axios.delete(`${url}/${vehicleId}`)
+              .then((response) => {
+                if (response.status === 204) {
+                    const seeVehicle = getVehicles.filter(
+                    (v) => v.vehicleId !== vehicleId); // create a copy of the array
+                    setGetVehicles(seeVehicle); // update the vehicles state
+                    setGetMessage(`Vehicle ${vehicle.make} ${vehicle.model} ${vehicle.year} with ID #${vehicleId} was successfully deleted!`); //add message as alert
+                   // window.scrollTo({ top: 0, behavior: "smooth" });
+                  //  setTimeout(() => setGetMessage(""), 3000); // to clear the message
+                } else {
+                  return Promise.reject(`Unexpected Status Code: ${response.status}`);
+                }
+              })
+                .catch(console.log);
+            }
+        }; 
 
   return (
     <div className="container">
