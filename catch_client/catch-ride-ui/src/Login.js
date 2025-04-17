@@ -36,8 +36,13 @@ const LoginComponent = () => {
         localStorage.setItem('firstName', firstName);
         localStorage.setItem('lastName', lastName);
         localStorage.setItem('email', email);
-  
-        navigate('/user');
+        if (localStorage.getItem('roles').includes('ADMIN')){
+            navigate('/admin');
+        }
+        else{
+            navigate('/user');
+        }
+        
       } catch (error) {
         console.error('Login error:', error);
         setMessage('Invalid credentials');
