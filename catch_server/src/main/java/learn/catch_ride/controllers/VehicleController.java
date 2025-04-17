@@ -89,7 +89,6 @@ public class VehicleController {
                 Vehicle existing = service.findById(vehicleId);
                 vehicle.setImageUrl(existing.getImageUrl());
             }
-
             Result<Vehicle> result = service.update(vehicle);
             if (result.isSuccess()) {
                 return new ResponseEntity<>(HttpStatus.NO_CONTENT);
@@ -108,22 +107,6 @@ public class VehicleController {
             return new ResponseEntity<>(HttpStatus.NO_CONTENT);
         }
         return new ResponseEntity<>(HttpStatus.NOT_FOUND);
-    }
-
-    @PostMapping("/upload-image")
-    public ResponseEntity<String> uploadImage(@RequestParam("file") MultipartFile file) {
-        try {
-            String uploadDir = "uploads/";
-            String fileName = UUID.randomUUID() + "_" + file.getOriginalFilename();
-            Path path = Paths.get(uploadDir + fileName);
-            Files.createDirectories(path.getParent());
-            Files.write(path, file.getBytes());
-
-            return ResponseEntity.ok("/uploads/" + fileName); // Return the public URL path to be stored in frontend db
-        } catch (IOException e) {
-            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR)
-                    .body("Failed to upload image: " + e.getMessage()); //specific for img only
-        }
     }
 
 }
