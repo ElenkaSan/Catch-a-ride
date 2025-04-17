@@ -10,27 +10,15 @@ function Vehicle() {
   const url = "http://localhost:8080/api/vehicle";
 
   useEffect(() => {
-    fetch(url)
+    axios.get(url)
       .then((response) => {
-        if (response.status === 200) {
-          return response.json();
-        } else {
-          return Promise.reject(`Unexpected Status Code: ${response.status}`);
-        }
+        console.log("Fetched vehicles:", response.data);
+        setGetVehicles(response.data);
       })
-      .then((data) => {
-        console.log("Fetched vehicles:", data);
-        const vehiclesToShow = showAvailableOnly
-        ? data.filter((vehicle) => !vehicle.bookingStatus)
-        : data;
-      setGetVehicles(vehiclesToShow);
-    })
-    .catch(console.log);
-}, [showAvailableOnly]);
-  //       setGetVehicles(data);
-  //     })
-  //     .catch(console.log);
-  // }, []);
+      .catch((error) => {
+        console.error("Error fetching vehicles:", error);
+      });
+}, []);
 
         //Methods
     const handleDeleteVehicle = (vehicleId) => {
