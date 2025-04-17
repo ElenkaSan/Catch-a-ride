@@ -128,11 +128,16 @@ const handleBookClick = (vehicleId) => {
                 </p>
                 <div className="mt-auto">
                 {!vehicle.bookingStatus && (
-                  <button
-                  onClick={() => handleBookClick(vehicle.vehicleId)}
+                  <Link
+                  to={`/booking/add`}
+                  state={{
+                    vehicleId: vehicle.vehicleId,
+                    userId: localStorage.getItem('appUserId'),
+                    dealershipLocationId: vehicle.dealershipId
+                  }}
                   className="btn btn-success btn-sm mt-2">
                     Book
-                    </button>
+                    </Link>
                   )}
                   {isAdmin && (
   <>
