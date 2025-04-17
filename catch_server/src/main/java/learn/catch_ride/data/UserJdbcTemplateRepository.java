@@ -12,6 +12,7 @@ import java.sql.PreparedStatement;
 import java.sql.Statement;
 import java.util.List;
 
+
 @Repository
 public class UserJdbcTemplateRepository  implements UserRepository{
     private final JdbcTemplate jdbcTemplate;
@@ -48,19 +49,16 @@ public class UserJdbcTemplateRepository  implements UserRepository{
     @Override
     public User add(User user) {
 
-        final String sql = "insert into user (user_id, first_name, last_name, email, date_created_at, location_id, app_user_id) "
-                + " values (?,?,?,?,?,?,?);";
-
+        final String sql = "insert into user (first_name, last_name, email, location_id, app_user_id) "
+                + " values (?,?,?,?,?);";
         KeyHolder keyHolder = new GeneratedKeyHolder();
         int rowsAffected = jdbcTemplate.update(connection -> {
             PreparedStatement ps = connection.prepareStatement(sql, Statement.RETURN_GENERATED_KEYS);
-            ps.setInt(1, user.getUserId());
-            ps.setString(2, user.getFirstName());
-            ps.setString(3, user.getLastName());
-            ps.setString(4, user.getEmail());
-            ps.setDate(5, java.sql.Date.valueOf(user.getDateCreatedAt().toString()));
-            ps.setInt(6, user.getLocationId());
-            ps.setInt(7, user.getAppUserId());
+            ps.setString(1, user.getFirstName());
+            ps.setString(2, user.getLastName());
+            ps.setString(3, user.getEmail());
+            ps.setInt(4, user.getLocationId());
+            ps.setInt(5, user.getAppUserId());
             return ps;
         }, keyHolder);
 
@@ -79,7 +77,6 @@ public class UserJdbcTemplateRepository  implements UserRepository{
                 + "first_name = ?, "
                 + "last_name = ?, "
                 + "email = ?, "
-                + "date_created_at = ?, "
                 + "location_id = ?, "
                 + "app_user_id = ? "
                 + "where user_id = ?;";
@@ -88,7 +85,6 @@ public class UserJdbcTemplateRepository  implements UserRepository{
                 user.getFirstName(),
                 user.getLastName(),
                 user.getEmail(),
-                user.getDateCreatedAt(),
                 user.getLocationId(),
                 user.getAppUserId(),
                 user.getUserId()) > 0;

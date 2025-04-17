@@ -21,7 +21,7 @@ function Vehicle() {
 }, []);
 
         //Methods
-    const handleDeleteVehicle = (vehicleId) => {
+const handleDeleteVehicle = (vehicleId) => {
         const vehicle = getVehicles.find((v) => v.vehicleId === vehicleId); //find matching by id
         if(window.confirm(`Delete Vehicle ${vehicle.make} ${vehicle.model} ${vehicle.year}?`))
             {axios.delete(`${url}/${vehicleId}`)
@@ -39,7 +39,7 @@ function Vehicle() {
               })
                 .catch(console.log);
             }
-        }; 
+  }; 
 
   return (
     <div className="container">

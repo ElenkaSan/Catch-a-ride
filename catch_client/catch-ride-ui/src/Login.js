@@ -13,12 +13,18 @@ const LoginComponent = () => {
         e.preventDefault();
         try {
             const response = await AuthService.login({ username, password });
-            if (response.data === 'Login successful') {
-                navigate('/dashboard');
+    
+            console.log('Login response:', response);
+    
+            const token = response.data.jwt_token;
+            if (token) {
+                localStorage.setItem('token', token);
+                navigate('/'); 
             } else {
                 setMessage('Invalid credentials');
             }
         } catch (error) {
+            console.error('Login error:', error);
             setMessage('Invalid credentials');
         }
     };
