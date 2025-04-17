@@ -1,5 +1,7 @@
 import { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
+import axios from './axiosConfig';
+
 import defaultImg from "./logo.png"; // Placeholder image
 
 function Vehicle({ showAvailableOnly = false }) {
@@ -33,10 +35,7 @@ function Vehicle({ showAvailableOnly = false }) {
   const handleDeleteVehicle = (vehicleId) => {
     const vehicle = getVehicles.find((v) => v.vehicleId === vehicleId);
     if (window.confirm(`Delete Vehicle ${vehicle.make} ${vehicle.model} ${vehicle.year}?`)) {
-      const init = {
-        method: "DELETE",
-      };
-      fetch(`${url}/${vehicleId}`, init)
+      axios.delete(`${url}/${vehicleId}`)
         .then((response) => {
           if (response.status === 204) {
             const updated = getVehicles.filter((v) => v.vehicleId !== vehicleId);
@@ -48,7 +47,7 @@ function Vehicle({ showAvailableOnly = false }) {
         })
         .catch(console.log);
     }
-  };
+  };  
 
   return (
     <div className="container">
