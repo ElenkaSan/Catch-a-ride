@@ -2,23 +2,22 @@ import { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import axios from './axiosConfig';
 
-import defaultImg from "./logo.png"; // Placeholder image
-
 function Vehicle() {
-  const [getVehicles, setGetVehicles] = useState([]);
-  const [getMessage, setGetMessage] = useState("");
-  const url = "http://localhost:8080/api/vehicle";
+    const [getVehicles, setGetVehicles] = useState([]);
+    const [getMessage, setGetMessage] = useState("");
+    const url = "http://localhost:8080/api/vehicle";
 
-  useEffect(() => {
-    axios.get(url)
-      .then((response) => {
-        console.log("Fetched vehicles:", response.data);
-        setGetVehicles(response.data);
-      })
-      .catch((error) => {
-        console.error("Error fetching vehicles:", error);
-      });
-}, []);
+    useEffect(() => {
+      axios.get(url)
+        .then((response) => {
+          console.log("Fetched vehicles:", response.data);
+          setGetVehicles(response.data);
+        })
+        .catch((error) => {
+          console.error("Error fetching vehicles:", error);
+        });
+  }, []);
+
 
         //Methods
     const handleDeleteVehicle = (vehicleId) => {
@@ -41,73 +40,56 @@ function Vehicle() {
             }
         }; 
 
-  return (
-    <div className="container">
-      <h2 className="text-center text-info p-4">Vehicles List</h2>
-
-      {getMessage && (
-        <div className="alert alert-success text-center" role="alert">
-          {getMessage}
+    return (
+        <div>
+          <h2 className="text-center text-info p-4">Vehicles List</h2>
+          {getMessage && (
+            <div className="alert alert-success text-center" role="alert">
+              {getMessage}
+             </div>
+          )}
+            <section className="container justify-content-md-center">
+              <Link className="btn btn-lg btn-info mt-2 mb-4" to={'/vehicle/add'}>Add New Car</Link>  
+              <table className="table table-striped table-hover">
+                <thead>
+                    <tr>
+                        <th scope="col">Make</th>
+                        <th scope="col">Mode</th>
+                        <th scope="col">Year</th>
+                        <th scope="col">Color</th>
+                        <th scope="col">Trim</th>
+                        <th scope="col">Rent Rate</th>
+                        <th scope="col">Lease Rate</th>
+                        <th scope="col">Book Status</th>
+                        <th>&nbsp;</th>
+                    </tr>
+                </thead>
+              <tbody>
+                {getVehicles.map((vehicle) => (
+                    <tr key={vehicle.vehicleId}>
+                        <td>{vehicle.make}</td>
+                        <td>{vehicle.model}</td>
+                        <td>{vehicle.year}</td>
+                        <td>{vehicle.color}</td>
+                        <td>{vehicle.trim}</td>
+                        <td>{vehicle.rentRate}</td>
+                        <td>{vehicle.leaseRate}</td>
+                        <td>{vehicle.bookingStatus ? "Booked" : "Available"}</td>
+                        <td>
+                            <Link className="btn btn-info" to={`/vehicle/edit/${vehicle.vehicleId}`}>
+                            Edit
+                            </Link>
+                            <button className="btn btn-danger" 
+                            onClick={() => handleDeleteVehicle(vehicle.vehicleId)}>Delete</button>
+                        </td>
+                    </tr>
+                ))}
+              </tbody>
+              </table>
+            </section>
         </div>
-      )}
+    );
 
-      <div className="text-end mb-4">
-        <Link className="btn btn-lg btn-info" to="/vehicle/add">
-          Add New Car
-        </Link>
-      </div>
-
-      <div className="row">
-        {getVehicles.map((vehicle) => (
-          <div className="col-md-6 col-lg-3 mb-4" key={vehicle.vehicleId}>
-            <div className="card h-100 shadow border border-info">
-            {vehicle.imageUrl ? (
-                <img
-                  src={
-                    vehicle.imageUrl.startsWith("http")
-                      ? vehicle.imageUrl
-                      : `http://localhost:8080/uploads/${vehicle.imageUrl}`
-                  }
-                  alt={`${vehicle.make} ${vehicle.model}`}
-                  className="card-img-top"
-                  style={{ height: "180px", objectFit: "cover" }}
-                />
-              ) : (
-                <img
-                  src={defaultImg}
-                  alt="Default Car img"
-                  className="card-img-top"
-                  style={{ height: "180px", objectFit: "cover" }}
-                />
-              )}
-              <div className="card-body d-flex flex-column">
-                <h5 className="card-title text-primary">
-                  {vehicle.year} {vehicle.make} {vehicle.model}
-                </h5>
-                <p className="card-text mb-1">Color: {vehicle.color}</p>
-                <p className="card-text mb-1">Trim: {vehicle.trim}</p>
-                <p className="card-text mb-1">Rent: ${vehicle.rentRate}</p>
-                <p className="card-text mb-1">Lease: ${vehicle.leaseRate}</p>
-                <p className={`card-text ${vehicle.bookingStatus ? 'text-danger' : 'text-success'}`}>
-                  {vehicle.bookingStatus ? "Booked" : "Available"}
-                </p>
-
-                <div className="mt-auto">
-                  <Link to={`/vehicle/edit/${vehicle.vehicleId}`} className="btn btn-info btn-sm me-2">
-                    Edit
-                  </Link>
-                  <button onClick={() => handleDeleteVehicle(vehicle.vehicleId)} className="btn btn-danger btn-sm">
-                    Delete
-                  </button>
-                </div>
-              </div>
-            </div>
-          </div>
-        ))}
-      </div>
-    </div>
-  );
 }
 
 export default Vehicle;
-
