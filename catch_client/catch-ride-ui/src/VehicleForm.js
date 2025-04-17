@@ -40,11 +40,11 @@ function VehicleForm() {
                    // setVehicle(data);
                    console.log("Fetched agent data:", data);
                    setVehicle({
-                    ...VEHICLE_DEFAULT,
-                    ...data,
-                    bookingStatus: data.bookingStatus === true || data.bookingStatus === "true",
-                    imageUrl: data.imageUrl ? data.imageUrl : "",
-                    imageUrlFile: null,
+                        ...VEHICLE_DEFAULT,
+                        ...data,
+                       bookingStatus: data.bookingStatus === true || data.bookingStatus === "true",
+                       imageUrl: data.imageUrl ? data.imageUrl : "",
+                       imageUrlFile: null,
                     });
                 })
                 .catch(console.log);
@@ -75,20 +75,6 @@ function VehicleForm() {
         }
     };
 
-    // const handleFileUpload = (event) => {
-    //     const file = event.target.files[0];
-    //     const reader = new FileReader();
-    //     reader.onloadend = () => {
-    //         setVehicle({
-    //             ...vehicle,
-    //             imageUrl: reader.result, // Base64 encoded string
-    //             imageUrlFile: file
-    //         });
-    //     };
-    //     if (file) {
-    //         reader.readAsDataURL(file);
-    //     }
-    // };
     const handleFileUpload = (event) => {
         const file = event.target.files[0];
         if (file) {

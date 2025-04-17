@@ -117,7 +117,7 @@ class VehicleServiceTest {
 
         when(vehicleRepository.findById(1)).thenReturn(vehicle);
         Result<Vehicle> result = service.update(vehicle);
-        
+
         assertFalse(result.isSuccess());
         assertTrue(result.getMessages().contains("Rent rate cannot be negative."));
         assertTrue(result.getMessages().contains("Lease rate cannot be negative."));
