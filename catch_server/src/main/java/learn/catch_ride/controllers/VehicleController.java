@@ -85,7 +85,7 @@ public class VehicleController {
 
                 String imageUrl = awsService.getPublicUrl(key);
                 vehicle.setImageUrl(imageUrl);
-            } else {
+            } else if (vehicle.getImageUrl() == null || vehicle.getImageUrl().trim().isEmpty()) {
                 Vehicle existing = service.findById(vehicleId);
                 vehicle.setImageUrl(existing.getImageUrl());
             }
