@@ -47,18 +47,19 @@ function Vehicle({ showAvailableOnly = false }) {
 const [isAdmin, setIsAdmin] = useState(false);
 
 useEffect(() => {
-  const token = localStorage.getItem('authToken') || sessionStorage.getItem('authToken');
-  const role = localStorage.getItem('userRole') || sessionStorage.getItem('userRole');
+  const token = localStorage.getItem("token");
+  const role = localStorage.getItem("roles");
   setIsLoggedIn(!!token);
   setIsAdmin(role === 'admin');
 }, []);
 
-  const handleBookClick = (vehicleId) => {
-    if (!isLoggedIn) {
-      // Redirect to login if the user is not logged in??
-      navigate("/login");
-    }
-  };
+const handleBookClick = (vehicleId) => {
+  if (!isLoggedIn) {
+    navigate("/login");
+  } else {
+    navigate(`/booking/add`);
+  }
+};
 
   const handleDeleteVehicle = (vehicleId) => {
     const vehicle = getVehicles.find((v) => v.vehicleId === vehicleId);

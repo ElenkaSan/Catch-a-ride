@@ -73,6 +73,7 @@ function BookingForm() {
             },
             body: JSON.stringify(booking)
         }
+        console.log(url + init);
         fetch(url, init)
         .then(response => {
             if(response.status === 201 || response.status === 400){
