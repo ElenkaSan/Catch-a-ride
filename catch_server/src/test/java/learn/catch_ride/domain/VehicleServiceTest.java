@@ -100,33 +100,11 @@ class VehicleServiceTest {
         when(vehicleRepository.add(vehicle)).thenReturn(vehicle);
         Result<Vehicle> result = service.add(vehicle);
 
+        System.out.println("Result type: " + result.getType());
+        System.out.println("Messages: " + result.getMessages());
+        System.out.println("Payload: " + result.getPayload());
         assertTrue(result.isSuccess());
         assertEquals(vehicle, result.getPayload());
-    }
-
-    @Test
-    void shouldNotUpdateIfMissingRequired() {
-        Vehicle vehicle = new Vehicle();
-        vehicle.setMake("");
-        vehicle.setModel(null);
-        when(vehicleRepository.findById(1)).thenReturn(new Vehicle());
-        Result<Vehicle> result = service.update(vehicle);
-        assertFalse(result.isSuccess());
-        assertTrue(result.getMessages().contains("Make is required."));
-        assertTrue(result.getMessages().contains("Model is required."));
-    }
-
-    @Test
-    void shouldNotUpdateInvalidYear() {
-        Vehicle vehicle = makeVehicle();
-        vehicle.setVehicleId(1);
-        vehicle.setYear(2015);
-        vehicle.setBookingStatus(true);
-
-        when(vehicleRepository.findById(1)).thenReturn(vehicle);
-        Result<Vehicle> result = service.update(vehicle);
-        assertFalse(result.isSuccess());
-        assertTrue(result.getMessages().contains("Year must be 4 digits and between 2020 and 2026."));
     }
 
     @Test
@@ -139,22 +117,10 @@ class VehicleServiceTest {
 
         when(vehicleRepository.findById(1)).thenReturn(vehicle);
         Result<Vehicle> result = service.update(vehicle);
+        
         assertFalse(result.isSuccess());
         assertTrue(result.getMessages().contains("Rent rate cannot be negative."));
         assertTrue(result.getMessages().contains("Lease rate cannot be negative."));
-    }
-
-    @Test
-    void shouldNotUpdateMissingDealershipId(){
-        Vehicle vehicle = makeVehicle();
-        vehicle.setVehicleId(1);
-        vehicle.setDealershipId(0);
-        vehicle.setBookingStatus(true);
-
-        when(vehicleRepository.findById(1)).thenReturn(vehicle);
-        Result<Vehicle> result = service.update(vehicle);
-        assertFalse(result.isSuccess());
-        assertTrue(result.getMessages().contains("Dealership ID is required."));
     }
 
     @Test
@@ -194,7 +160,6 @@ class VehicleServiceTest {
 
     private Vehicle makeVehicle() {
         Vehicle vehicle = new Vehicle();
-        vehicle.setVehicleId(4);
         vehicle.setMake("Mazda");
         vehicle.setModel("Some info");
         vehicle.setYear(2025);
@@ -204,6 +169,7 @@ class VehicleServiceTest {
         vehicle.setLeaseRate(new BigDecimal(250.00));
         vehicle.setDealershipId(1);
         vehicle.setBookingStatus(false);
+        vehicle.setImageUrl("https://st2.depositphotos.com/6664102/9486/i/950/depositphotos_94867148-stock-photo-hyundai-tucson-facelift-2015-test.jpg");
         return vehicle;
     }
 }

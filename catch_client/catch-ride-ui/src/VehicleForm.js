@@ -190,7 +190,8 @@ function VehicleForm() {
                            id="make" 
                            name="make" 
                            value={vehicle.make} 
-                           onChange={handleChange} 
+                           onChange={handleChange}
+                           disabled={!!id} 
                            required/>    
                        </div>    
                        <div className="mb-3">
@@ -200,7 +201,8 @@ function VehicleForm() {
                            id="model" 
                            name="model" 
                            value={vehicle.model} 
-                           onChange={handleChange} 
+                           onChange={handleChange}
+                           disabled={!!id} 
                            required/>    
                        </div>    
                           <div className="mb-3">
@@ -210,7 +212,8 @@ function VehicleForm() {
                             id="year" 
                             name="year" 
                             value={vehicle.year} 
-                            onChange={handleChange} 
+                            onChange={handleChange}
+                            disabled={!!id}
                             required/>
                         </div>
                         <div className="mb-3">
@@ -269,6 +272,7 @@ function VehicleForm() {
                             name="dealershipId"
                             value={vehicle.dealershipId}
                             onChange={handleChange}
+                            disabled={!!id}
                             required/>
                         </div>
                         <p className="text-center text-info">Choose options:</p>

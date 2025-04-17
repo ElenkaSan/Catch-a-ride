@@ -68,6 +68,14 @@ public class VehicleService {
             return result;
         }
 
+        if (vehicle.getRentRate() != null && vehicle.getRentRate().signum() < 0) {
+            result.addMessage("Rent rate cannot be negative.", ResultType.INVALID);
+        }
+
+        if (vehicle.getLeaseRate() != null && vehicle.getLeaseRate().signum() < 0) {
+            result.addMessage("Lease rate cannot be negative.", ResultType.INVALID);
+        }
+
         vehicleRepository.update(vehicle);
         return result;
     }
