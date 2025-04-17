@@ -6,6 +6,7 @@ import 'bootstrap/dist/css/bootstrap.min.css';
 const RegisterComponent = () => {
     const [username, setUsername] = useState('');
     const [password, setPassword] = useState('');
+    const [message, setMessage] = useState('');
     const navigate = useNavigate();
 
     const handleRegister = async (e) => {

@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { useNavigate, Link } from 'react-router-dom';
 import AuthService from './AuthService';
-import 'bootstrap/dist/css/bootstrap.min.css';
+//import 'bootstrap/dist/css/bootstrap.min.css';
 
 const LoginComponent = () => {
     const [username, setUsername] = useState('');
@@ -13,12 +13,18 @@ const LoginComponent = () => {
         e.preventDefault();
         try {
             const response = await AuthService.login({ username, password });
-            if (response.data === 'Login successful') {
-                navigate('/dashboard');
+    
+            console.log('Login response:', response);
+    
+            const token = response.data.jwt_token;
+            if (token) {
+                localStorage.setItem('token', token);
+                navigate('/'); 
             } else {
                 setMessage('Invalid credentials');
             }
         } catch (error) {
+            console.error('Login error:', error);
             setMessage('Invalid credentials');
         }
     };
