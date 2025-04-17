@@ -1,11 +1,16 @@
+
 import { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import axios from './axiosConfig';
 import defaultImg from "./logo.png"; // Placeholder image
+
+
 function Vehicle({ showAvailableOnly = false }) {
   const [getVehicles, setGetVehicles] = useState([]);
   const [getMessage, setGetMessage] = useState("");
   const url = "http://localhost:8080/api/vehicle";
+
+
   useEffect(() => {
     fetch(url)
       .then((response) => {
@@ -24,10 +29,20 @@ function Vehicle({ showAvailableOnly = false }) {
     })
     .catch(console.log);
 }, [showAvailableOnly]);
-  //       setGetVehicles(data);
-  //     })
-  //     .catch(console.log);
-  // }, []);
+ 
+// useEffect(() => { //working when login only 
+//   axios.get(url)
+//     .then((response) => {
+//       console.log("Fetched vehicles:", response.data);
+//       const vehiclesToShow = showAvailableOnly
+//         ? response.data.filter(vehicle => !vehicle.bookingStatus)
+//         : response.data;
+//       setGetVehicles(vehiclesToShow);
+//     })
+//     .catch((error) => {
+//       console.error("Error fetching vehicles:", error);
+//     });
+// }, [showAvailableOnly]);
   const handleDeleteVehicle = (vehicleId) => {
     const vehicle = getVehicles.find((v) => v.vehicleId === vehicleId);
     if (window.confirm(`Delete Vehicle ${vehicle.make} ${vehicle.model} ${vehicle.year}?`)) {
@@ -92,6 +107,9 @@ function Vehicle({ showAvailableOnly = false }) {
                   {vehicle.bookingStatus ? "Booked" : "Available"}
                 </p>
                 <div className="mt-auto">
+                <Link to={`/booking/add`} state={{vehicleId: vehicle.vehicleId, userId: 1, dealershipLocationId: vehicle.dealershipId}} className="btn btn-success btn-sm mt-2" disabled={vehicle.bookingStatus}>
+                    Book
+                  </Link>
                   <Link to={`/vehicle/edit/${vehicle.vehicleId}`} className="btn btn-info btn-sm me-2">
                     Edit
                   </Link>

@@ -68,7 +68,7 @@ public class BookingJdbcTemplateRepository implements BookingRepository{
             ps.setDate(4, Date.valueOf(booking.getStartDate()));
             ps.setDate(5, Date.valueOf(booking.getEndDate()));
             ps.setString(6, booking.getBookingType().toString());
-            ps.setDate(7, Date.valueOf(LocalDate.now()));
+            ps.setDate(7, Date.valueOf(booking.getDateCreated()));
             ps.setBigDecimal(8, booking.getTotal());
             return ps;
         }, keyHolder);
@@ -90,7 +90,8 @@ public class BookingJdbcTemplateRepository implements BookingRepository{
                 + "start_date = ?, "
                 + "end_date = ?, "
                 + "date_created_at = ?, "
-                + "total_cost = ? "
+                + "total_cost = ?, "
+                + "booking_type = ? "
                 + "where booking_id = ?;";
 
         return jdbcTemplate.update(sql,
@@ -101,6 +102,7 @@ public class BookingJdbcTemplateRepository implements BookingRepository{
                 booking.getEndDate(),
                 booking.getDateCreated(),
                 booking.getTotal(),
+                booking.getBookingType().toString(),
                 booking.getBookingId()) > 0;
     }
 
