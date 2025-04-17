@@ -90,7 +90,8 @@ public class BookingJdbcTemplateRepository implements BookingRepository{
                 + "start_date = ?, "
                 + "end_date = ?, "
                 + "date_created_at = ?, "
-                + "total_cost = ? "
+                + "total_cost = ?, "
+                + "booking_type = ? "
                 + "where booking_id = ?;";
 
         return jdbcTemplate.update(sql,
@@ -101,6 +102,7 @@ public class BookingJdbcTemplateRepository implements BookingRepository{
                 booking.getEndDate(),
                 booking.getDateCreated(),
                 booking.getTotal(),
+                booking.getBookingType().toString(),
                 booking.getBookingId()) > 0;
     }
 
