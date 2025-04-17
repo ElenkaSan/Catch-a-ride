@@ -49,6 +49,10 @@ public class BookingService {
             return result;
         }
 
+        Vehicle vehicle = vehicleRepository.findById(booking.getVehicleId());
+        BigDecimal total = calculateTotal(booking, vehicle);
+        booking.setTotal(total);
+        booking.setDateCreated(LocalDate.now());
         booking = bookingRepository.add(booking);
         result.setPayload(booking);
         return result;

@@ -1,5 +1,5 @@
 import { useState, useEffect } from "react";
-import { useNavigate, useParams, Link } from "react-router-dom";
+import { useNavigate, useParams, Link, useLocation } from "react-router-dom";
 
 const BOOKING_DEFAULT = {
     vehicleId: 0,
@@ -18,6 +18,7 @@ function BookingForm() {
     const url = "http://localhost:8080/api/booking";
     const navigate = useNavigate();
     const { bookingId } = useParams();
+    const location = useLocation();
 
     useEffect(() => {
         console.log("b_Id:", bookingId);
@@ -37,9 +38,14 @@ function BookingForm() {
                 })
                 .catch(console.log);
         } else {
-            setBooking(BOOKING_DEFAULT);
+            const state = location.state || {};
+            setBooking({
+                ...BOOKING_DEFAULT,
+                vehicleId: state.vehicleId || 0,
+                userId: state.userId || 0,
+                dealershipLocationId: state.dealershipLocationId || 0});
         }
-    }, [bookingId]);
+    }, [bookingId, location.state]);
 
     const handleChange = (event) => {
         setBooking({
@@ -119,7 +125,7 @@ function BookingForm() {
                 <h2 className="mb-4">{parseInt(bookingId) > 0 ? 'Edit Booking' : 'Add Booking'}</h2>
                 {errors.length > 0 && (
                     <div className="alert alert-danger">
-                        <p>The FOllowing Errors were found:</p>
+                        <p>The Following Errors were found:</p>
                         <ul>
                             {errors.map(errors => (
                                 <li key={errors}>{errors}</li>
