@@ -14,16 +14,15 @@ const BOOKING_DEFAULT = {
 
 function BookingForm() {
     const [booking, setBooking] = useState(BOOKING_DEFAULT);
-    const [error, setError] = useState([]);
-    const [getMessage, setGetMessage] = useState("");
+    const [errors, setErrors] = useState([]);
     const url = "http://localhost:8080/api/booking";
     const navigate = useNavigate();
-    const { id } = useParams();
+    const { bookingId } = useParams();
 
     useEffect(() => {
-        console.log("v_Id:", id);
-        if (id) {
-            fetch(`${url}/id/${id}`)
+        console.log("b_Id:", bookingId);
+        if (bookingId) {
+            fetch(`${url}/id/${bookingId}`)
                 .then((response) => {
                     console.log("Fetch response status:", response.status);
                     if (response.status === 200) {
@@ -34,13 +33,13 @@ function BookingForm() {
                 })
                 .then((data) => {
                     console.log("Fetched agent data:", data);
-                    setVehicle(data);
+                    setBooking(data);
                 })
                 .catch(console.log);
         } else {
-            setVehicle(VEHICLE_DEFAULT);
+            setBooking(BOOKING_DEFAULT);
         }
-    }, [id]);
+    }, [bookingId]);
 
     const handleChange = (event) => {
         setBooking({
@@ -147,9 +146,15 @@ function BookingForm() {
                             <input className="form-check-input" type="radio" name="bookingType" id="lease" value="LEASE" checked={booking.bookingType === "LEASE"} onChange={handleChange}></input>
                             <label className="form-check-label" htmlFor="lease">Lease</label>
                         </div>
+                        <fieldset className="form-group">
+                            <button type="submit" className="btn btn-outline-success me-4 mt-4">{parseInt(bookingId) > 0 ? 'Edit Booking' : 'Add Booking'}</button>
+                            <Link type="button" className="btn btn-outline-danger mt-4" to={'/booking'}>Cancel</Link>
+                        </fieldset> 
                     </fieldset>
                 </form>
             </section>
         </>
     )
 }
+
+export default BookingForm;

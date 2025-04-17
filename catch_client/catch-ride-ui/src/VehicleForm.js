@@ -40,11 +40,11 @@ function VehicleForm() {
                    // setVehicle(data);
                    console.log("Fetched agent data:", data);
                    setVehicle({
-                    ...VEHICLE_DEFAULT,
-                    ...data,
-                    bookingStatus: data.bookingStatus === true || data.bookingStatus === "true",
-                    imageUrl: data.imageUrl ? data.imageUrl : "",
-                    imageUrlFile: null,
+                        ...VEHICLE_DEFAULT,
+                        ...data,
+                       bookingStatus: data.bookingStatus === true || data.bookingStatus === "true",
+                       imageUrl: data.imageUrl ? data.imageUrl : "",
+                       imageUrlFile: null,
                     });
                 })
                 .catch(console.log);
@@ -53,25 +53,35 @@ function VehicleForm() {
         }
     }, [id]);
 
+    // const handleChange = (event) => {
+    //     setVehicle({
+    //         ...vehicle,
+    //         [event.target.name]: event.target.value,
+    //     }); 
+    // };
     const handleChange = (event) => {
-        setVehicle({
-            ...vehicle,
-            [event.target.name]: event.target.value,
-        }); 
+        const { name, value } = event.target;
+        if (name === "imageUrl") { 
+            setVehicle({ //clear file if URL is used
+                ...vehicle,
+                [name]: value,
+                imageUrlFile: null
+            });
+        } else {
+            setVehicle({
+                ...vehicle,
+                [name]: value
+            });
+        }
     };
 
     const handleFileUpload = (event) => {
         const file = event.target.files[0];
-        const reader = new FileReader();
-        reader.onloadend = () => {
+        if (file) {
             setVehicle({
                 ...vehicle,
-                imageUrl: reader.result, // Base64 encoded string
                 imageUrlFile: file
             });
-        };
-        if (file) {
-            reader.readAsDataURL(file);
         }
     };
 
@@ -166,7 +176,8 @@ function VehicleForm() {
                            id="make" 
                            name="make" 
                            value={vehicle.make} 
-                           onChange={handleChange} 
+                           onChange={handleChange}
+                           disabled={!!id} 
                            required/>    
                        </div>    
                        <div className="mb-3">
@@ -176,7 +187,8 @@ function VehicleForm() {
                            id="model" 
                            name="model" 
                            value={vehicle.model} 
-                           onChange={handleChange} 
+                           onChange={handleChange}
+                           disabled={!!id} 
                            required/>    
                        </div>    
                           <div className="mb-3">
@@ -186,7 +198,8 @@ function VehicleForm() {
                             id="year" 
                             name="year" 
                             value={vehicle.year} 
-                            onChange={handleChange} 
+                            onChange={handleChange}
+                            disabled={!!id}
                             required/>
                         </div>
                         <div className="mb-3">
@@ -245,9 +258,12 @@ function VehicleForm() {
                             name="dealershipId"
                             value={vehicle.dealershipId}
                             onChange={handleChange}
+                            disabled={!!id}
                             required/>
                         </div>
                         <p className="text-center text-info">Choose options:</p>
+                        <p className="text-muted small">
+                            {vehicle.imageUrlFile ? "Using uploaded file image" : vehicle.imageUrl ? "Using image URL" : "No image selected"}</p>
                         <div className="mb-3">
                             <label htmlFor="imageUrl" className="form-label">Car Image (URL):</label>
                             <input

@@ -19,7 +19,7 @@ function Home(){
                 </p>
             </section>
             <section>
-                <Vehicle/>
+               <Vehicle showAvailableOnly={false} />
             </section>
        </div>
     </div>
