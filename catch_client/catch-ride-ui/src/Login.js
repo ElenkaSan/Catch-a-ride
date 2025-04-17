@@ -1,7 +1,10 @@
 import React, { useState } from 'react';
 import { useNavigate, Link } from 'react-router-dom';
 import AuthService from './AuthService';
+<<<<<<< HEAD
 import axios from './axiosConfig'
+=======
+>>>>>>> c83089e40d12179f8c16cce0ea4e7130b95082d1
 
 const LoginComponent = () => {
     const [username, setUsername] = useState('');
@@ -10,6 +13,7 @@ const LoginComponent = () => {
     const navigate = useNavigate();
   
     const handleLogin = async (e) => {
+<<<<<<< HEAD
       e.preventDefault();
       try {
         const response = await AuthService.login({ username, password });
@@ -42,6 +46,19 @@ const LoginComponent = () => {
         console.error('Login error:', error);
         setMessage('Invalid credentials');
       }
+=======
+        e.preventDefault();
+        try {
+            const response = await AuthService.login({ username, password });
+            if (response.data === 'Login successful') {
+                navigate('/dashboard');
+            } else {
+                setMessage('Invalid credentials');
+            }
+        } catch (error) {
+            setMessage('Invalid credentials');
+        }
+>>>>>>> c83089e40d12179f8c16cce0ea4e7130b95082d1
     };
   
 

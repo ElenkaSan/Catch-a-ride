@@ -36,9 +36,9 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
                 .antMatchers("/api/auth/register").permitAll()
                 .antMatchers("/refresh_token").authenticated()
                 .antMatchers(HttpMethod.GET, "/api/booking", "/booking/**").permitAll()
-                .antMatchers(HttpMethod.POST, "/api/booking").hasAnyRole("USER", "ADMIN")
-                .antMatchers(HttpMethod.PUT, "/api/booking/**").hasAnyRole("USER", "ADMIN")
-                .antMatchers(HttpMethod.DELETE, "/api/booking/**").hasAnyRole("USER", "ADMIN")
+                .antMatchers(HttpMethod.POST, "/api/booking").permitAll()
+                .antMatchers(HttpMethod.PUT, "/api/booking/**").permitAll()
+                .antMatchers(HttpMethod.DELETE, "/api/booking/**").permitAll()
                 .antMatchers(HttpMethod.GET, "/api/dealership", "/api/dealership/**", "/api/dealership/id/*").hasRole("ADMIN")
                 .antMatchers(HttpMethod.POST, "/api/dealership").hasRole("ADMIN")
                 .antMatchers(HttpMethod.PUT, "/api/dealership/**").hasRole("ADMIN")
@@ -55,7 +55,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
                 .antMatchers(HttpMethod.POST, "/api/user").hasRole("ADMIN")
                 .antMatchers(HttpMethod.PUT, "/api/user/**").hasRole("ADMIN")
                 .antMatchers(HttpMethod.DELETE, "/api/user/**").hasRole("ADMIN")
-                .anyRequest().authenticated()
+                .anyRequest().permitAll()
                 .and()
                 .addFilter(new JwtRequestFilter(authenticationManager(), converter)) // 3
                 .sessionManagement() // 4

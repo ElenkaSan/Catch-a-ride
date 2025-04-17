@@ -76,7 +76,7 @@ function Booking() {
                                 <td>{booking.bookingType}</td>
                                 <td>{booking.dateCreated}</td>
                                 <td>
-                                    <Link className="btn btn-info" to={`/booking/edit/${booking.bookingId}`}>Edit</Link>
+                                    <Link className="btn btn-info" to={`/booking/edit/${booking.bookingId}`} state={{vehicleId: booking.vehicleId, userId: 1, dealershipLocationId: booking.dealershipLocationId}}>Edit</Link>
                                     <button className="btn btn-danger" onClick={() => handleDeleteBooking(booking.bookingId)}>Delete</button>
                                 </td>
                             </tr>
