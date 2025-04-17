@@ -13,6 +13,8 @@ import UserInfoForm from './UserInfoForm';
 import UserPage from "./UserPage";
 import PrivateRoute from './PrivateRoute';
 import NotAuthorized from './NotAuthorized'
+import Booking from "./Booking";
+import BookingForm from "./BookingForm";
 function App() {
   
   return (
@@ -23,6 +25,9 @@ function App() {
             <Navbar/>
             <Routes>
               <Route path="/" element={<Home/>}/>
+              <Route path="/booking" element={<Booking/>}/>
+              <Route path="/booking/add" element={<BookingForm/>}/>
+              <Route path="/booking/edit/:bookingId" element={<BookingForm/>}/>
               <Route path="/vehicle/add" element={<VehicleForm/>}/>
               <Route path="/vehicle/edit/:id" element={<VehicleForm/>}/>
               <Route path="/vehicles/" element={<VehicleList/>}/>
