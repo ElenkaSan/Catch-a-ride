@@ -2,7 +2,7 @@ import './App.css';
 import { BrowserRouter as Router, Routes, Route} from 'react-router-dom';
 import Navbar from "./Navbar";
 import Home from "./Home";
-import Vehicle from "./Vehicle";
+import VehicleList from "./VehicleList";
 import VehicleForm from "./VehicleForm";
 import NotFound from "./NotFound";
 import Login from './Login';
@@ -18,7 +18,7 @@ function App() {
               <Route path="/" element={<Home/>}/>
               <Route path="/vehicle/add" element={<VehicleForm/>}/>
               <Route path="/vehicle/edit/:id" element={<VehicleForm/>}/>
-              <Route path="/vehicles/" element={<Vehicle/>}/>
+              <Route path="/vehicles/" element={<VehicleList/>}/>
               <Route path="/login/" element={<Login/>}/>
               <Route path="register/" element={<RegisterComponent/>}/>
               <Route path="*" element={<NotFound/>}/>

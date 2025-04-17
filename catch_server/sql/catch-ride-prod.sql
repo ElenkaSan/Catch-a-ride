@@ -109,8 +109,8 @@ values
     
     insert into app_user_role (app_user_id, app_role_id) 
 values
-	(1,2),
-    (2,1);
+	(1,1),
+    (2,2);
 
 insert into `user`
 	(user_id, first_name, last_name, email, date_created_at, location_id, app_user_id)

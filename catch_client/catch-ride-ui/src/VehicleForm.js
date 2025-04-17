@@ -53,25 +53,49 @@ function VehicleForm() {
         }
     }, [id]);
 
+    // const handleChange = (event) => {
+    //     setVehicle({
+    //         ...vehicle,
+    //         [event.target.name]: event.target.value,
+    //     }); 
+    // };
     const handleChange = (event) => {
-        setVehicle({
-            ...vehicle,
-            [event.target.name]: event.target.value,
-        }); 
-    };
-
-    const handleFileUpload = (event) => {
-        const file = event.target.files[0];
-        const reader = new FileReader();
-        reader.onloadend = () => {
+        const { name, value } = event.target;
+        if (name === "imageUrl") { 
+            setVehicle({ //clear file if URL is used
+                ...vehicle,
+                [name]: value,
+                imageUrlFile: null
+            });
+        } else {
             setVehicle({
                 ...vehicle,
-                imageUrl: reader.result, // Base64 encoded string
+                [name]: value
+            });
+        }
+    };
+
+    // const handleFileUpload = (event) => {
+    //     const file = event.target.files[0];
+    //     const reader = new FileReader();
+    //     reader.onloadend = () => {
+    //         setVehicle({
+    //             ...vehicle,
+    //             imageUrl: reader.result, // Base64 encoded string
+    //             imageUrlFile: file
+    //         });
+    //     };
+    //     if (file) {
+    //         reader.readAsDataURL(file);
+    //     }
+    // };
+    const handleFileUpload = (event) => {
+        const file = event.target.files[0];
+        if (file) {
+            setVehicle({
+                ...vehicle,
                 imageUrlFile: file
             });
-        };
-        if (file) {
-            reader.readAsDataURL(file);
         }
     };
 
@@ -248,6 +272,8 @@ function VehicleForm() {
                             required/>
                         </div>
                         <p className="text-center text-info">Choose options:</p>
+                        <p className="text-muted small">
+                            {vehicle.imageUrlFile ? "Using uploaded file image" : vehicle.imageUrl ? "Using image URL" : "No image selected"}</p>
                         <div className="mb-3">
                             <label htmlFor="imageUrl" className="form-label">Car Image (URL):</label>
                             <input
