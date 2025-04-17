@@ -7,6 +7,7 @@ import VehicleForm from "./VehicleForm";
 import NotFound from "./NotFound";
 import Login from './Login';
 import './axiosConfig';
+import RegisterComponent from './RegisterComponent';
 
 
 function App() {
@@ -19,7 +20,7 @@ function App() {
               <Route path="/vehicle/edit/:id" element={<VehicleForm/>}/>
               <Route path="/vehicles/" element={<Vehicle/>}/>
               <Route path="/login/" element={<Login/>}/>
-              <Route path="register/" element={<Login/>}/>
+              <Route path="register/" element={<RegisterComponent/>}/>
               <Route path="*" element={<NotFound/>}/>
             </Routes>
         </Router>
