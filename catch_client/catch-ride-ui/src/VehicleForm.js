@@ -9,9 +9,9 @@ const VEHICLE_DEFAULT = {
     trim: "",
     rentRate: "",
     leaseRate: "",
-    bookStatus: false,
+    bookingStatus: false,
     dealershipId: "",
-    imageCar: "", 
+    imageUrl: "", 
 }
 
 function VehicleForm() {
@@ -58,11 +58,13 @@ function VehicleForm() {
         reader.onloadend = () => {
             setVehicle({
                 ...vehicle,
-                imageCar: reader.result, // Base64 encoded string
-                imageCarFile: File
+                imageUrl: reader.result, // Base64 encoded string
+                imageUrlFile: file
             });
         };
-        reader.readAsDataURL(file);
+        if (file) {
+            reader.readAsDataURL(file);
+        }
     };
 
     const handleSubmit = (event) => {
@@ -76,8 +78,8 @@ function VehicleForm() {
         const formData = new FormData();
         formData.append("vehicle", new Blob([JSON.stringify(vehicle)], { type: "application/json" }));
     
-        if (vehicle.imageCarFile) {
-            formData.append("file", vehicle.imageCarFile);
+        if (vehicle.imageUrlFile) {
+            formData.append("file", vehicle.imageUrlFile);
         }
 
         fetch(apiUrl, 
@@ -155,7 +157,6 @@ function VehicleForm() {
                            name="make" 
                            value={vehicle.make} 
                            onChange={handleChange} 
-                           disabled={!!id}
                            required/>    
                        </div>    
                        <div className="mb-3">
@@ -166,7 +167,6 @@ function VehicleForm() {
                            name="model" 
                            value={vehicle.model} 
                            onChange={handleChange} 
-                           disabled={!!id}
                            required/>    
                        </div>    
                           <div className="mb-3">
@@ -177,7 +177,6 @@ function VehicleForm() {
                             name="year" 
                             value={vehicle.year} 
                             onChange={handleChange} 
-                            disabled={!!id}
                             required/>
                         </div>
                         <div className="mb-3">
@@ -236,23 +235,22 @@ function VehicleForm() {
                             name="dealershipId"
                             value={vehicle.dealershipId}
                             onChange={handleChange}
-                            disabled={!!id}
                             required/>
                         </div>
                         <p className="text-center text-info">Choose options:</p>
                         <div className="mb-3">
-                            <label htmlFor="imageCar" className="form-label">Car Image (URL):</label>
+                            <label htmlFor="imageUrl" className="form-label">Car Image (URL):</label>
                             <input
                                 type="text"
                                 className="form-control"
-                                id="imageCar"
-                                name="imageCar"
-                                value={vehicle.imageCar}
+                                id="imageUrl"
+                                name="imageUrl"
+                                value={vehicle.imageUrl}
                                 onChange={handleChange}
                             />
-                            {vehicle.imageCar && (
+                            {vehicle.imageUrl && (
                                 <img
-                                    src={vehicle.imageCar}
+                                    src={vehicle.imageUrl}
                                     alt="Vehicle Preview"
                                     className="img-fluid mt-3 rounded"
                                 />

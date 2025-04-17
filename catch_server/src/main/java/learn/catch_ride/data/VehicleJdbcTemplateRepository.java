@@ -1,6 +1,7 @@
 package learn.catch_ride.data;
 
 import learn.catch_ride.data.mappers.VehicleMapper;
+import learn.catch_ride.domain.Result;
 import learn.catch_ride.models.Vehicle;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.jdbc.support.GeneratedKeyHolder;
@@ -71,6 +72,12 @@ public class VehicleJdbcTemplateRepository implements VehicleRepository {
 
     @Override
     public boolean update(Vehicle vehicle) {
+        System.out.println("Updating vehicle in Repository:");
+        System.out.println("Vehicle ID: " + vehicle.getVehicleId());
+        System.out.println("Make: " + vehicle.getMake());
+        System.out.println("Model: " + vehicle.getModel());
+        System.out.println("Trim: " + vehicle.getTrim());
+
         final String sql = "update vehicle set "
                 + "make = ?, "
                 + "model = ?, "

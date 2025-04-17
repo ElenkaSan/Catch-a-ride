@@ -68,6 +68,7 @@ public class VehicleService {
             return result;
         }
 
+        vehicleRepository.update(vehicle);
         return result;
     }
 
