@@ -1,16 +1,16 @@
 
 import { useEffect, useState } from "react";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom"; 
 import axios from './axiosConfig';
 import defaultImg from "./logo.png"; // Placeholder image
-
-
 function Vehicle({ showAvailableOnly = false }) {
   const [getVehicles, setGetVehicles] = useState([]);
   const [getMessage, setGetMessage] = useState("");
+  const [isLoggedIn, setIsLoggedIn] = useState(false); 
   const url = "http://localhost:8080/api/vehicle";
+  const navigate = useNavigate(); 
 
-
+  
   useEffect(() => {
     fetch(url)
       .then((response) => {
@@ -43,6 +43,23 @@ function Vehicle({ showAvailableOnly = false }) {
 //       console.error("Error fetching vehicles:", error);
 //     });
 // }, [showAvailableOnly]);
+
+const [isAdmin, setIsAdmin] = useState(false);
+
+useEffect(() => {
+  const token = localStorage.getItem('authToken') || sessionStorage.getItem('authToken');
+  const role = localStorage.getItem('userRole') || sessionStorage.getItem('userRole');
+  setIsLoggedIn(!!token);
+  setIsAdmin(role === 'admin');
+}, []);
+
+  const handleBookClick = (vehicleId) => {
+    if (!isLoggedIn) {
+      // Redirect to login if the user is not logged in??
+      navigate("/login");
+    }
+  };
+
   const handleDeleteVehicle = (vehicleId) => {
     const vehicle = getVehicles.find((v) => v.vehicleId === vehicleId);
     if (window.confirm(`Delete Vehicle ${vehicle.make} ${vehicle.model} ${vehicle.year}?`)) {
@@ -67,11 +84,13 @@ function Vehicle({ showAvailableOnly = false }) {
           {getMessage}
         </div>
       )}
-      <div className="text-end mb-4">
-        <Link className="btn btn-lg btn-info" to="/vehicle/add">
-          Add New Car
-        </Link>
-      </div>
+    {isAdmin && (
+  <div className="text-end mb-4">
+    <Link className="btn btn-lg btn-info" to="/vehicle/add">
+      Add New Car
+    </Link>
+  </div>
+)}
       <div className="row">
         {getVehicles.map((vehicle) => (
           <div className="col-md-6 col-lg-3 mb-4" key={vehicle.vehicleId}>
@@ -107,15 +126,23 @@ function Vehicle({ showAvailableOnly = false }) {
                   {vehicle.bookingStatus ? "Booked" : "Available"}
                 </p>
                 <div className="mt-auto">
-                <Link to={`/booking/add`} state={{vehicleId: vehicle.vehicleId, userId: 1, dealershipLocationId: vehicle.dealershipId}} className="btn btn-success btn-sm mt-2" disabled={vehicle.bookingStatus}>
+                {!vehicle.bookingStatus && (
+                  <button
+                  onClick={() => handleBookClick(vehicle.vehicleId)}
+                  className="btn btn-success btn-sm mt-2">
                     Book
-                  </Link>
-                  <Link to={`/vehicle/edit/${vehicle.vehicleId}`} className="btn btn-info btn-sm me-2">
-                    Edit
-                  </Link>
-                  <button onClick={() => handleDeleteVehicle(vehicle.vehicleId)} className="btn btn-danger btn-sm">
-                    Delete
-                  </button>
+                    </button>
+                  )}
+                  {isAdmin && (
+  <>
+    <Link to={`/vehicle/edit/${vehicle.vehicleId}`} className="btn btn-info btn-sm me-2">
+      Edit
+    </Link>
+    <button onClick={() => handleDeleteVehicle(vehicle.vehicleId)} className="btn btn-danger btn-sm">
+      Delete
+    </button>
+  </>
+)}
                 </div>
               </div>
             </div>

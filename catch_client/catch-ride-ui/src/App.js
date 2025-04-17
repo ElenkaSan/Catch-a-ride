@@ -11,6 +11,8 @@ import RegisterComponent from './RegisterComponent';
 import AdminPage from './AdminPage'; //just for now then late will do if user or admin will be logged in
 import UserInfoForm from './UserInfoForm';
 import UserPage from "./UserPage";
+import Booking from "./Booking";
+import BookingForm from "./BookingForm";
 function App() {
   
   return (
@@ -21,6 +23,9 @@ function App() {
             <Navbar/>
             <Routes>
               <Route path="/" element={<Home/>}/>
+              <Route path="/booking" element={<Booking/>}/>
+              <Route path="/booking/add" element={<BookingForm/>}/>
+              <Route path="/booking/edit/:bookingId" element={<BookingForm/>}/>
               <Route path="/vehicle/add" element={<VehicleForm/>}/>
               <Route path="/vehicle/edit/:id" element={<VehicleForm/>}/>
               <Route path="/vehicles/" element={<VehicleList/>}/>

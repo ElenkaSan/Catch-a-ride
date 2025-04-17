@@ -122,7 +122,8 @@ function BookingForm() {
 
     return(
         <>
-            <section>
+        <section className="container justify-content-md-center">
+            <div className="col-md-6 offset-md-3">
                 <h2 className="mb-4">{parseInt(bookingId) > 0 ? 'Edit Booking' : 'Add Booking'}</h2>
                 {errors.length > 0 && (
                     <div className="alert alert-danger">
@@ -159,7 +160,8 @@ function BookingForm() {
                         </fieldset> 
                     </fieldset>
                 </form>
-            </section>
+            </div>
+        </section>
         </>
     )
 }
