@@ -37,7 +37,15 @@ function VehicleForm() {
                 })
                 .then((data) => {
                     console.log("Fetched agent data:", data);
-                    setVehicle(data);
+                   // setVehicle(data);
+                   console.log("Fetched agent data:", data);
+                   setVehicle({
+                    ...VEHICLE_DEFAULT,
+                    ...data,
+                    bookingStatus: data.bookingStatus === true || data.bookingStatus === "true",
+                    imageUrl: data.imageUrl ? data.imageUrl : "",
+                    imageUrlFile: null,
+                    });
                 })
                 .catch(console.log);
         } else {
@@ -97,6 +105,8 @@ function VehicleForm() {
             } else if (method === "PUT") {
                 if (response.status === 204) {
                     return null;
+                } else if (response.status === 200) {
+                    return response.json();    
                 } else if (response.status === 400) {
                     return response.json();
                 } else {
@@ -218,9 +228,9 @@ function VehicleForm() {
                             required/>
                         </div>  
                         <div className="mb-3">
-                            <label htmlFor="bookingStatus" className="form-label">Book Status:</label>
+                            <label htmlFor="bookingStatus" className="form-label">Booked Status:</label>
                             <input type="checkbox" 
-                            className="form-check-input" 
+                            className="form-check-input m-3" 
                             id="bookingStatus" 
                             name="bookingStatus" 
                             checked={vehicle.bookingStatus} 

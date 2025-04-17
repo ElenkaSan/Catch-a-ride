@@ -81,7 +81,7 @@ function Vehicle() {
                         <td>{vehicle.trim}</td>
                         <td>{vehicle.rentRate}</td>
                         <td>{vehicle.leaseRate}</td>
-                        <td>{vehicle.bookingStatus ? "Yes" : "No"}</td>
+                        <td>{vehicle.bookingStatus ? "Booked" : "Available"}</td>
                         <td>
                             <Link className="btn btn-info" to={`/vehicle/edit/${vehicle.vehicleId}`}>
                             Edit
