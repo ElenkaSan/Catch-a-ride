@@ -1,7 +1,6 @@
 import React, { useState } from 'react';
 import { useNavigate, Link } from 'react-router-dom';
 import AuthService from './AuthService';
-//import 'bootstrap/dist/css/bootstrap.min.css';
 
 const LoginComponent = () => {
     const [username, setUsername] = useState('');
@@ -13,22 +12,12 @@ const LoginComponent = () => {
         e.preventDefault();
         try {
             const response = await AuthService.login({ username, password });
-    
-            console.log('Login response:', response);
-    
-            const { jwt_token, roles, appUserId } = response.data;
-    
-            localStorage.setItem('token', jwt_token);
-            localStorage.setItem('roles', JSON.stringify(roles));
-            localStorage.setItem('appUserId', appUserId);
-    
-            if (jwt_token) {
-                navigate('/');
+            if (response.data === 'Login successful') {
+                navigate('/dashboard');
             } else {
                 setMessage('Invalid credentials');
             }
         } catch (error) {
-            console.error('Login error:', error);
             setMessage('Invalid credentials');
         }
     };
