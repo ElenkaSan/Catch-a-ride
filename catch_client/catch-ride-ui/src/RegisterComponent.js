@@ -1,24 +1,61 @@
 import React, { useState } from 'react';
 import { useNavigate, Link } from 'react-router-dom';
-import AuthService from '../AuthService';
-import 'bootstrap/dist/css/bootstrap.min.css';
+import axios from './axiosConfig';
 
 const RegisterComponent = () => {
-    const [username, setUsername] = useState('');
-    const [password, setPassword] = useState('');
+    const [formData, setFormData] = useState({
+        username: '',
+        password: '',
+        firstName: '',
+        lastName: '',
+        email: '',
+        locationId: ''
+    });
+
     const [message, setMessage] = useState('');
     const navigate = useNavigate();
+
+    const handleChange = (e) => {
+        setFormData({ ...formData, [e.target.name]: e.target.value });
+    };
 
     const handleRegister = async (e) => {
         e.preventDefault();
         try {
-            const response = await AuthService.register({ username, password });
-            setMessage(response.data);
-            if (response.data === 'User registered successfully') {
-                navigate('/userInfo');
-            }
+            // Step 1: Register app user
+            console.log("Registering app user:", {
+                username: formData.username,
+                password: formData.password
+            });
+            const registerRes = await axios.post('/api/auth/register', {
+                username: formData.username,
+                password: formData.password
+            });
+
+            const appUserId = registerRes.data.appUserId; // Assuming your backend returns this ID
+            if (!appUserId) throw new Error("Missing app_user_id from registration response");
+
+            // Step 2: Create user business info
+            console.log("Sending user details:", {
+                firstName: formData.firstName,
+                lastName: formData.lastName,
+                email: formData.email,
+                locationId: formData.locationId,
+                appUserId
+            });
+            await axios.post('/api/user', {
+                firstName: formData.firstName,
+                lastName: formData.lastName,
+                email: formData.email,
+                locationId: parseInt(formData.locationId),
+                appUserId: appUserId
+            });
+
+            setMessage("Registration successful!");
+            navigate('/login');
         } catch (error) {
-            setMessage('Registration failed');
+            console.error("Registration error:", error);
+            setMessage("Registration failed. Please try again.");
         }
     };
 
@@ -27,29 +64,35 @@ const RegisterComponent = () => {
             <div className="row justify-content-center">
                 <div className="col-md-6">
                     <div className="card">
-                        <div className="card-header">Registration</div>
+                        <div className="card-header">Register</div>
                         <div className="card-body">
                             {message && <div className="alert alert-info">{message}</div>}
                             <form onSubmit={handleRegister}>
                                 <div className="form-group">
-                                    <label>First Name</label>
-                                    <input
-                                        type="text"
-                                        className="form-control"
-                                        value={firstName}
-                                        onChange={(e) => setUsername(e.target.value)}
-                                    />
+                                    <label>Username</label>
+                                    <input type="text" name="username" className="form-control" value={formData.username} onChange={handleChange} required />
                                 </div>
                                 <div className="form-group">
                                     <label>Password</label>
-                                    <input
-                                        type="password"
-                                        className="form-control"
-                                        value={password}
-                                        onChange={(e) => setPassword(e.target.value)}
-                                    />
+                                    <input type="password" name="password" className="form-control" value={formData.password} onChange={handleChange} required />
                                 </div>
-                                <button type="submit" className="btn btn-primary">Register</button>
+                                <div className="form-group">
+                                    <label>First Name</label>
+                                    <input type="text" name="firstName" className="form-control" value={formData.firstName} onChange={handleChange} required />
+                                </div>
+                                <div className="form-group">
+                                    <label>Last Name</label>
+                                    <input type="text" name="lastName" className="form-control" value={formData.lastName} onChange={handleChange} required />
+                                </div>
+                                <div className="form-group">
+                                    <label>Email</label>
+                                    <input type="email" name="email" className="form-control" value={formData.email} onChange={handleChange} required />
+                                </div>
+                                <div className="form-group">
+                                    <label>Location ID</label>
+                                    <input type="number" name="locationId" className="form-control" value={formData.locationId} onChange={handleChange} required />
+                                </div>
+                                <button type="submit" className="btn btn-primary mt-3">Register</button>
                             </form>
                             <div className="mt-3">
                                 <span>Already registered? <Link to="/login">Login here</Link></span>
