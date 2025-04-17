@@ -1,62 +1,62 @@
 import { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import axios from './axiosConfig';
-
 import defaultImg from "./logo.png"; // Placeholder image
-
-function Vehicle() {
+function Vehicle({ showAvailableOnly = false }) {
   const [getVehicles, setGetVehicles] = useState([]);
   const [getMessage, setGetMessage] = useState("");
   const url = "http://localhost:8080/api/vehicle";
-
   useEffect(() => {
-    axios.get(url)
+    fetch(url)
       .then((response) => {
-        console.log("Fetched vehicles:", response.data);
-        setGetVehicles(response.data);
+        if (response.status === 200) {
+          return response.json();
+        } else {
+          return Promise.reject(`Unexpected Status Code: ${response.status}`);
+        }
       })
-      .catch((error) => {
-        console.error("Error fetching vehicles:", error);
-      });
-}, []);
-
-        //Methods
-const handleDeleteVehicle = (vehicleId) => {
-        const vehicle = getVehicles.find((v) => v.vehicleId === vehicleId); //find matching by id
-        if(window.confirm(`Delete Vehicle ${vehicle.make} ${vehicle.model} ${vehicle.year}?`))
-            {axios.delete(`${url}/${vehicleId}`)
-              .then((response) => {
-                if (response.status === 204) {
-                    const seeVehicle = getVehicles.filter(
-                    (v) => v.vehicleId !== vehicleId); // create a copy of the array
-                    setGetVehicles(seeVehicle); // update the vehicles state
-                    setGetMessage(`Vehicle ${vehicle.make} ${vehicle.model} ${vehicle.year} with ID #${vehicleId} was successfully deleted!`); //add message as alert
-                   // window.scrollTo({ top: 0, behavior: "smooth" });
-                  //  setTimeout(() => setGetMessage(""), 3000); // to clear the message
-                } else {
-                  return Promise.reject(`Unexpected Status Code: ${response.status}`);
-                }
-              })
-                .catch(console.log);
-            }
-  }; 
-
+      .then((data) => {
+        console.log("Fetched vehicles:", data);
+        const vehiclesToShow = showAvailableOnly
+        ? data.filter((vehicle) => !vehicle.bookingStatus)
+        : data;
+      setGetVehicles(vehiclesToShow);
+    })
+    .catch(console.log);
+}, [showAvailableOnly]);
+  //       setGetVehicles(data);
+  //     })
+  //     .catch(console.log);
+  // }, []);
+  const handleDeleteVehicle = (vehicleId) => {
+    const vehicle = getVehicles.find((v) => v.vehicleId === vehicleId);
+    if (window.confirm(`Delete Vehicle ${vehicle.make} ${vehicle.model} ${vehicle.year}?`)) {
+      axios.delete(`${url}/${vehicleId}`)
+        .then((response) => {
+          if (response.status === 204) {
+            const updated = getVehicles.filter((v) => v.vehicleId !== vehicleId);
+            setGetVehicles(updated);
+            setGetMessage(`Vehicle ${vehicle.make} ${vehicle.model} ${vehicle.year} was deleted.`);
+          } else {
+            return Promise.reject(`Unexpected Status Code: ${response.status}`);
+          }
+        })
+        .catch(console.log);
+    }
+  };  
   return (
     <div className="container">
       <h2 className="text-center text-info p-4">Vehicles List</h2>
-
       {getMessage && (
         <div className="alert alert-success text-center" role="alert">
           {getMessage}
         </div>
       )}
-
       <div className="text-end mb-4">
         <Link className="btn btn-lg btn-info" to="/vehicle/add">
           Add New Car
         </Link>
       </div>
-
       <div className="row">
         {getVehicles.map((vehicle) => (
           <div className="col-md-6 col-lg-3 mb-4" key={vehicle.vehicleId}>
@@ -91,7 +91,6 @@ const handleDeleteVehicle = (vehicleId) => {
                 <p className={`card-text ${vehicle.bookingStatus ? 'text-danger' : 'text-success'}`}>
                   {vehicle.bookingStatus ? "Booked" : "Available"}
                 </p>
-
                 <div className="mt-auto">
                   <Link to={`/vehicle/edit/${vehicle.vehicleId}`} className="btn btn-info btn-sm me-2">
                     Edit
@@ -108,6 +107,4 @@ const handleDeleteVehicle = (vehicleId) => {
     </div>
   );
 }
-
 export default Vehicle;
-
