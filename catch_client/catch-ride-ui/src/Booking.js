@@ -16,8 +16,8 @@ function Booking() {
             }
           })
           .then((data) => {
-            console.log("Fetched vehicles:", data);
-            setGetVehicles(data);
+            console.log("Fetched bookings:", data);
+            setGetBookings(data);
           })
           .catch(console.log);
       }, []);
@@ -45,7 +45,7 @@ function Booking() {
 
       return (
         <div>
-            <h2 className="test-center text-info p-4">Vehicles List</h2>
+            <h2 className="test-center text-info p-4">Booking List</h2>
             {getMessage && (
                 <div className="alert alert-success text-center" role="alert">
                     {getMessage}
@@ -88,3 +88,5 @@ function Booking() {
       )
 
 }
+
+export default Booking;
