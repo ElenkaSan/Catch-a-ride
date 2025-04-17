@@ -72,12 +72,6 @@ public class VehicleJdbcTemplateRepository implements VehicleRepository {
 
     @Override
     public boolean update(Vehicle vehicle) {
-        System.out.println("Updating vehicle in Repository:");
-        System.out.println("Vehicle ID: " + vehicle.getVehicleId());
-        System.out.println("Make: " + vehicle.getMake());
-        System.out.println("Model: " + vehicle.getModel());
-        System.out.println("Trim: " + vehicle.getTrim());
-
         final String sql = "update vehicle set "
                 + "make = ?, "
                 + "model = ?, "
