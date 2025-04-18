@@ -112,3 +112,14 @@
 .custom-dropdown-bg .dropdown-toggle {
   outline: none;
 }
+
+/* user page */
+.user-page-bg {
+  background-image: url('./back.jpeg');
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  min-height: 100vh;
+  padding-top: 2rem;
+}
+

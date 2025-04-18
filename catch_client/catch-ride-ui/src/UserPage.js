@@ -1,3 +1,4 @@
+import './App.css';
 import React, { useEffect, useState } from "react";
 import { Link, Navigate } from "react-router-dom";
 import {
@@ -102,13 +103,13 @@ const UserPage = ({ updateUser }) => {
                   <Link
                     to={`/booking/edit/${booking.bookingId}`} 
                     state={{vehicleId: booking.vehicleId, userId: localStorage.getItem('appUserId'), dealershipLocationId: booking.dealershipLocationId}} 
-                    className="btn btn-outline-warning btn-sm"
+                    className="btn btn-warning btn-lg"
                   >
-                    Edit
+                    Edit Booking
                   </Link>
                   <Button
                     color="danger"
-                    size="sm"
+                    size="lg"
                     onClick={() => handleDeleteBooking(booking.bookingId)}
                   >
                     Delete
@@ -123,19 +124,20 @@ const UserPage = ({ updateUser }) => {
   );
 
   return (
-    <section className="container mt-4 ">
+    <section className="container mt-4">
       <Card className="text-center bg-light text-info">
         <CardBody>
           <div className="d-flex justify-content-between align-items-center">
             <h2 className="text-info">Welcome, {username}</h2>
             <div>
               <Link to="/update">
-                <Button className="btn btn-outline-warning me-2">
+                <Button className="btn btn-outline-warning btn-lg">
                   <BsPencilSquare />
                 </Button>
               </Link>
+              <p></p>
               <Link to="/">
-                <Button className="btn btn-warning">
+                <Button className="btn btn-lg btn-warning">
                   <BiHomeHeart />
                 </Button>
               </Link>
@@ -169,7 +171,6 @@ const UserPage = ({ updateUser }) => {
           )}
         </CardBody>
       </Card>
-      <hr />
     </section>
   );
 };
