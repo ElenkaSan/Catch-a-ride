@@ -29,7 +29,7 @@ function Home(){
          </div>
         </section>
         <header className="text-center p-4 text-info">
-            <h2 className="text-dark">Find cars for lease or rent in your area.</h2>
+            <h1 className="text-dark p-4 m-2">Find cars for lease or rent in your area.</h1>
         </header>
        <div className="container">
             <section>
