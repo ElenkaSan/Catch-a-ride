@@ -127,8 +127,11 @@ function AppNavbar() {
           )}
 
           {isLoggedIn && (
-            <NavItem>
-              <button onClick={handleLogout} className="btn btn-sm btn-warning ms-3">Logout</button>
+            <NavItem className='px-3'>
+              <button onClick={handleLogout} className="btn btn-lg btn-outline-warning">
+              <BiLogOut size={25} style={{ marginRight: "10px" }} />
+              Logout
+              </button>
             </NavItem>
           )}
         </div>
