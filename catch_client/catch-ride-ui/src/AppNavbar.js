@@ -30,9 +30,9 @@ function AppNavbar() {
   };
 
   return (
-    <Navbar expand="md" color="secondary" className="px-4 py-2">
-      <NavLink to="/" className="navbar-brand text-light d-flex align-items-center lead">
-        <h3>Catch A Ride
+    <Navbar expand="md" className="px-4 py-2">
+      <NavLink to="/" className="navbar-brand text-light d-flex align-items-center lead p-2">
+        <h3 className='fs-2'>Catch A Ride
           <img src={defaultImg} alt="logo" style={{ height: "40px", width: "40px", marginLeft: "10px" }} />
         </h3> 
       </NavLink>
@@ -98,23 +98,23 @@ function AppNavbar() {
         {/* Inline NavItems for Large Screens */}
         <div className="d-none d-md-flex"> {/* Hide on small screens */}
           <NavItem>
-            <Link to="/vehicles" className="nav-link text-light px-3">Available Cars</Link>
+            <Link to="/vehicles" className="nav-link text-light px-3 fs-4 p-2">Available Cars</Link>
           </NavItem>
 
           {/* <NavItem>
             <Link to="/booking/add" className="nav-link text-light px-3">Add Booking</Link>
           </NavItem> */}
-          
+
           {!isLoggedIn && (
             <>
               <NavItem>
-                <Link to="/login" className="nav-link text-light px-3">
+                <Link to="/login" className="nav-link text-light px-3 fs-4 p-2">
                   <BoxArrowInRight size={20} style={{ marginRight: "10px" }} />
                   Login
                 </Link>
               </NavItem>
               <NavItem>
-                <Link to="/register" className="nav-link text-light px-3">
+                <Link to="/register" className="nav-link text-light px-3 fs-4 p-2">
                   <PersonPlus size={20} style={{ marginRight: "10px" }} />
                   Signup
                 </Link>
@@ -124,7 +124,7 @@ function AppNavbar() {
 
           {isLoggedIn && isUser && (
             <NavItem>
-              <Link to="/user" className="nav-link text-light px-3">
+              <Link to="/user" className="nav-link text-light px-3 fs-4 p-2">
               <PersonCircle size={20} style={{ marginRight: "10px" }} />
               User Page</Link>
             </NavItem>
@@ -132,14 +132,14 @@ function AppNavbar() {
 
           {isLoggedIn && isAdmin && (
             <NavItem>
-              <Link to="/admin" className="nav-link text-light px-3">
+              <Link to="/admin" className="nav-link text-light px-3 fs-4 p-2">
               <PersonRolodex size={20} style={{ marginRight: "10px" }} />
               Admin Page</Link>
             </NavItem>
           )}
 
           {isLoggedIn && (
-            <NavItem className='px-3'>
+            <NavItem className='px-3 fs-4 p-2'>
               <button onClick={handleLogout} className="btn btn-lg btn-outline-warning">
               <BiLogOut size={25} style={{ marginRight: "10px" }} />
               Logout

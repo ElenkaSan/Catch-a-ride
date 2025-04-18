@@ -58,11 +58,11 @@ const LoginComponent = () => {
             <div className="jumbotron col-md-6 offset-md-3">
                 {/* <div className="col-md-6"> */}
                     {/* <div className="card"> */}
-                    <h2 className="text-center text-info p-4">Login Form</h2>
+                    <h2 className="text-center text-success p-4">Login Form</h2>
                         <div className="card-body">
                             {message && <div className="alert alert-danger">{message}</div>}
                             <form onSubmit={handleLogin}>
-                                <div className="form-group mb-3">
+                                <div className="form-group mb-3 fs-3">
                                     <label>Username</label>
                                     <input
                                         type="text"
@@ -71,7 +71,7 @@ const LoginComponent = () => {
                                         onChange={(e) => setUsername(e.target.value)}
                                     />
                                 </div>
-                                <div className="form-group mb-3">
+                                <div className="form-group mb-3 fs-3">
                                     <label>Password</label>
                                     <input
                                         type="password"
@@ -80,9 +80,9 @@ const LoginComponent = () => {
                                         onChange={(e) => setPassword(e.target.value)}
                                     />
                                 </div>
-                                <button type="submit" className="btn btn-info btn-lg mt-4">Login</button>
+                                <button type="submit" className="btn btn-success btn-lg mt-4">Login</button>
                             </form>
-                            <div className="mt-4">
+                            <div className="mt-4 fs-4">
                                 <span>Not registered? <Link to="/register/">Register here</Link></span>
                             </div>
                         </div>

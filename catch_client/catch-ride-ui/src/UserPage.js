@@ -181,7 +181,7 @@ const UserPage = ({ updateUser }) => {
       <Card className="text-center bg-light text-info">
         <CardBody>
           <div className="d-flex justify-content-between align-items-center">
-            <h2 className="text-info">Welcome, {username}</h2>
+            <h2 className="text-success fs-1">Welcome, {username}</h2>
             <div>
               <Link to={`/user/edit/${localStorage.getItem("appUserId")}`}>
                 <Button className="btn btn-outline-warning btn-lg">
@@ -213,7 +213,7 @@ const UserPage = ({ updateUser }) => {
                 <br/>
               </div>
               {loading ? (
-                <p className="text-secondary">Loading your bookings...</p>
+                <p className="text-secondary fs-3">Loading your bookings...</p>
               ) : getBookings.length === 0 ? (
                 <div className="alert alert-info mt-4">
                   <h5 className="mb-0">You have no cars booked yet.</h5>

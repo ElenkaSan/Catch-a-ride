@@ -53,16 +53,16 @@ function AdminPage() {
   };
 
   return (
-    <div className="container">
-      <h1 className="text-center text-info mt-4">Admin Dashboard / Home page </h1>
+    <div className="container p-4 mt-4 justify-content-md-center">
+      <h1 className="text-center text-success mt-4">Admin Dashboard / Home page </h1>
 
       {/* All Booking Cars */}
       <section className="mt-5">
         <div className="d-flex justify-content-between align-items-center">
           <h2>All Booking Cars</h2>
-          <Link to="/booking/add" className="btn btn-info">Add Booking</Link>
+          <Link to="/booking/add" className="btn btn-outline-secondary btn-lg">Add Booking</Link>
         </div>
-        <table className="table table-bordered mt-3">
+        <table className="table table-bordered mt-3 fs-4">
           <thead className="table-info">
             <tr>
               <th>ID</th>
@@ -82,8 +82,8 @@ function AdminPage() {
                 <td>{booking.startDate}</td>
                 <td>{booking.endDate}</td>
                 <td>
-                  <Link to={`/booking/edit/${booking.bookingId}`} className="btn btn-sm btn-info me-2">Edit</Link>
-                  <button className="btn btn-sm btn-danger">Delete</button>
+                  <Link to={`/booking/edit/${booking.bookingId}`} className="btn btn-lg btn-success me-2">Edit</Link>
+                  <button className="btn btn-lg btn-danger">Delete</button>
                 </td>
               </tr>
             ))}
@@ -101,9 +101,9 @@ function AdminPage() {
       <section className="mt-5">
         <div className="d-flex justify-content-between align-items-center">
           <h2>All Users</h2>
-          <Link to="/user/add" className="btn btn-info">Add User</Link>
+          <Link to="/user/add" className="btn btn-outline-secondary btn-lg">Add User</Link>
         </div>
-        <table className="table table-bordered mt-3">
+        <table className="table table-bordered mt-3 fs-4">
           <thead className="table-info">
             <tr>
               <th>ID</th>
@@ -121,9 +121,9 @@ function AdminPage() {
                 <td>{user.lastName}</td>
                 <td>{user.email}</td>
                 <td>
-                  <Link to={`/user/edit/${user.userId}`} className="btn btn-sm btn-info me-2">Edit</Link>
+                  <Link to={`/user/edit/${user.userId}`} className="btn btn-lg btn-success me-2">Edit</Link>
                   <button 
-                    className="btn btn-sm btn-danger"
+                    className="btn btn-lg btn-danger"
                     onClick={() => handleDeleteUser(user.userId)}
                   >
                     Delete
@@ -138,24 +138,23 @@ function AdminPage() {
       {/* All Available Locations */}
       <section className="mt-5">
         <h2>All Available Locations</h2>
-        <ul className="list-group mt-3">
+        <ul className="list-group mt-3 fs-4">
           {locations.map(location => (
             <li key={location.locationId} className="list-group-item">
               {location.city}, {location.state}
             </li>
           ))}
         </ul>
+       <br/>
       </section>
-
-
       {/* All Dealerships */}
-      <section className="mt-5">
+      <section className="mt-5 p-2">
         <div className="d-flex justify-content-between align-items-center">
           <h2>All Dealerships</h2>
-          <Link to="/dealership/add" className="btn btn-info">Add Dealership</Link>
+          <Link to="/dealership/add" className="btn btn-success btn-lg">Add Dealership</Link>
         </div>
-        <table className="table table-bordered mt-3">
-          <thead className="table-info">
+        <table className="table table-bordered mt-3 fs-3">
+          <thead className="table-dark">
             <tr>
               <th>ID</th>
               <th>Name</th>
@@ -172,12 +171,12 @@ function AdminPage() {
                 <td>
                   <Link
                     to={`/dealership/edit/${dealership.dealershipId}`}
-                    className="btn btn-sm btn-info me-2"
+                    className="btn btn-lg btn-info me-2"
                   >
                     Edit
                   </Link>
                   <button
-                    className="btn btn-sm btn-danger"
+                    className="btn btn-lg btn-danger"
                     onClick={() => handleDeleteDealership(dealership.dealershipId)}
                   >
                     Delete
@@ -188,6 +187,7 @@ function AdminPage() {
           </tbody>
         </table>
       </section>
+
     </div>
   );
 }
