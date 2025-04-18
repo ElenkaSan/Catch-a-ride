@@ -10,7 +10,7 @@ import {
   CardText,
 } from "reactstrap";
 import { BsPencilSquare } from "react-icons/bs";
-import { BiHomeHeart } from "react-icons/bi";
+//import { BiHomeHeart } from "react-icons/bi";
 import useToggle from "./useToggle";
 import UserInfoForm from "./UserInfoForm";
 
@@ -125,10 +125,13 @@ const UserPage = ({ updateUser }) => {
     <div className="mt-4">
       <h3 className="text-center text-info">Hello, {firstName || username}!</h3>
       <h4 className="text-center text-secondary mb-4">You have booked these Cars:</h4>
+      <p></p>
+      <br/>
+      <p></p>
       <div className="row justify-content-center">
         {getBookings.map((booking) => (
           <div className="col-md-4 mb-5" key={booking.bookingId}>
-            <Card className="rounded">
+            <Card className="h-100 shadow border border-secondary" style={{ borderRadius: "10px", padding: "1rem", minHeight: "350px" }}>
               <CardImg
                 top
                 src={booking.vehicle?.imageCar || "/logo.png"}
@@ -136,18 +139,20 @@ const UserPage = ({ updateUser }) => {
                 className="img-fluid"
               />
               <CardBody>
-                <CardTitle tag="h5" className="text-info">
+                <CardTitle tag="h5" className="text-info h2">
                   {booking.vehicle?.make} {booking.vehicle?.model}
                 </CardTitle>
 
-                <CardText>
+                <CardText className="text-secondary h4"> 
                   <strong>Vehicle:</strong> {booking.vehicle?.make}, {booking.vehicle?.model}<br />
                   <strong>Year:</strong> {booking.vehicle?.year} <br />
                   <strong>Booked Date:</strong> {formatDate(booking.startDate)} <br />
-                  <strong>Delivering from </strong> {booking.dealershipAddress?.address}, {booking.dealershipAddress?.city}, {booking.dealershipAddress?.state} <br />
-                  <strong>to </strong> {booking.userAddress?.address}, {booking.userAddress?.city}, {booking.userAddress?.state} <br />
+                  <strong>Delivering From: </strong> {booking.dealershipAddress?.address}, {booking.dealershipAddress?.city}, {booking.dealershipAddress?.state} <br />
+                  <strong>Delivering To: </strong> {booking.userAddress?.address}, {booking.userAddress?.city}, {booking.userAddress?.state} <br />
+                  <strong>Booking Type: </strong> {booking.bookingType} <br />
+                  <strong>Total: $</strong> {booking.total}
                 </CardText>
-                <div className="d-flex justify-content-between">
+                <div className="d-flex justify-content-between mt-4">
                   <Link
                     to={`/booking/edit/${booking.bookingId}`} 
                     state={{vehicleId: booking.vehicleId, userId: localStorage.getItem('appUserId'), dealershipLocationId: booking.dealershipLocationId}} 
@@ -172,23 +177,24 @@ const UserPage = ({ updateUser }) => {
   );
 
   return (
-    <section className="container mt-4">
+    <section className="container mt-4 p-4">
       <Card className="text-center bg-light text-info">
         <CardBody>
           <div className="d-flex justify-content-between align-items-center">
             <h2 className="text-info">Welcome, {username}</h2>
             <div>
-              <Link to="/update">
+              <Link to={`/user/edit/${localStorage.getItem("appUserId")}`}>
                 <Button className="btn btn-outline-warning btn-lg">
+                 Edit Personal Info {' '}
                   <BsPencilSquare />
                 </Button>
               </Link>
-              <p></p>
+              {/* <p></p>
               <Link to="/">
                 <Button className="btn btn-lg btn-warning">
                   <BiHomeHeart />
                 </Button>
-              </Link>
+              </Link> */}
             </div>
           </div>
           <hr />

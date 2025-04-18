@@ -165,7 +165,7 @@ function VehicleForm() {
                     </ul>
                 </div>
             )}
-            <section className="container justify-content-md-center">
+            <section className="container p-4 mt-4 justify-content-md-center">
                 <div className="jumbotron col-md-6 offset-md-3">
                     <h2 className="text-center text-info p-4">Vehicle Form</h2>
                     <form onSubmit={handleSubmit}>
@@ -293,9 +293,9 @@ function VehicleForm() {
                                 onChange={handleFileUpload}
                             />
                         </div>
-                        <div className="d-flex justify-content-between mt-3 mb-4">
-                        <button type="submit" className={`btn btn-${id ? "warning":"info"} btn-lg`}>{id > 0 ? "Save Updates" : "Save Added Car"} </button>
-                        <Link to={'/vehicles'}><button type="button" className='btn btn-secondary btn-lg'>Cancel</button>
+                        <div className="d-flex justify-content-between mt-4">
+                        <button type="submit" className={`btn btn-${id ? "warning":"info"} btn-lg mt-4`}>{id > 0 ? "Save Updates" : "Save Added Car"} </button>
+                        <Link to={'/vehicles'}><button type="button" className='btn btn-secondary btn-lg mt-4'>Cancel</button>
                         </Link>
                         </div>
                     </form>    
