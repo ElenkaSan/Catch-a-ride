@@ -140,7 +140,7 @@ function Vehicle({ showAvailableOnly = false }) {
       <div className="row">
         {getVehicles.map((vehicle) => (
           <div className="col-md-6 col-lg-3 mb-5" key={vehicle.vehicleId}>
-            <div className="card h-100 shadow border border-info border-rounded">
+            <div className="card h-100 shadow border border-secondary">
               {vehicle.imageUrl ? (
                 <img
                   src={

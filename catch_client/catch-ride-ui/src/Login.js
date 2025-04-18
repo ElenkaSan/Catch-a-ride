@@ -53,15 +53,15 @@ const LoginComponent = () => {
   
 
     return (
-        <div className="container mt-5">
-            <div className="row justify-content-center">
-                <div className="col-md-6">
-                    <div className="card">
-                        <div className="card-header">Login Form</div>
+        <div className="container p-4 mt-4 justify-content-md-center">
+            <div className="jumbotron col-md-6 offset-md-3">
+                {/* <div className="col-md-6"> */}
+                    {/* <div className="card"> */}
+                    <h2 className="text-center text-info p-4">Login Form</h2>
                         <div className="card-body">
                             {message && <div className="alert alert-danger">{message}</div>}
                             <form onSubmit={handleLogin}>
-                                <div className="form-group">
+                                <div className="form-group mb-3">
                                     <label>Username</label>
                                     <input
                                         type="text"
@@ -70,7 +70,7 @@ const LoginComponent = () => {
                                         onChange={(e) => setUsername(e.target.value)}
                                     />
                                 </div>
-                                <div className="form-group">
+                                <div className="form-group mb-3">
                                     <label>Password</label>
                                     <input
                                         type="password"
@@ -79,14 +79,14 @@ const LoginComponent = () => {
                                         onChange={(e) => setPassword(e.target.value)}
                                     />
                                 </div>
-                                <button type="submit" className="btn btn-primary">Login</button>
+                                <button type="submit" className="btn btn-info btn-lg mt-4">Login</button>
                             </form>
-                            <div className="mt-3">
+                            <div className="mt-4">
                                 <span>Not registered? <Link to="/register/">Register here</Link></span>
                             </div>
                         </div>
-                    </div>
-                </div>
+                    {/* </div> */}
+                {/* </div> */}
             </div>
         </div>
     );
