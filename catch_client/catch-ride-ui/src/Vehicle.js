@@ -129,7 +129,7 @@ function Vehicle({ showAvailableOnly = false }) {
 
       <div className="d-flex justify-content-between align-items-center mb-5">
         {isAdmin && (
-          <Link className="btn btn-info btn-lg btn-outline-dark" to="/vehicle/add">
+          <Link className="btn btn-lg btn-outline-info" to="/vehicle/add">
             Add New Car
           </Link>
         )}
