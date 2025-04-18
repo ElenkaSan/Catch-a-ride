@@ -100,9 +100,10 @@ function AppNavbar() {
           <NavItem>
             <Link to="/vehicles" className="nav-link text-light px-3">Available Cars</Link>
           </NavItem>
+
           {/* <NavItem>
             <Link to="/booking/add" className="nav-link text-light px-3">Add Booking</Link>
-          </NavItem> */}
+          </NavItem> */
 
           {!isLoggedIn && (
             <>
