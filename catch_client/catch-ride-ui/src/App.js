@@ -36,10 +36,11 @@ function App() {
               <Route path="/vehicles/" element={<VehicleList/>}/>
               <Route path="/login/" element={<Login/>}/>
               <Route path="register/" element={<RegisterComponent/>}/>
+              <Route path="admin/register" element={<RegisterComponent/>}/>
               <Route path="/admin" element={<PrivateRoute requiredRole="ROLE_ADMIN"><AdminPage /></PrivateRoute>}/>
               <Route path="/not-authorized" element={<NotAuthorized />} />
               <Route path="/user/edit/:userId" element={<UserInfoForm />} />
-              <Route path="/user/add" element={<UserInfoForm />} />
+              <Route path="/user/add" element={<RegisterComponent/>} />
               <Route path="/user" element={<UserPage />} />
               <Route path="*" element={<NotFound/>}/>
             </Routes>
