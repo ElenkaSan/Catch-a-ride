@@ -1,6 +1,6 @@
 import './App.css';
 import { BrowserRouter as Router, Routes, Route} from 'react-router-dom';
-import Navbar from "./Navbar";
+import AppNavbar from "./AppNavbar";
 import Home from "./Home";
 import VehicleList from "./VehicleList";
 import VehicleForm from "./VehicleForm";
@@ -22,7 +22,7 @@ function App() {
         v7_startTransition: true,
         v7_relativeSplatPath: true,
       }}>
-            <Navbar/>
+          <AppNavbar/>
             <Routes>
               <Route path="/" element={<Home/>}/>
               <Route path="/booking" element={<Booking/>}/>
