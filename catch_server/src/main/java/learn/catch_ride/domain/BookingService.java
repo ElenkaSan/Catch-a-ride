@@ -54,6 +54,7 @@ public class BookingService {
         vehicleRepository.update(vehicle);
         BigDecimal total = calculateTotal(booking, vehicle);
         booking.setTotal(total);
+        System.out.println("System date now: " + LocalDate.now());
         booking.setDateCreated(LocalDate.now());
         booking = bookingRepository.add(booking);
         result.setPayload(booking);

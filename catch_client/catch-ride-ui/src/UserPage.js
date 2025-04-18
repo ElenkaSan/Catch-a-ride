@@ -1,3 +1,4 @@
+import './App.css';
 import React, { useEffect, useState } from "react";
 import { Link, Navigate } from "react-router-dom";
 import {
@@ -27,7 +28,7 @@ const UserPage = ({ updateUser }) => {
   const token = localStorage.getItem("token");
   const appUserId = localStorage.getItem("appUserId");
   const locationId = localStorage.getItem("locationId");
-  console.log(locationId)
+
   useEffect(() => {
     setUsername(localStorage.getItem("username") || "");
     setFirstName(localStorage.getItem("firstName") || "");
@@ -44,6 +45,14 @@ const UserPage = ({ updateUser }) => {
           bookings.map(async (booking) => {
             let userAddress = null;
             let dealershipAddress = null;
+            let vehicle = null;
+
+            try {
+              const res = await fetch(`http://localhost:8080/api/vehicle/id/${booking.vehicleId}`);
+              if (res.ok) vehicle = await res.json();
+            } catch (e) {
+              console.error("Failed to fetch user location", e);
+            }
   
             try {
               const res = await fetch(`http://localhost:8080/api/location/${locationId}`);
@@ -62,6 +71,7 @@ const UserPage = ({ updateUser }) => {
   
             return {
               ...booking,
+              vehicle,
               userAddress,
               dealershipAddress,
             };
@@ -75,28 +85,16 @@ const UserPage = ({ updateUser }) => {
         setLoading(false);
       }
     }
-
-    // Fetch bookings
-    // if (appUserId) {
-    //   fetch(`http://localhost:8080/api/booking/user/${appUserId}`)
-    //     .then((res) =>
-    //       res.ok ? res.json() : Promise.reject("Failed to load bookings")
-    //     )
-    //     .then((data) => {
-    //       setBookings(data);
-    //       setLoading(false);
-    //     })
-    //     .catch((err) => {
-    //       console.error(err);
-    //       setLoading(false);
-    //     });
-    // }
-
-    
+ 
   if (appUserId) {
     fetchBookingInfo();
   }
   }, [appUserId]);
+
+  function formatDate(isoDateString) {
+    const [year, month, day] = isoDateString.split("-");
+    return `${month}/${day}/${year}`;
+  }
 
   const handleDeleteBooking = (bookingId) => {
     const booking = getBookings.find((b) => b.bookingId === bookingId);
@@ -143,9 +141,9 @@ const UserPage = ({ updateUser }) => {
                 </CardTitle>
 
                 <CardText>
+                  <strong>Vehicle:</strong> {booking.vehicle?.make}, {booking.vehicle?.model}<br />
                   <strong>Year:</strong> {booking.vehicle?.year} <br />
-                  <strong>Booked Date:</strong>{" "}
-                  {new Date(booking.startDate).toLocaleDateString()} <br />
+                  <strong>Booked Date:</strong> {formatDate(booking.startDate)} <br />
                   <strong>Delivering from </strong> {booking.dealershipAddress?.address}, {booking.dealershipAddress?.city}, {booking.dealershipAddress?.state} <br />
                   <strong>to </strong> {booking.userAddress?.address}, {booking.userAddress?.city}, {booking.userAddress?.state} <br />
                 </CardText>
@@ -153,13 +151,13 @@ const UserPage = ({ updateUser }) => {
                   <Link
                     to={`/booking/edit/${booking.bookingId}`} 
                     state={{vehicleId: booking.vehicleId, userId: localStorage.getItem('appUserId'), dealershipLocationId: booking.dealershipLocationId}} 
-                    className="btn btn-outline-warning btn-sm"
+                    className="btn btn-warning btn-lg"
                   >
-                    Edit
+                    Edit Booking
                   </Link>
                   <Button
                     color="danger"
-                    size="sm"
+                    size="lg"
                     onClick={() => handleDeleteBooking(booking.bookingId)}
                   >
                     Delete
@@ -174,19 +172,20 @@ const UserPage = ({ updateUser }) => {
   );
 
   return (
-    <section className="container mt-4 ">
+    <section className="container mt-4">
       <Card className="text-center bg-light text-info">
         <CardBody>
           <div className="d-flex justify-content-between align-items-center">
             <h2 className="text-info">Welcome, {username}</h2>
             <div>
               <Link to="/update">
-                <Button className="btn btn-outline-warning me-2">
+                <Button className="btn btn-outline-warning btn-lg">
                   <BsPencilSquare />
                 </Button>
               </Link>
+              <p></p>
               <Link to="/">
-                <Button className="btn btn-warning">
+                <Button className="btn btn-lg btn-warning">
                   <BiHomeHeart />
                 </Button>
               </Link>
@@ -220,7 +219,6 @@ const UserPage = ({ updateUser }) => {
           )}
         </CardBody>
       </Card>
-      <hr />
     </section>
   );
 };
