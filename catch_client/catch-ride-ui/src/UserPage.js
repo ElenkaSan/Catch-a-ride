@@ -136,18 +136,18 @@ const UserPage = ({ updateUser }) => {
                 className="img-fluid"
               />
               <CardBody>
-                <CardTitle tag="h5" className="text-info">
+                <CardTitle tag="h5" className="text-info h2">
                   {booking.vehicle?.make} {booking.vehicle?.model}
                 </CardTitle>
 
-                <CardText>
+                <CardText className="text-secondary h4"> 
                   <strong>Vehicle:</strong> {booking.vehicle?.make}, {booking.vehicle?.model}<br />
                   <strong>Year:</strong> {booking.vehicle?.year} <br />
                   <strong>Booked Date:</strong> {formatDate(booking.startDate)} <br />
                   <strong>Delivering from </strong> {booking.dealershipAddress?.address}, {booking.dealershipAddress?.city}, {booking.dealershipAddress?.state} <br />
                   <strong>to </strong> {booking.userAddress?.address}, {booking.userAddress?.city}, {booking.userAddress?.state} <br />
                 </CardText>
-                <div className="d-flex justify-content-between">
+                <div className="d-flex justify-content-between mt-4">
                   <Link
                     to={`/booking/edit/${booking.bookingId}`} 
                     state={{vehicleId: booking.vehicleId, userId: localStorage.getItem('appUserId'), dealershipLocationId: booking.dealershipLocationId}} 
