@@ -70,10 +70,12 @@ function UserInfoForm() {
       ]);
 
       if (userRes.status === 204 && locationRes.status === 204) {
+        localStorage.setItem("zipCode", location.zipCode);
         setGetMessage("Your information was successfully updated!");
         setTimeout(() => {
           setGetMessage("");
           navigate("/");
+          window.location.reload();
         }, 2000);
       } else {
         const userErr = await userRes.json();

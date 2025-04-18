@@ -101,7 +101,6 @@ public class DealershipJdbcTemplateRepository implements DealershipRepository {
     @Transactional
     @Override
     public boolean deleteById(int dealershipId) {
-    //    jdbcTemplate.update("delete from vehicle where vehicle_id = ?;", dealershipId); wrong..
         jdbcTemplate.update("delete from vehicle where dealership_id = ?;", dealershipId);
         return jdbcTemplate.update("delete from dealership where dealership_id = ?;", dealershipId) > 0;
     }

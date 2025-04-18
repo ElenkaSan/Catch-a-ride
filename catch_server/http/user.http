@@ -4,7 +4,7 @@
 GET {{url}} HTTP/1.1
 Authorization: Bearer eyJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJjYXRjaC1yaWRlIiwic3ViIjoiYWRtaW4iLCJhdXRob3JpdGllcyI6IlJPTEVfQURNSU4iLCJleHAiOjE3NDQ5MDk4NTV9.IBL1AYl4ex4KCmlcu4ZmZ0z8j0HHeGdUAsohcZYEndo
 ### User 1
-GET {{url}}/1 HTTP/1.1
+GET {{url}}/3 HTTP/1.1
 Authorization: Bearer eyJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJjYXRjaC1yaWRlIiwic3ViIjoiYWRtaW4iLCJhdXRob3JpdGllcyI6IlJPTEVfQURNSU4iLCJleHAiOjE3NDQ5MDk4NTV9.IBL1AYl4ex4KCmlcu4ZmZ0z8j0HHeGdUAsohcZYEndo
 
 
@@ -51,4 +51,4 @@ Content-Type: application/json
 GET {{url}}/id/4 HTTP/1.1
 
 ###
-DELETE {{url}}/6 HTTP/1.1
+DELETE {{url}}/3 HTTP/1.1

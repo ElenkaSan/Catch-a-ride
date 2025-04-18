@@ -7,48 +7,52 @@ import defaultImg from "./logo.png";
 function Vehicle({ showAvailableOnly = false }) {
   const [getVehicles, setGetVehicles] = useState([]);
   const [getMessage, setGetMessage] = useState("");
-  const [filterByZip, setFilterByZip] = useState(false);
-  const [userZip, setUserZip] = useState(null);
+  const [zipFilter, setZipFilter] = useState({ enabled: false, zip: null });
   const navigate = useNavigate(); 
   const [isAdmin, setIsAdmin] = useState(false);
   const [isLoggedIn, setIsLoggedIn] = useState(false);
 
-  const fetchVehicles = async () => {
+  const fetchVehicles = async (zip) => {
     try {
-      if (filterByZip && userZip) {
-        const response = await fetch(`http://localhost:8080/api/vehicle/zipcode/${userZip}`);
+      if (zipFilter.enabled && zip) {
+        const response = await fetch(`http://localhost:8080/api/vehicle/zipcode/${zip}`);
         const data = await response.json();
-        
+  
         if (!Array.isArray(data)) {
           console.error("Expected an array but got:", data);
           setGetVehicles([]);
           setGetMessage("Unexpected response format.");
           return;
         }
+  
         if (data.length === 0) {
           setGetMessage("Sorry but there are no cars available in that zip code.");
         } else {
           setGetMessage("");
         }
+  
         const vehiclesToShow = showAvailableOnly
           ? data.filter((v) => !v.bookingStatus)
           : data;
+  
         setGetVehicles(vehiclesToShow);
       } else {
         const response = await fetch("http://localhost:8080/api/vehicle");
         const data = await response.json();
-        
+  
         if (!Array.isArray(data)) {
           console.error("Expected an array but got:", data);
           setGetVehicles([]);
           setGetMessage("Unexpected response format.");
           return;
         }
+  
         const vehiclesToShow = showAvailableOnly
           ? data.filter((v) => !v.bookingStatus)
           : data;
+  
         setGetVehicles(vehiclesToShow);
-        setGetMessage(""); // Reset message if not filtering
+        setGetMessage("");
       }
     } catch (err) {
       console.error("Fetch error:", err);
@@ -56,28 +60,20 @@ function Vehicle({ showAvailableOnly = false }) {
     }
   };
 
-  const toggleZipFilter = async () => {
-    const newFilterState = !filterByZip;
-
+  const toggleZipFilter = () => {
+    const newFilterState = !zipFilter.enabled;
+  
     if (newFilterState) {
-      const locationId = localStorage.getItem("locationId");
-      if (locationId) {
-        try {
-          const res = await fetch(`http://localhost:8080/api/location/${locationId}`);
-          const data = await res.json();
-          setUserZip(data.zipCode);
-        } catch (err) {
-          console.error("Error fetching location:", err);
-          setGetMessage("Failed to retrieve your zip code.");
-          return;
-        }
+      const freshZip = localStorage.getItem("zipCode");
+  
+      if (freshZip) {
+        setZipFilter({ enabled: true, zip: freshZip });
       } else {
-        setGetMessage("You must be logged in to use zip filtering.");
-        return;
+        setGetMessage("Your zip code is missing. Please update your profile.");
       }
+    } else {
+      setZipFilter({ enabled: false, zip: null });
     }
-
-    setFilterByZip(newFilterState);
   };
 
   useEffect(() => {
@@ -89,14 +85,26 @@ function Vehicle({ showAvailableOnly = false }) {
   }, []);
 
   useEffect(() => {
-    fetchVehicles();
-  }, [filterByZip, showAvailableOnly, userZip]);
+    if (zipFilter.enabled && zipFilter.zip) {
+      fetchVehicles(zipFilter.zip);
+    } else {
+      fetchVehicles();
+    }
+  }, [zipFilter, showAvailableOnly]);
 
-  const handleBookClick = (vehicleId) => {
+
+
+  const handleBookClick = (vehicleId, dealershipId) => {
     if (!isLoggedIn) {
       navigate("/login");
     } else {
-      navigate(`/booking/add`);
+      navigate("/booking/add", {
+        state: {
+          vehicleId,
+          userId: localStorage.getItem('appUserId'),
+          dealershipLocationId: dealershipId
+        }
+      });
     }
   };
 
@@ -134,7 +142,7 @@ function Vehicle({ showAvailableOnly = false }) {
           </Link>
         )}
         <button className="btn btn-outline-dark btn-lg" onClick={toggleZipFilter}>
-          {filterByZip ? "Show All Cars" : "Show Cars in My Zip"}
+        {zipFilter.enabled ? "Show All Cars" : "Show Cars in My Zip"}
         </button>
       </div>
 
@@ -174,16 +182,11 @@ function Vehicle({ showAvailableOnly = false }) {
                 </p>
                 <div className="mt-auto">
                   {!vehicle.bookingStatus && (
-                    <Link
-                      to={`/booking/add`}
-                      state={{
-                        vehicleId: vehicle.vehicleId,
-                        userId: localStorage.getItem('appUserId'),
-                        dealershipLocationId: vehicle.dealershipId
-                      }}
-                      className="btn btn-success btn-lg mt-2">
-                      Book Car
-                    </Link>
+                    <button
+                    className="btn btn-success btn-lg mt-2"
+                    onClick={() => handleBookClick(vehicle.vehicleId, vehicle.dealershipId)}>
+                    Book Car
+                  </button>
                   )}
                   {isAdmin && (
                     <>
