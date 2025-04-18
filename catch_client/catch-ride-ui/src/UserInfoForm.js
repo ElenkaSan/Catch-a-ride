@@ -70,10 +70,12 @@ function UserInfoForm() {
       ]);
 
       if (userRes.status === 204 && locationRes.status === 204) {
+        localStorage.setItem("zipCode", location.zipCode);
         setGetMessage("Your information was successfully updated!");
         setTimeout(() => {
           setGetMessage("");
           navigate("/");
+          window.location.reload();
         }, 2000);
       } else {
         const userErr = await userRes.json();
@@ -87,11 +89,9 @@ function UserInfoForm() {
   };
 
   return (
-    <div className="container p-4 mt-4">
-     <section className="container justify-content-md-center">
-       <div className="jumbotron col-md-6 offset-md-3">
-       {getMessage && <div className="alert alert-success text-center">{getMessage}</div>}
-       {error.length > 0 && (
+    <div className="container mt-4">
+      {getMessage && <div className="alert alert-success text-center">{getMessage}</div>}
+      {error.length > 0 && (
         <div className="alert alert-danger">
           <strong>Errors:</strong>
           <ul>{error.map((err, idx) => <li key={idx}>{err}</li>)}</ul>
@@ -132,15 +132,12 @@ function UserInfoForm() {
           <label htmlFor="zipCode" className="form-label">Zip Code</label>
           <input type="text" className="form-control" id="zipCode" name="zipCode" value={location.zipCode} onChange={handleLocationChange} required />
         </div>
-
         <div className="d-flex justify-content-between mt-4 p-2">
           <button type="submit" className="btn btn-warning btn-lg">Save Updates</button>
           <Link to="/" className="btn btn-secondary btn-lg">Cancel</Link>
         </div>
       </form>
     </div>
-  </section>
-</div>
   );
 }
 

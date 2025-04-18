@@ -53,7 +53,7 @@ public class UserService {
         User user = findById(userId);
 
         if (userRepository.getUsageCount(userId) > 0) {
-            result.addMessage("Cannot delete location that is referenced in other tables.", ResultType.INVALID);
+            result.addMessage("Cannot delete user that is referenced in other tables.", ResultType.INVALID);
             result.setPayload(user);
             return result;
         }

@@ -15,6 +15,7 @@ const BOOKING_DEFAULT = {
 function BookingForm() {
     const [booking, setBooking] = useState(BOOKING_DEFAULT);
     const [errors, setErrors] = useState([]);
+    const [isAdmin, setIsAdmin] = useState(false);
     const url = "http://localhost:8080/api/booking";
     const navigate = useNavigate();
     const { bookingId } = useParams();
@@ -23,6 +24,11 @@ function BookingForm() {
     useEffect(() => {
         console.log("Incoming state:", location.state);
         console.log("b_Id:", bookingId);
+
+        const roleRaw = localStorage.getItem("roles");
+        const roles = JSON.parse(roleRaw);
+        setIsAdmin(Array.isArray(roles) && roles.includes("ROLE_ADMIN"));
+
         if (bookingId) {
             fetch(`${url}/bookingId/${bookingId}`)
                 .then((response) => {
@@ -179,7 +185,7 @@ function BookingForm() {
                         </div>
                         <div className="d-flex justify-content-between mt-4">
                             <button type="submit" className="btn btn-success btn-lg">{parseInt(bookingId) > 0 ? 'Submit Booking' : 'Add Booking'}</button>
-                            <Link type="button" className="btn btn-secondary btn-lg" to={'/user'}>Cancel</Link>
+                            <Link type="button" className="btn btn-secondary btn-lg" to={isAdmin ? '/admin' : '/user'}>Cancel</Link>
                         </div> 
                     </fieldset>
                 </form>
