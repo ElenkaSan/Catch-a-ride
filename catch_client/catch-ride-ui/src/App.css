@@ -82,7 +82,7 @@
 @media (max-width: 768px) {
   .custom-dropdown-bg .dropdown-menu {
     background-color: var(--cyan-800) !important;
-    min-width: 160px !important; /* Ensures menu is wide enough */
+    min-width: 170px !important; /* Ensures menu is wide enough */
     padding: 0.5rem 1rem;
     border-radius: 0.25rem;
   }

@@ -20,7 +20,7 @@ const LoginComponent = () => {
         localStorage.setItem('roles', JSON.stringify(roles));
         localStorage.setItem('appUserId', appUserId);
         localStorage.setItem('username', username); // save the login name
-  
+
         // Fetch user info from User table
         const userResponse = await axios.get(
           `http://localhost:8080/api/user/${appUserId}`,

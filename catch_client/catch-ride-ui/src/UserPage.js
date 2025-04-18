@@ -26,28 +26,76 @@ const UserPage = ({ updateUser }) => {
 
   const token = localStorage.getItem("token");
   const appUserId = localStorage.getItem("appUserId");
-
+  const locationId = localStorage.getItem("locationId");
+  console.log(locationId)
   useEffect(() => {
     setUsername(localStorage.getItem("username") || "");
     setFirstName(localStorage.getItem("firstName") || "");
     setLastName(localStorage.getItem("lastName") || "");
     setEmail(localStorage.getItem("email") || "");
 
-    // Fetch bookings
-    if (appUserId) {
-      fetch(`http://localhost:8080/api/booking/user/${appUserId}`)
-        .then((res) =>
-          res.ok ? res.json() : Promise.reject("Failed to load bookings")
-        )
-        .then((data) => {
-          setBookings(data);
-          setLoading(false);
-        })
-        .catch((err) => {
-          console.error(err);
-          setLoading(false);
-        });
+    const fetchBookingInfo = async () => {
+      try {
+        const bookingRes = await fetch(`http://localhost:8080/api/booking/user/${appUserId}`);
+        if (!bookingRes.ok) throw new Error("Failed to load bookings");
+        const bookings = await bookingRes.json();
+
+        const bookingsWithLocation = await Promise.all(
+          bookings.map(async (booking) => {
+            let userAddress = null;
+            let dealershipAddress = null;
+  
+            try {
+              const res = await fetch(`http://localhost:8080/api/location/${locationId}`);
+              if (res.ok) userAddress = await res.json();
+            } catch (e) {
+              console.error("Failed to fetch user location", e);
+            }
+
+  
+            try {
+              const dealershipAddRes = await fetch(`http://localhost:8080/api/location/${booking.dealershipLocationId}`);
+              if (dealershipAddRes.ok) dealershipAddress = await dealershipAddRes.json();
+            } catch (e) {
+              console.error("Failed to fetch dealership location", e);
+            }
+  
+            return {
+              ...booking,
+              userAddress,
+              dealershipAddress,
+            };
+          })
+        );
+
+        setBookings(bookingsWithLocation);
+        setLoading(false);
+      } catch (err) {
+        console.error(err);
+        setLoading(false);
+      }
     }
+
+    // Fetch bookings
+    // if (appUserId) {
+    //   fetch(`http://localhost:8080/api/booking/user/${appUserId}`)
+    //     .then((res) =>
+    //       res.ok ? res.json() : Promise.reject("Failed to load bookings")
+    //     )
+    //     .then((data) => {
+    //       setBookings(data);
+    //       setLoading(false);
+    //     })
+    //     .catch((err) => {
+    //       console.error(err);
+    //       setLoading(false);
+    //     });
+    // }
+
+    
+  if (appUserId) {
+    fetchBookingInfo();
+  }
   }, [appUserId]);
 
   const handleDeleteBooking = (bookingId) => {
@@ -78,11 +126,11 @@ const UserPage = ({ updateUser }) => {
   const renderBookedCars = () => (
     <div className="mt-4">
       <h3 className="text-center text-info">Hello, {firstName || username}!</h3>
-      <h4 className="text-center text-light mb-4">You have booked these Cars:</h4>
+      <h4 className="text-center text-secondary mb-4">You have booked these Cars:</h4>
       <div className="row justify-content-center">
         {getBookings.map((booking) => (
           <div className="col-md-4 mb-4" key={booking.bookingId}>
-            <Card className="shadow-sm rounded">
+            <Card className="rounded">
               <CardImg
                 top
                 src={booking.vehicle?.imageCar || "/logo.png"}
@@ -93,10 +141,13 @@ const UserPage = ({ updateUser }) => {
                 <CardTitle tag="h5" className="text-info">
                   {booking.vehicle?.make} {booking.vehicle?.model}
                 </CardTitle>
+
                 <CardText>
                   <strong>Year:</strong> {booking.vehicle?.year} <br />
                   <strong>Booked Date:</strong>{" "}
-                  {new Date(booking.startDate).toLocaleDateString()}
+                  {new Date(booking.startDate).toLocaleDateString()} <br />
+                  <strong>Delivering from </strong> {booking.dealershipAddress?.address}, {booking.dealershipAddress?.city}, {booking.dealershipAddress?.state} <br />
+                  <strong>to </strong> {booking.userAddress?.address}, {booking.userAddress?.city}, {booking.userAddress?.state} <br />
                 </CardText>
                 <div className="d-flex justify-content-between">
                   <Link
@@ -123,8 +174,8 @@ const UserPage = ({ updateUser }) => {
   );
 
   return (
-    <section className="container">
-      <Card className="text-center bg-dark text-white border-info">
+    <section className="container mt-4 ">
+      <Card className="text-center bg-light text-info">
         <CardBody>
           <div className="d-flex justify-content-between align-items-center">
             <h2 className="text-info">Welcome, {username}</h2>
@@ -147,16 +198,17 @@ const UserPage = ({ updateUser }) => {
           ) : (
             <>
               <div className="text-start mb-3">
-                <h4 className="text-warning">
+                <h3 className="text-warning">
                   Full Name:{" "}
                   {firstName && lastName
                     ? `${firstName} ${lastName}`
                     : username}
-                </h4>
-                <h5 className="text-light">Email: {email || "N/A"}</h5>
+                </h3>
+                <h4 className="text-secondary">Email: {email || "N/A"}</h4>
+                <br/>
               </div>
               {loading ? (
-                <p className="text-light">Loading your bookings...</p>
+                <p className="text-secondary">Loading your bookings...</p>
               ) : getBookings.length === 0 ? (
                 <div className="alert alert-info mt-4">
                   <h5 className="mb-0">You have no cars booked yet.</h5>
