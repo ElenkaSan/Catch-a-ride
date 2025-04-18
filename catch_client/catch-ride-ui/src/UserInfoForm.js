@@ -89,11 +89,9 @@ function UserInfoForm() {
   };
 
   return (
-    <div className="container p-4 mt-4">
-     <section className="container justify-content-md-center">
-       <div className="jumbotron col-md-6 offset-md-3">
-       {getMessage && <div className="alert alert-success text-center">{getMessage}</div>}
-       {error.length > 0 && (
+    <div className="container mt-4">
+      {getMessage && <div className="alert alert-success text-center">{getMessage}</div>}
+      {error.length > 0 && (
         <div className="alert alert-danger">
           <strong>Errors:</strong>
           <ul>{error.map((err, idx) => <li key={idx}>{err}</li>)}</ul>
@@ -136,13 +134,11 @@ function UserInfoForm() {
         </div>
 
         <div className="d-flex justify-content-between mt-4">
-          <button type="submit" className="btn btn-warning btn-lg">Save Updates</button>
-          <Link to="/" className="btn btn-secondary btn-lg">Cancel</Link>
+          <button type="submit" className="btn btn-warning">Save Updates</button>
+          <Link to="/" className="btn btn-secondary">Cancel</Link>
         </div>
       </form>
     </div>
-  </section>
-</div>
   );
 }
 
