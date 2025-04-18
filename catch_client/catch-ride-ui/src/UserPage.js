@@ -78,11 +78,11 @@ const UserPage = ({ updateUser }) => {
   const renderBookedCars = () => (
     <div className="mt-4">
       <h3 className="text-center text-info">Hello, {firstName || username}!</h3>
-      <h4 className="text-center text-light mb-4">You have booked these Cars:</h4>
+      <h4 className="text-center text-secondary mb-4">You have booked these Cars:</h4>
       <div className="row justify-content-center">
         {getBookings.map((booking) => (
           <div className="col-md-4 mb-4" key={booking.bookingId}>
-            <Card className="shadow-sm rounded">
+            <Card className="rounded">
               <CardImg
                 top
                 src={booking.vehicle?.imageCar || "/logo.png"}
@@ -123,8 +123,8 @@ const UserPage = ({ updateUser }) => {
   );
 
   return (
-    <section className="container">
-      <Card className="text-center bg-dark text-white border-info">
+    <section className="container mt-4 ">
+      <Card className="text-center bg-light text-info">
         <CardBody>
           <div className="d-flex justify-content-between align-items-center">
             <h2 className="text-info">Welcome, {username}</h2>
@@ -147,16 +147,17 @@ const UserPage = ({ updateUser }) => {
           ) : (
             <>
               <div className="text-start mb-3">
-                <h4 className="text-warning">
+                <h3 className="text-warning">
                   Full Name:{" "}
                   {firstName && lastName
                     ? `${firstName} ${lastName}`
                     : username}
-                </h4>
-                <h5 className="text-light">Email: {email || "N/A"}</h5>
+                </h3>
+                <h4 className="text-secondary">Email: {email || "N/A"}</h4>
+                <br/>
               </div>
               {loading ? (
-                <p className="text-light">Loading your bookings...</p>
+                <p className="text-secondary">Loading your bookings...</p>
               ) : getBookings.length === 0 ? (
                 <div className="alert alert-info mt-4">
                   <h5 className="mb-0">You have no cars booked yet.</h5>
