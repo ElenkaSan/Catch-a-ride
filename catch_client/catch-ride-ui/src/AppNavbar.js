@@ -53,13 +53,17 @@ function AppNavbar() {
             Available Cars
           </Dropdown.Item>
 
+          {/* <Dropdown.Item as={Link} to="/booking/add">
+            Add Booking
+          </Dropdown.Item> */}
+
           {!isLoggedIn && (
             <>
               <Dropdown.Item as={Link} to="/login">
                 <BoxArrowInRight size={20} style={{ marginRight: "10px" }} />
                 Login
               </Dropdown.Item>
-              <Dropdown.Item as={Link} to="/signup">
+              <Dropdown.Item as={Link} to="/register">
                 <PersonPlus size={20} style={{ marginRight: "10px" }} />
                 Signup
               </Dropdown.Item>
@@ -97,6 +101,10 @@ function AppNavbar() {
             <Link to="/vehicles" className="nav-link text-light px-3">Available Cars</Link>
           </NavItem>
 
+          {/* <NavItem>
+            <Link to="/booking/add" className="nav-link text-light px-3">Add Booking</Link>
+          </NavItem> */
+
           {!isLoggedIn && (
             <>
               <NavItem>
@@ -106,7 +114,7 @@ function AppNavbar() {
                 </Link>
               </NavItem>
               <NavItem>
-                <Link to="/signup" className="nav-link text-light px-3">
+                <Link to="/register" className="nav-link text-light px-3">
                   <PersonPlus size={20} style={{ marginRight: "10px" }} />
                   Signup
                 </Link>
