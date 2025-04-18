@@ -20,7 +20,7 @@ const LoginComponent = () => {
         localStorage.setItem('roles', JSON.stringify(roles));
         localStorage.setItem('appUserId', appUserId);
         localStorage.setItem('username', username); // save the login name
-  
+
         // Fetch user info from User table
         const userResponse = await axios.get(
           `http://localhost:8080/api/user/${appUserId}`,
@@ -31,11 +31,12 @@ const LoginComponent = () => {
           }
         );
   
-        const { firstName, lastName, email } = userResponse.data;
+        const { firstName, lastName, email, locationId } = userResponse.data;
   
         localStorage.setItem('firstName', firstName);
         localStorage.setItem('lastName', lastName);
         localStorage.setItem('email', email);
+        localStorage.setItem('locationId', locationId);
         if (localStorage.getItem('roles').includes('ADMIN')){
             navigate('/admin');
         }
