@@ -213,7 +213,7 @@ const UserPage = ({ updateUser }) => {
                 <br/>
               </div>
               {loading ? (
-                <p className="text-secondary">Loading your bookings...</p>
+                <p className="text-secondary fs-3">Loading your bookings...</p>
               ) : getBookings.length === 0 ? (
                 <div className="alert alert-info mt-4">
                   <h5 className="mb-0">You have no cars booked yet.</h5>
