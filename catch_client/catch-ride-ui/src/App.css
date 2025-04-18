@@ -49,6 +49,10 @@
   background-color:rgba(0, 107, 115, 0.81);
 }
 
+.text {
+  color: 006b73;
+}
+
 .jarallax {
   position: relative;
   z-index: 0;

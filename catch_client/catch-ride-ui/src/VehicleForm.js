@@ -167,9 +167,9 @@ function VehicleForm() {
             )}
             <section className="container p-4 mt-4 justify-content-md-center">
                 <div className="jumbotron col-md-6 offset-md-3">
-                    <h2 className="text-center text-info p-4">Vehicle Form</h2>
+                    <h2 className="text-center text-success p-4">Vehicle Form</h2>
                     <form onSubmit={handleSubmit}>
-                       <div className="mb-3">
+                       <div className="mb-3 fs-3">
                            <label htmlFor="make" className="form-label">Make:</label>
                            <input type="text" 
                            className="form-control" 
@@ -180,7 +180,7 @@ function VehicleForm() {
                            disabled={!!id} 
                            required/>    
                        </div>    
-                       <div className="mb-3">
+                       <div className="mb-3 fs-3">
                            <label htmlFor="model" className="form-label">Model:</label>
                            <input type="text" 
                            className="form-control" 
@@ -191,7 +191,7 @@ function VehicleForm() {
                            disabled={!!id} 
                            required/>    
                        </div>    
-                          <div className="mb-3">
+                          <div className="mb-3 fs-3">
                             <label htmlFor="year" className="form-label">Year:</label>
                             <input type="number" 
                             className="form-control" 
@@ -202,7 +202,7 @@ function VehicleForm() {
                             disabled={!!id}
                             required/>
                         </div>
-                        <div className="mb-3">
+                        <div className="mb-3 fs-3">
                                 <label htmlFor="color" className="form-label">Color:</label>
                                 <input type="text" 
                                 className="form-control" 
@@ -211,7 +211,7 @@ function VehicleForm() {
                                 value={vehicle.color} 
                                 onChange={handleChange} />
                             </div>    
-                        <div className="mb-3">
+                        <div className="mb-3 fs-3">
                             <label htmlFor="trim" className="form-label">Trim:</label>
                             <input type="text" 
                             className="form-control" 
@@ -220,7 +220,7 @@ function VehicleForm() {
                             value={vehicle.trim} 
                             onChange={handleChange} />
                         </div> 
-                        <div className="mb-3">
+                        <div className="mb-3 fs-3">
                             <label htmlFor="rentRate" className="form-label">Rent Rate:</label>
                             <input type="text" 
                             className="form-control" 
@@ -230,7 +230,7 @@ function VehicleForm() {
                             onChange={handleChange} 
                             required/>
                         </div> 
-                        <div className="mb-3">
+                        <div className="mb-3 fs-3">
                             <label htmlFor="leaseRate" className="form-label">Lease Rate:</label>
                             <input type="text" 
                             className="form-control" 
@@ -240,7 +240,7 @@ function VehicleForm() {
                             onChange={handleChange} 
                             required/>
                         </div>  
-                        <div className="mb-3">
+                        <div className="mb-3 fs-3">
                             <label htmlFor="bookingStatus" className="form-label">Booked Status:</label>
                             <input type="checkbox" 
                             className="form-check-input m-3" 
@@ -250,7 +250,7 @@ function VehicleForm() {
                             onChange={(event) => setVehicle({ ...vehicle, bookingStatus: event.target.checked })} 
                             />
                         </div>
-                        <div className="mb-3">
+                        <div className="mb-3 fs-3">
                             <label htmlFor="dealershipId" className="form-label">Dealership ID:</label>
                             <input type="text"
                             className="form-control"
@@ -261,10 +261,10 @@ function VehicleForm() {
                             disabled={!!id}
                             required/>
                         </div>
-                        <p className="text-center text-info">Choose options:</p>
-                        <p className="text-muted small">
+                        <p className="text-center text-success fs-3">Choose options:</p>
+                        <p className="text-muted small fs-3">
                             {vehicle.imageUrlFile ? "Using uploaded file image" : vehicle.imageUrl ? "Using image URL" : "No image selected"}</p>
-                        <div className="mb-3">
+                        <div className="mb-3 fs-3">
                             <label htmlFor="imageUrl" className="form-label">Car Image (URL):</label>
                             <input
                                 type="text"
@@ -282,7 +282,7 @@ function VehicleForm() {
                                 />
                             )}
                         </div>
-                        <div className="mb-3">
+                        <div className="mb-3 fs-3">
                             <label htmlFor="imageUpload" className="form-label">Upload Car Image:</label>
                             <input
                                 type="file"
@@ -294,7 +294,7 @@ function VehicleForm() {
                             />
                         </div>
                         <div className="d-flex justify-content-between mt-4">
-                        <button type="submit" className={`btn btn-${id ? "warning":"info"} btn-lg mt-4`}>{id > 0 ? "Save Updates" : "Save Added Car"} </button>
+                        <button type="submit" className={`btn btn-${id ? "warning":"success"} btn-lg mt-4`}>{id > 0 ? "Save Updates" : "Save New Car"} </button>
                         <Link to={'/vehicles'}><button type="button" className='btn btn-secondary btn-lg mt-4'>Cancel</button>
                         </Link>
                         </div>

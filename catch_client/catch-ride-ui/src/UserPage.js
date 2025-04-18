@@ -181,7 +181,7 @@ const UserPage = ({ updateUser }) => {
       <Card className="text-center bg-light text-info">
         <CardBody>
           <div className="d-flex justify-content-between align-items-center">
-            <h2 className="text-info">Welcome, {username}</h2>
+            <h2 className="text-success fs-1">Welcome, {username}</h2>
             <div>
               <Link to={`/user/edit/${localStorage.getItem("appUserId")}`}>
                 <Button className="btn btn-outline-warning btn-lg">
