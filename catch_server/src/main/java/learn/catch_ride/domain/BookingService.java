@@ -91,6 +91,9 @@ public class BookingService {
             return result;
         }
 
+        Vehicle vehicle = vehicleRepository.findById(booking.getVehicleId());
+        vehicle.setBookingStatus(false);
+        vehicleRepository.update(vehicle);
         bookingRepository.deleteById(bookingId);
 
         result.setPayload(booking);
