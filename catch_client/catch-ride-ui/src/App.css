@@ -38,7 +38,7 @@
 }
 
 :root {
-  --cyan-800: #006b73; /* Replace this with your desired cyan color */
+  --cyan-800: #006b73;
 }
 
 .navbar {
@@ -46,8 +46,7 @@
 }
 
 .home {
-  background-color:rgba(0, 107, 115, 0.78);
-
+  background-color:rgba(0, 107, 115, 0.81);
 }
 
 .jarallax {

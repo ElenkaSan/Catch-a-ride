@@ -78,9 +78,10 @@ function Vehicle({ showAvailableOnly = false }) {
 
   useEffect(() => {
     const token = localStorage.getItem("token");
-    const role = localStorage.getItem("roles");
+    const roleRaw = localStorage.getItem("roles");
     setIsLoggedIn(!!token);
-    setIsAdmin(role === 'admin');
+    const roles = JSON.parse(roleRaw);
+    setIsAdmin(Array.isArray(roles) && roles.includes("ROLE_ADMIN"));
   }, []);
 
   useEffect(() => {
@@ -125,7 +126,7 @@ function Vehicle({ showAvailableOnly = false }) {
   };
 
   return (
-    <div className="container">
+    <div className="">
       <h2 className="text-center text-info p-4">Vehicles List</h2>
 
       {getMessage && (
@@ -134,9 +135,9 @@ function Vehicle({ showAvailableOnly = false }) {
         </div>
       )}
 
-      <div className="d-flex justify-content-between align-items-center mb-3">
+      <div className="d-flex justify-content-between align-items-center mb-5">
         {isAdmin && (
-          <Link className="btn btn-info btn-lg btn-outline-dark" to="/vehicle/add">
+          <Link className="btn btn-lg btn-outline-info" to="/vehicle/add">
             Add New Car
           </Link>
         )}
@@ -145,10 +146,10 @@ function Vehicle({ showAvailableOnly = false }) {
         </button>
       </div>
 
-      <div className="row">
+      <div className="row g-4">
         {getVehicles.map((vehicle) => (
-          <div className="col-md-6 col-lg-3 mb-5" key={vehicle.vehicleId}>
-            <div className="card h-100 shadow border border-info border-rounded">
+          <div className="col-md-6 col-lg-4 mb-5 px-5" key={vehicle.vehicleId}>
+            <div className="card h-100 shadow border border-secondary" style={{ borderRadius: "10px", padding: "1rem", minHeight: "450px"   }}>
               {vehicle.imageUrl ? (
                 <img
                   src={
@@ -157,14 +158,14 @@ function Vehicle({ showAvailableOnly = false }) {
                       : `http://localhost:8080/uploads/${vehicle.imageUrl}`
                   }
                   alt={`${vehicle.make} ${vehicle.model}`}
-                  className="card-img-top"
+                  className="card-img-top img-fluid w-100"
                   style={{ height: "180px", objectFit: "cover" }}
                 />
               ) : (
                 <img
                   src={defaultImg}
                   alt="Default Car img"
-                  className="card-img-top"
+                  className="card-img-top img-fluid w-100"
                   style={{ height: "180px", objectFit: "cover" }}
                 />
               )}
@@ -189,10 +190,10 @@ function Vehicle({ showAvailableOnly = false }) {
                   )}
                   {isAdmin && (
                     <>
-                      <Link to={`/vehicle/edit/${vehicle.vehicleId}`} className="btn btn-info btn-lg me-2">
+                      <Link to={`/vehicle/edit/${vehicle.vehicleId}`} className="btn btn-info btn-lg me-2 mt-2">
                         Edit
                       </Link>
-                      <button onClick={() => handleDeleteVehicle(vehicle.vehicleId)} className="btn btn-danger btn-lg">
+                      <button onClick={() => handleDeleteVehicle(vehicle.vehicleId)} className="btn btn-danger btn-lg mt-2">
                         Delete
                       </button>
                     </>
