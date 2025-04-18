@@ -52,7 +52,7 @@ function Navbar() {
 
         {isLoggedIn && isUser && (
           <Link className="p-5 text-light nav-item" to={"/user"}>
-            User Page
+            My Bookings
           </Link>
         )}
 

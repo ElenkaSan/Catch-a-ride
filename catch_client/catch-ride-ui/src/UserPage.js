@@ -15,9 +15,10 @@ import UserInfoForm from "./UserInfoForm";
 
 const UserPage = ({ updateUser }) => {
   const [isUpdate, setIsUpdate] = useToggle(false);
-  const [bookings, setBookings] = useState([]);
+  const [getBookings, setBookings] = useState([]);
+  const [getMessage, setMessage] = useState("");
   const [loading, setLoading] = useState(true);
-
+  const url = "http://localhost:8080/api/booking";
   const [username, setUsername] = useState("");
   const [firstName, setFirstName] = useState("");
   const [lastName, setLastName] = useState("");
@@ -49,6 +50,27 @@ const UserPage = ({ updateUser }) => {
     }
   }, [appUserId]);
 
+  const handleDeleteBooking = (bookingId) => {
+    const booking = getBookings.find((b) => b.bookingId === bookingId);
+    if(window.confirm(`Delete Booking on ${booking.startDate} to ${booking.endDate}?`))
+        {const init = {
+            method: "DELETE"
+        };
+        fetch(`${url}/${bookingId}`, init)
+            .then((response) => {
+                if (response.status === 204) {
+                    const seeBooking = getBookings.filter(
+                        (b) => b.bookingId !== bookingId);
+                        setBookings(seeBooking);
+                        setMessage(`Booking from ${booking.startDate} to ${booking.endDate} with ID #${bookingId} was successfully deleted!`);
+                } else {
+                    return Promise.reject(`Unexpected Status Code: ${response.status}`);
+                }
+            })
+            .catch(console.log);
+        }
+    };
+
   if (!token) {
     return <Navigate to="/login" replace />;
   }
@@ -58,7 +80,7 @@ const UserPage = ({ updateUser }) => {
       <h3 className="text-center text-info">Hello, {firstName || username}!</h3>
       <h4 className="text-center text-light mb-4">You have booked these Cars:</h4>
       <div className="row justify-content-center">
-        {bookings.map((booking) => (
+        {getBookings.map((booking) => (
           <div className="col-md-4 mb-4" key={booking.bookingId}>
             <Card className="shadow-sm rounded">
               <CardImg
@@ -76,6 +98,22 @@ const UserPage = ({ updateUser }) => {
                   <strong>Booked Date:</strong>{" "}
                   {new Date(booking.startDate).toLocaleDateString()}
                 </CardText>
+                <div className="d-flex justify-content-between">
+                  <Link
+                    to={`/booking/edit/${booking.bookingId}`} 
+                    state={{vehicleId: booking.vehicleId, userId: localStorage.getItem('appUserId'), dealershipLocationId: booking.dealershipLocationId}} 
+                    className="btn btn-outline-warning btn-sm"
+                  >
+                    Edit
+                  </Link>
+                  <Button
+                    color="danger"
+                    size="sm"
+                    onClick={() => handleDeleteBooking(booking.bookingId)}
+                  >
+                    Delete
+                  </Button>
+                </div>
               </CardBody>
             </Card>
           </div>
@@ -119,7 +157,7 @@ const UserPage = ({ updateUser }) => {
               </div>
               {loading ? (
                 <p className="text-light">Loading your bookings...</p>
-              ) : bookings.length === 0 ? (
+              ) : getBookings.length === 0 ? (
                 <div className="alert alert-info mt-4">
                   <h5 className="mb-0">You have no cars booked yet.</h5>
                 </div>
