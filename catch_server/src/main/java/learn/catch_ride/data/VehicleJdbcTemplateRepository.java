@@ -1,7 +1,6 @@
 package learn.catch_ride.data;
 
 import learn.catch_ride.data.mappers.VehicleMapper;
-import learn.catch_ride.domain.Result;
 import learn.catch_ride.models.Vehicle;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.jdbc.support.GeneratedKeyHolder;
@@ -38,7 +37,21 @@ public class VehicleJdbcTemplateRepository implements VehicleRepository {
         //        + "from vehicle limit 1000;";
         final String sql = String.format("select %s from vehicle limit 1000;", VEHICLE_COLUMN_NAMES);
         return jdbcTemplate.query(sql, new VehicleMapper());
+
+
     }
+
+    @Override
+    public List<Vehicle> findCarsByZipCode(int zipCode) {
+        final String sql = " SELECT v.* FROM vehicle v "
+               + "JOIN dealership d ON v.dealership_id = d.dealership_id "
+                + "JOIN location l ON d.location_id = l.location_id "
+                + "WHERE l.zip_code = ?;"
+        ;
+
+        return jdbcTemplate.query(sql, new VehicleMapper(), zipCode);
+    }
+
 
     @Override
     public Vehicle add(Vehicle vehicle) {
