@@ -128,19 +128,19 @@ function Vehicle({ showAvailableOnly = false }) {
 
       <div className="d-flex justify-content-between align-items-center mb-3">
         {isAdmin && (
-          <Link className="btn btn-info" to="/vehicle/add">
+          <Link className="btn btn-info btn-lg btn-outline-dark" to="/vehicle/add">
             Add New Car
           </Link>
         )}
-        <button className="btn btn-outline-primary" onClick={toggleZipFilter}>
+        <button className="btn btn-outline-dark btn-lg" onClick={toggleZipFilter}>
           {filterByZip ? "Show All Cars" : "Show Cars in My Zip"}
         </button>
       </div>
 
       <div className="row">
         {getVehicles.map((vehicle) => (
-          <div className="col-md-6 col-lg-3 mb-4" key={vehicle.vehicleId}>
-            <div className="card h-100 shadow border border-info">
+          <div className="col-md-6 col-lg-3 mb-5" key={vehicle.vehicleId}>
+            <div className="card h-100 shadow border border-info border-rounded">
               {vehicle.imageUrl ? (
                 <img
                   src={
@@ -161,14 +161,14 @@ function Vehicle({ showAvailableOnly = false }) {
                 />
               )}
               <div className="card-body d-flex flex-column">
-                <h5 className="card-title text-primary">
+                <p className="card-title text-info fw-bolder">
                   {vehicle.year} {vehicle.make} {vehicle.model}
-                </h5>
-                <p className="card-text mb-1">Color: {vehicle.color}</p>
-                <p className="card-text mb-1">Trim: {vehicle.trim}</p>
-                <p className="card-text mb-1">Rent: ${vehicle.rentRate}</p>
-                <p className="card-text mb-1">Lease: ${vehicle.leaseRate}</p>
-                <p className={`card-text ${vehicle.bookingStatus ? 'text-danger' : 'text-success'}`}>
+                </p>
+                <p className="card-text mb-1 fw-lighter">Color: {vehicle.color}</p>
+                <p className="card-text mb-1 fw-lighter">Trim: {vehicle.trim}</p>
+                <p className="card-text mb-1 ">Rent: ${vehicle.rentRate}</p>
+                <p className="card-text mb-1 fw-lighter">Lease: ${vehicle.leaseRate}</p>
+                <p className={`card-text fw-lighter ${vehicle.bookingStatus ? 'text-danger' : 'text-success'}`}>
                   {vehicle.bookingStatus ? "Booked" : "Available"}
                 </p>
                 <div className="mt-auto">
@@ -180,16 +180,16 @@ function Vehicle({ showAvailableOnly = false }) {
                         userId: localStorage.getItem('appUserId'),
                         dealershipLocationId: vehicle.dealershipId
                       }}
-                      className="btn btn-success btn-sm mt-2">
-                      Book
+                      className="btn btn-success btn-lg mt-2">
+                      Book Car
                     </Link>
                   )}
                   {isAdmin && (
                     <>
-                      <Link to={`/vehicle/edit/${vehicle.vehicleId}`} className="btn btn-info btn-sm me-2">
+                      <Link to={`/vehicle/edit/${vehicle.vehicleId}`} className="btn btn-info btn-lg me-2">
                         Edit
                       </Link>
-                      <button onClick={() => handleDeleteVehicle(vehicle.vehicleId)} className="btn btn-danger btn-sm">
+                      <button onClick={() => handleDeleteVehicle(vehicle.vehicleId)} className="btn btn-danger btn-lg">
                         Delete
                       </button>
                     </>
