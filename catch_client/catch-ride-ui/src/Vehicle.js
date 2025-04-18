@@ -118,7 +118,7 @@ function Vehicle({ showAvailableOnly = false }) {
   };
 
   return (
-    <div className="container">
+    <div className="">
       <h2 className="text-center text-info p-4">Vehicles List</h2>
 
       {getMessage && (
@@ -127,7 +127,7 @@ function Vehicle({ showAvailableOnly = false }) {
         </div>
       )}
 
-      <div className="d-flex justify-content-between align-items-center mb-3">
+      <div className="d-flex justify-content-between align-items-center mb-5">
         {isAdmin && (
           <Link className="btn btn-info btn-lg btn-outline-dark" to="/vehicle/add">
             Add New Car
@@ -138,10 +138,10 @@ function Vehicle({ showAvailableOnly = false }) {
         </button>
       </div>
 
-      <div className="row">
+      <div className="row g-4">
         {getVehicles.map((vehicle) => (
           <div className="col-md-6 col-lg-3 mb-5" key={vehicle.vehicleId}>
-            <div className="card h-100 shadow border border-secondary">
+            <div className="card h-100 shadow border border-secondary" style={{ borderRadius: "10px", padding: "1rem", minHeight: "450px"   }}>
               {vehicle.imageUrl ? (
                 <img
                   src={
@@ -187,10 +187,10 @@ function Vehicle({ showAvailableOnly = false }) {
                   )}
                   {isAdmin && (
                     <>
-                      <Link to={`/vehicle/edit/${vehicle.vehicleId}`} className="btn btn-info btn-lg me-2">
+                      <Link to={`/vehicle/edit/${vehicle.vehicleId}`} className="btn btn-info btn-lg me-2 mt-2">
                         Edit
                       </Link>
-                      <button onClick={() => handleDeleteVehicle(vehicle.vehicleId)} className="btn btn-danger btn-lg">
+                      <button onClick={() => handleDeleteVehicle(vehicle.vehicleId)} className="btn btn-danger btn-lg mt-2">
                         Delete
                       </button>
                     </>
