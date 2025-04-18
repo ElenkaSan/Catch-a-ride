@@ -98,42 +98,42 @@ function UserInfoForm() {
         </div>
       )}
 
-      <h2 className="text-center text-info mb-4">Edit Personal Information</h2>
+      <h2 className="text-center text-success mb-4">Edit Personal Information</h2>
       <form onSubmit={handleSubmit}>
         {/* User Fields */}
-        <div className="mb-3">
+        <div className="mb-3 fs-3 p-2">
           <label htmlFor="firstName" className="form-label">First Name</label>
           <input type="text" className="form-control" id="firstName" name="firstName" value={user.firstName} onChange={handleUserChange} required />
         </div>
-        <div className="mb-3">
+        <div className="mb-3 fs-3">
           <label htmlFor="lastName" className="form-label">Last Name</label>
           <input type="text" className="form-control" id="lastName" name="lastName" value={user.lastName} onChange={handleUserChange} required />
         </div>
-        <div className="mb-3">
+        <div className="mb-3 fs-3">
           <label htmlFor="email" className="form-label">Email</label>
           <input type="email" className="form-control" id="email" name="email" value={user.email} onChange={handleUserChange} required />
         </div>
 
 
         {/* Location Fields */}
-        <div className="mb-3">
+        <div className="mb-3 fs-3">
           <label htmlFor="address" className="form-label">Address</label>
           <input type="text" className="form-control" id="address" name="address" value={location.address} onChange={handleLocationChange} required />
         </div>
-        <div className="mb-3">
+        <div className="mb-3 fs-3">
           <label htmlFor="city" className="form-label">City</label>
           <input type="text" className="form-control" id="city" name="city" value={location.city} onChange={handleLocationChange} required />
         </div>
-        <div className="mb-3">
+        <div className="mb-3 fs-3">
           <label htmlFor="state" className="form-label">State</label>
           <input type="text" className="form-control" id="state" name="state" value={location.state} onChange={handleLocationChange} required />
         </div>
-        <div className="mb-3">
+        <div className="mb-3 fs-3">
           <label htmlFor="zipCode" className="form-label">Zip Code</label>
           <input type="text" className="form-control" id="zipCode" name="zipCode" value={location.zipCode} onChange={handleLocationChange} required />
         </div>
 
-        <div className="d-flex justify-content-between mt-4">
+        <div className="d-flex justify-content-between mt-4 p-2">
           <button type="submit" className="btn btn-warning btn-lg">Save Updates</button>
           <Link to="/" className="btn btn-secondary btn-lg">Cancel</Link>
         </div>

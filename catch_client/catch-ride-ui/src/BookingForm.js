@@ -125,7 +125,7 @@ function BookingForm() {
         <div className="container p-4 mt-4">
           <section className="container justify-content-md-center">
             <div className="jumbotron col-md-6 offset-md-3">
-                <h2 className="text-center text-info mb-4">{parseInt(bookingId) > 0 ? 'Edit Booking' : 'Add Booking'}</h2>
+                <h2 className="text-center text-success mb-4">{parseInt(bookingId) > 0 ? 'Edit Booking' : 'Add Booking'}</h2>
                 {errors.length > 0 && (
                     <div className="alert alert-danger">
                         <p>The Following Errors were found:</p>
@@ -137,7 +137,7 @@ function BookingForm() {
                     </div>
                 )}
                 <form onSubmit={handleSubmit}>
-                    <fieldset className="form-group mb-3">
+                    <fieldset className="form-group mb-3 fs-3">
                         <label htmlFor="startDate">Start Date</label>
                         <input id="startDate" 
                         name="startDate" 
@@ -146,7 +146,7 @@ function BookingForm() {
                         value={booking.startDate} 
                         onChange={handleChange} />
                     </fieldset>
-                    <fieldset className="form-group mb-3">
+                    <fieldset className="form-group mb-3 fs-3">
                         <label htmlFor="endDate">End Date</label>
                         <input id="endDate" 
                         name="endDate" 
@@ -155,30 +155,30 @@ function BookingForm() {
                         value={booking.endDate} 
                         onChange={handleChange}/>
                     </fieldset>
-                    <fieldset className="form-group mb-3">
+                    <fieldset className="form-group mb-3 fs-3">
                         <label htmlFor="bookingType">Booking Type:</label>
                         <div className="form-check mb-3">
-                            <input className="form-check-input ms-2" 
+                            <input className="form-check-input" 
                               type="radio"
                               name="bookingType" 
                               id="rent" 
                               value="RENT" 
                               checked={booking.bookingType === "RENT"} 
                               onChange={handleChange}/>
-                            <label className="form-check-label ml-3" htmlFor="rent">Rent</label>
+                            <label className="form-check-label ml-2 fs-3" htmlFor="rent">Rent</label>
                         </div>
-                        <div className="form-check mb-3">
-                            <input className="form-check-input ms-2"
+                        <div className="form-check mb-3 fs-3">
+                            <input className="form-check-input"
                                type="radio" 
                                name="bookingType" 
                                id="lease" 
                                value="LEASE" 
                                checked={booking.bookingType === "LEASE"} 
                                onChange={handleChange}/>
-                            <label className="form-check-label ml-3 mb-3" htmlFor="lease">Lease</label>
+                            <label className="form-check-label ml-2 mb-3 fs-3" htmlFor="lease">Lease</label>
                         </div>
                         <div className="d-flex justify-content-between mt-4">
-                            <button type="submit" className="btn btn-info btn-lg">{parseInt(bookingId) > 0 ? 'Submit Booking' : 'Add Booking'}</button>
+                            <button type="submit" className="btn btn-success btn-lg">{parseInt(bookingId) > 0 ? 'Submit Booking' : 'Add Booking'}</button>
                             <Link type="button" className="btn btn-secondary btn-lg" to={'/user'}>Cancel</Link>
                         </div> 
                     </fieldset>

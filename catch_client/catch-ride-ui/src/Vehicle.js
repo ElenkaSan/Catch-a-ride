@@ -119,7 +119,7 @@ function Vehicle({ showAvailableOnly = false }) {
 
   return (
     <div className="">
-      <h2 className="text-center text-info p-4">Vehicles List</h2>
+      <h2 className="text-center text-success p-4">Vehicles List</h2>
 
       {getMessage && (
         <div className="alert alert-warning text-center" role="alert">
@@ -161,8 +161,8 @@ function Vehicle({ showAvailableOnly = false }) {
                   style={{ height: "180px", objectFit: "cover" }}
                 />
               )}
-              <div className="card-body d-flex flex-column">
-                <p className="card-title text-info fw-bolder">
+              <div className="card-body d-flex flex-column fs-3">
+                <p className="card-title text-success fw-bolder">
                   {vehicle.year} {vehicle.make} {vehicle.model}
                 </p>
                 <p className="card-text mb-1 fw-lighter">Color: {vehicle.color}</p>
@@ -172,30 +172,30 @@ function Vehicle({ showAvailableOnly = false }) {
                 <p className={`card-text fw-lighter ${vehicle.bookingStatus ? 'text-danger' : 'text-success'}`}>
                   {vehicle.bookingStatus ? "Booked" : "Available"}
                 </p>
-                <div className="mt-auto">
+                <div className="mt-auto d-flex justify-content-between align-items-center mt-3">
                   {!vehicle.bookingStatus && (
                     <Link
-                      to={`/booking/add`}
-                      state={{
-                        vehicleId: vehicle.vehicleId,
-                        userId: localStorage.getItem('appUserId'),
-                        dealershipLocationId: vehicle.dealershipId
-                      }}
-                      className="btn btn-success btn-lg mt-2">
+                    to={`/booking/add`}
+                    state={{
+                      vehicleId: vehicle.vehicleId,
+                      userId: localStorage.getItem('appUserId'),
+                      dealershipLocationId: vehicle.dealershipId
+                    }}
+                    className="btn btn-success btn-lg">
                       Book Car
                     </Link>
                   )}
                   {isAdmin && (
-                    <>
-                      <Link to={`/vehicle/edit/${vehicle.vehicleId}`} className="btn btn-info btn-lg me-2 mt-2">
-                        Edit
+                    <div className="d-flex"> 
+                      <Link to={`/vehicle/edit/${vehicle.vehicleId}`} className="btn btn-info btn-lg me-2">
+                      Edit
                       </Link>
-                      <button onClick={() => handleDeleteVehicle(vehicle.vehicleId)} className="btn btn-danger btn-lg mt-2">
+                      <button onClick={() => handleDeleteVehicle(vehicle.vehicleId)} className="btn btn-danger btn-lg  align-items-center">
                         Delete
                       </button>
-                    </>
+                    </div>
                   )}
-                </div>
+                  </div>
               </div>
             </div>
           </div>

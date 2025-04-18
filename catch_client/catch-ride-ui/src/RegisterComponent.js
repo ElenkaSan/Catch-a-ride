@@ -65,52 +65,52 @@ const RegisterComponent = () => {
           <section className="container justify-content-md-center">
             <div className="jumbotron col-md-6 offset-md-3">
                     {/* <div className="card"> */}
-                    <h2 className="text-center text-info mb-4">Register</h2>
+                    <h2 className="text-center text-success mb-4">Register</h2>
                         <div className="card-body">
                             {message && <div className="alert alert-info">{message}</div>}
                             <form onSubmit={handleRegister}>
                                 {/* USER CREDENTIALS */}
-                                <div className="form-group mb-3">
+                                <div className="form-group mb-3 fs-3">
                                     <label>Username</label>
                                     <input type="text" name="username" className="form-control" value={formData.username} onChange={handleChange} required />
                                 </div>
-                                <div className="form-group mb-3">
+                                <div className="form-group mb-3 fs-3">
                                     <label>Password</label>
                                     <input type="password" name="password" className="form-control" value={formData.password} onChange={handleChange} required />
                                 </div>
                                 {/* PERSONAL INFO */}
-                                <div className="form-group mb-3">
+                                <div className="form-group mb-3 fs-3">
                                     <label>First Name</label>
                                     <input type="text" name="firstName" className="form-control" value={formData.firstName} onChange={handleChange} required />
                                 </div>
-                                <div className="form-group mb-3">
+                                <div className="form-group mb-3 fs-3">
                                     <label>Last Name</label>
                                     <input type="text" name="lastName" className="form-control" value={formData.lastName} onChange={handleChange} required />
                                 </div>
-                                <div className="form-group mb-3">
+                                <div className="form-group mb-3 fs-3">
                                     <label>Email</label>
                                     <input type="email" name="email" className="form-control" value={formData.email} onChange={handleChange} required />
                                 </div>
                                 {/* LOCATION INFO */}
-                                <div className="form-group mb-3">
+                                <div className="form-group mb-3 fs-3">
                                     <label>Street Address</label>
                                     <input type="text" name="address" className="form-control" value={formData.address} onChange={handleChange} required />
                                 </div>
-                                <div className="form-group mb-3">
+                                <div className="form-group mb-3 fs-3">
                                     <label>City</label>
                                     <input type="text" name="city" className="form-control" value={formData.city} onChange={handleChange} required />
                                 </div>
-                                <div className="form-group mb-3">
+                                <div className="form-group mb-3 fs-3">
                                     <label>State</label>
                                     <input type="text" name="state" className="form-control" value={formData.state} onChange={handleChange} required />
                                 </div>
-                                <div className="form-group mb-3">
+                                <div className="form-group mb-3 fs-3">
                                     <label>Zip Code</label>
                                     <input type="number" name="zipCode" className="form-control" value={formData.zipCode} onChange={handleChange} required />
                                 </div>
-                                <button type="submit" className="btn btn-info btn-lg mt-4">Register</button>
+                                <button type="submit" className="btn btn-success btn-lg mt-4">Register</button>
                             </form>
-                            <div className="mt-4">
+                            <div className="mt-4 fs-4">
                                 <span>Already registered? <Link to="/login">Login here</Link></span>
                             </div>
                         </div>
