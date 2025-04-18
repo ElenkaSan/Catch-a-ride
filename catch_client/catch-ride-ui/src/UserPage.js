@@ -10,7 +10,7 @@ import {
   CardText,
 } from "reactstrap";
 import { BsPencilSquare } from "react-icons/bs";
-import { BiHomeHeart } from "react-icons/bi";
+//import { BiHomeHeart } from "react-icons/bi";
 import useToggle from "./useToggle";
 import UserInfoForm from "./UserInfoForm";
 
@@ -178,17 +178,18 @@ const UserPage = ({ updateUser }) => {
           <div className="d-flex justify-content-between align-items-center">
             <h2 className="text-info">Welcome, {username}</h2>
             <div>
-              <Link to="/update">
+              <Link to={`/user/edit/${localStorage.getItem("appUserId")}`}>
                 <Button className="btn btn-outline-warning btn-lg">
+                 Edit Personal Info {' '}
                   <BsPencilSquare />
                 </Button>
               </Link>
-              <p></p>
+              {/* <p></p>
               <Link to="/">
                 <Button className="btn btn-lg btn-warning">
                   <BiHomeHeart />
                 </Button>
-              </Link>
+              </Link> */}
             </div>
           </div>
           <hr />

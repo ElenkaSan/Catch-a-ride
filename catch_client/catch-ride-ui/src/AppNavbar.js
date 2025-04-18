@@ -77,10 +77,6 @@ function AppNavbar() {
                 <PersonCircle size={20} style={{ marginRight: "10px" }} />
                 User Page
               </Dropdown.Item>
-
-              <Dropdown.Item as={Link} to={`/user/edit/${localStorage.getItem("appUserId")}`}>
-                Edit Personal Info
-              </Dropdown.Item>
             </>
           )}
 
@@ -130,18 +126,6 @@ function AppNavbar() {
               <Link to="/user" className="nav-link text-light px-3">
               <PersonCircle size={20} style={{ marginRight: "10px" }} />
               User Page</Link>
-            </NavItem>
-          )}
-
-          {isLoggedIn && isUser && (
-            <NavItem>
-              <Link
-                to={`/user/edit/${localStorage.getItem("appUserId")}`}
-                className="nav-link text-light px-3"
-              >
-                
-                Edit Personal Info
-              </Link>
             </NavItem>
           )}
 
