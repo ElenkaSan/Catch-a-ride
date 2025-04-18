@@ -44,6 +44,8 @@ function AppNavbar() {
           id="dropdown-menu-align-right"
           drop="down"
           align="end"
+          flip={true}
+          autoClose="outside"
         >
           <Dropdown.Item as={Link} to="/vehicles">
             Available Cars
@@ -116,13 +118,17 @@ function AppNavbar() {
 
           {isLoggedIn && isUser && (
             <NavItem>
-              <Link to="/user" className="nav-link text-light px-3">User Page</Link>
+              <Link to="/user" className="nav-link text-light px-3">
+              <PersonCircle size={20} style={{ marginRight: "10px" }} />
+              User Page</Link>
             </NavItem>
           )}
 
           {isLoggedIn && isAdmin && (
             <NavItem>
-              <Link to="/admin" className="nav-link text-light px-3">Admin Page</Link>
+              <Link to="/admin" className="nav-link text-light px-3">
+              <PersonRolodex size={20} style={{ marginRight: "10px" }} />
+              Admin Page</Link>
             </NavItem>
           )}
 
