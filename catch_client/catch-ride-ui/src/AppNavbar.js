@@ -18,13 +18,13 @@ function AppNavbar() {
   const token = localStorage.getItem("token");
   const roles = JSON.parse(localStorage.getItem("roles") || "[]");
 
+  const isLoggedIn = !!token;
   const isAdmin = roles.includes("ROLE_ADMIN");
   const isUser = roles.includes("ROLE_USER");
-  const isLoggedIn = !!localStorage.getItem("user");
 
   const handleLogout = () => {
     localStorage.clear();
-    navigate("/login");
+    navigate("/");
   };
 
   return (

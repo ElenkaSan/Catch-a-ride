@@ -11,6 +11,8 @@ import RegisterComponent from './RegisterComponent';
 import AdminPage from './AdminPage'; //just for now then late will do if user or admin will be logged in
 import UserInfoForm from './UserInfoForm';
 import UserPage from "./UserPage";
+import PrivateRoute from './PrivateRoute';
+import NotAuthorized from './NotAuthorized'
 import Booking from "./Booking";
 import BookingForm from "./BookingForm";
 function App() {
@@ -31,7 +33,8 @@ function App() {
               <Route path="/vehicles/" element={<VehicleList/>}/>
               <Route path="/login/" element={<Login/>}/>
               <Route path="register/" element={<RegisterComponent/>}/>
-              <Route path="/admin" element={<AdminPage />} />
+              <Route path="/admin" element={<PrivateRoute requiredRole="ROLE_ADMIN"><AdminPage /></PrivateRoute>}/>
+              <Route path="/not-authorized" element={<NotAuthorized />} />
               <Route path="/user/edit/:userId" element={<UserInfoForm />} />
               <Route path="/user/add" element={<UserInfoForm />} />
               <Route path="/user" element={<UserPage />} />

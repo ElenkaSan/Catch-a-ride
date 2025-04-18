@@ -9,7 +9,10 @@ const RegisterComponent = () => {
         firstName: '',
         lastName: '',
         email: '',
-        locationId: ''
+        address: '',
+        city: '',
+        state: '',
+        zipCode: ''
     });
 
     const [message, setMessage] = useState('');
@@ -23,32 +26,30 @@ const RegisterComponent = () => {
         e.preventDefault();
         try {
             // Step 1: Register app user
-            console.log("Registering app user:", {
-                username: formData.username,
-                password: formData.password
-            });
             const registerRes = await axios.post('/api/auth/register', {
                 username: formData.username,
                 password: formData.password
             });
+            const appUserId = registerRes.data.appUserId;
+            if (!appUserId) throw new Error("Missing app_user_id");
 
-            const appUserId = registerRes.data.appUserId; // Assuming your backend returns this ID
-            if (!appUserId) throw new Error("Missing app_user_id from registration response");
-
-            // Step 2: Create user business info
-            console.log("Sending user details:", {
-                firstName: formData.firstName,
-                lastName: formData.lastName,
-                email: formData.email,
-                locationId: formData.locationId,
-                appUserId
+            // Step 2: Submit new location
+            const locationRes = await axios.post('/api/location', {
+                address: formData.address,
+                city: formData.city,
+                state: formData.state,
+                zipCode: formData.zipCode
             });
+            const locationId = locationRes.data.locationId;
+            if (!locationId) throw new Error("Missing location_id");
+
+            // Step 3: Submit full user details
             await axios.post('/api/user', {
                 firstName: formData.firstName,
                 lastName: formData.lastName,
                 email: formData.email,
-                locationId: parseInt(formData.locationId),
-                appUserId: appUserId
+                locationId,
+                appUserId
             });
 
             setMessage("Registration successful!");
@@ -68,6 +69,7 @@ const RegisterComponent = () => {
                         <div className="card-body">
                             {message && <div className="alert alert-info">{message}</div>}
                             <form onSubmit={handleRegister}>
+                                {/* USER CREDENTIALS */}
                                 <div className="form-group">
                                     <label>Username</label>
                                     <input type="text" name="username" className="form-control" value={formData.username} onChange={handleChange} required />
@@ -76,6 +78,7 @@ const RegisterComponent = () => {
                                     <label>Password</label>
                                     <input type="password" name="password" className="form-control" value={formData.password} onChange={handleChange} required />
                                 </div>
+                                {/* PERSONAL INFO */}
                                 <div className="form-group">
                                     <label>First Name</label>
                                     <input type="text" name="firstName" className="form-control" value={formData.firstName} onChange={handleChange} required />
@@ -88,9 +91,22 @@ const RegisterComponent = () => {
                                     <label>Email</label>
                                     <input type="email" name="email" className="form-control" value={formData.email} onChange={handleChange} required />
                                 </div>
+                                {/* LOCATION INFO */}
                                 <div className="form-group">
-                                    <label>Location ID</label>
-                                    <input type="number" name="locationId" className="form-control" value={formData.locationId} onChange={handleChange} required />
+                                    <label>Street Address</label>
+                                    <input type="text" name="address" className="form-control" value={formData.address} onChange={handleChange} required />
+                                </div>
+                                <div className="form-group">
+                                    <label>City</label>
+                                    <input type="text" name="city" className="form-control" value={formData.city} onChange={handleChange} required />
+                                </div>
+                                <div className="form-group">
+                                    <label>State</label>
+                                    <input type="text" name="state" className="form-control" value={formData.state} onChange={handleChange} required />
+                                </div>
+                                <div className="form-group">
+                                    <label>Zip Code</label>
+                                    <input type="number" name="zipCode" className="form-control" value={formData.zipCode} onChange={handleChange} required />
                                 </div>
                                 <button type="submit" className="btn btn-primary mt-3">Register</button>
                             </form>

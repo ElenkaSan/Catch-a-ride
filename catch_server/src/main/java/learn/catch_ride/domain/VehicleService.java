@@ -25,6 +25,8 @@ public class VehicleService {
 
     public List<Vehicle> findByDealershipId(int dealershipId) { return vehicleRepository.findByDealershipId(dealershipId); }
 
+    public List<Vehicle> findByZipCode(int zipCode) { return vehicleRepository.findCarsByZipCode(zipCode); }
+
     //crud
     public Result<Vehicle> add(Vehicle vehicle){
         Result<Vehicle> result = validate(vehicle);

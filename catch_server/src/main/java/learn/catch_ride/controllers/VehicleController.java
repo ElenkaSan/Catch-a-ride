@@ -39,6 +39,12 @@ public class VehicleController {
     @GetMapping("/id/{vehicleId}")
     public Vehicle findById(@PathVariable int vehicleId) { return service.findById(vehicleId); }
 
+    @GetMapping("/zipcode/{zipCode}")
+    public ResponseEntity<List<Vehicle>> findByZipCode(@PathVariable int zipCode) {
+        List<Vehicle> vehicles = service.findByZipCode(zipCode);
+        return ResponseEntity.ok(vehicles);
+    }
+
     @PostMapping
     public ResponseEntity<Object> add(@RequestPart("vehicle") Vehicle vehicle, @RequestPart(value = "file", required = false) MultipartFile multipartFile) {
         try {

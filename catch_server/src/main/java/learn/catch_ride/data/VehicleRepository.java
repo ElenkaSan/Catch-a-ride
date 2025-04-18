@@ -8,6 +8,10 @@ import java.util.List;
 public interface VehicleRepository {
     Vehicle findById(int vehicleId);
     List<Vehicle> findAll();
+
+
+    List<Vehicle> findCarsByZipCode(int zipCode);
+
     Vehicle add(Vehicle vehicle);
     boolean update(Vehicle vehicle);
     @Transactional

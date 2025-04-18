@@ -31,13 +31,19 @@ const LoginComponent = () => {
           }
         );
   
-        const { firstName, lastName, email } = userResponse.data;
+        const { firstName, lastName, email, locationId } = userResponse.data;
   
         localStorage.setItem('firstName', firstName);
         localStorage.setItem('lastName', lastName);
         localStorage.setItem('email', email);
-  
-        navigate('/user');
+        localStorage.setItem('locationId', locationId);
+        if (localStorage.getItem('roles').includes('ADMIN')){
+            navigate('/admin');
+        }
+        else{
+            navigate('/user');
+        }
+        
       } catch (error) {
         console.error('Login error:', error);
         setMessage('Invalid credentials');

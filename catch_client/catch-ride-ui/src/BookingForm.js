@@ -73,6 +73,7 @@ function BookingForm() {
             },
             body: JSON.stringify(booking)
         }
+        console.log(url + init);
         fetch(url, init)
         .then(response => {
             if(response.status === 201 || response.status === 400){
@@ -156,7 +157,7 @@ function BookingForm() {
                         </div>
                         <fieldset className="form-group">
                             <button type="submit" className="btn btn-outline-success me-4 mt-4">{parseInt(bookingId) > 0 ? 'Edit Booking' : 'Add Booking'}</button>
-                            <Link type="button" className="btn btn-outline-danger mt-4" to={'/booking'}>Cancel</Link>
+                            <Link type="button" className="btn btn-outline-danger mt-4" to={'/user'}>Cancel</Link>
                         </fieldset> 
                     </fieldset>
                 </form>
