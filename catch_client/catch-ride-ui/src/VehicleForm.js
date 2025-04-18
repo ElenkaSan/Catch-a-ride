@@ -166,7 +166,7 @@ function VehicleForm() {
                 </div>
             )}
             <section className="container justify-content-md-center">
-                <div className="col-md-6 offset-md-3">
+                <div className="jumbotron col-md-6 offset-md-3">
                     <h2 className="text-center text-info p-4">Vehicle Form</h2>
                     <form onSubmit={handleSubmit}>
                        <div className="mb-3">
