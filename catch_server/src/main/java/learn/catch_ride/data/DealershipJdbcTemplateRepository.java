@@ -52,6 +52,7 @@ public class DealershipJdbcTemplateRepository implements DealershipRepository {
         return dealerships;
     }
 
+
     @Override
     public List<Dealership> findAll() {
       //  final String sql = "select dealership_id, name, description, location_id  "

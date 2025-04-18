@@ -4,7 +4,7 @@
 GET {{url}} HTTP/1.1
 
 ### Location 1
-GET {{url}}/1 HTTP/1.1
+GET http://localhost:8080/api/location/1 HTTP/1.1
 
 
 
@@ -13,7 +13,7 @@ POST {{url}} HTTP/1.1
 Content-Type: application/json
 
 {
-  "address": "18 Washington Ave",
+  "address": "18 Washingt Aveon",
   "city": "Boston",
   "state": "MA",
   "zipCode": 20235
