@@ -144,8 +144,9 @@ const UserPage = ({ updateUser }) => {
                   <strong>Vehicle:</strong> {booking.vehicle?.make}, {booking.vehicle?.model}<br />
                   <strong>Year:</strong> {booking.vehicle?.year} <br />
                   <strong>Booked Date:</strong> {formatDate(booking.startDate)} <br />
-                  <strong>Delivering from </strong> {booking.dealershipAddress?.address}, {booking.dealershipAddress?.city}, {booking.dealershipAddress?.state} <br />
-                  <strong>to </strong> {booking.userAddress?.address}, {booking.userAddress?.city}, {booking.userAddress?.state} <br />
+                  <strong>Delivering From: </strong> {booking.dealershipAddress?.address}, {booking.dealershipAddress?.city}, {booking.dealershipAddress?.state} <br />
+                  <strong>Delivering To: </strong> {booking.userAddress?.address}, {booking.userAddress?.city}, {booking.userAddress?.state} <br />
+                  <strong>Total: $</strong> {booking.total}
                 </CardText>
                 <div className="d-flex justify-content-between mt-4">
                   <Link
