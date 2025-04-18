@@ -53,10 +53,6 @@ function AppNavbar() {
             Available Cars
           </Dropdown.Item>
 
-          <Dropdown.Item as={Link} to="/booking/add">
-            Add Booking
-          </Dropdown.Item>
-
           {!isLoggedIn && (
             <>
               <Dropdown.Item as={Link} to="/login">
@@ -99,9 +95,6 @@ function AppNavbar() {
         <div className="d-none d-md-flex"> {/* Hide on small screens */}
           <NavItem>
             <Link to="/vehicles" className="nav-link text-light px-3">Available Cars</Link>
-          </NavItem>
-          <NavItem>
-            <Link to="/booking/add" className="nav-link text-light px-3">Add Booking</Link>
           </NavItem>
 
           {!isLoggedIn && (
