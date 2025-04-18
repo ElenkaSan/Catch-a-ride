@@ -127,7 +127,7 @@ const UserPage = ({ updateUser }) => {
       <h4 className="text-center text-secondary mb-4">You have booked these Cars:</h4>
       <div className="row justify-content-center">
         {getBookings.map((booking) => (
-          <div className="col-md-4 mb-4" key={booking.bookingId}>
+          <div className="col-md-4 mb-5" key={booking.bookingId}>
             <Card className="rounded">
               <CardImg
                 top
