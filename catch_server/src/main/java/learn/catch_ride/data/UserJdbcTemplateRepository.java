@@ -101,7 +101,7 @@ public class UserJdbcTemplateRepository  implements UserRepository{
     public int getUsageCount(int userId) {
         int count = 0;
         count = count + jdbcTemplate.queryForObject(
-                "select count(*) from booking where location_id = ?;", Integer.class, userId);
+                "select count(*) from booking where booking_id = ?;", Integer.class, userId);
         return count;
     }
 }

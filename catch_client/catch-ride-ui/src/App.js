@@ -15,6 +15,7 @@ import PrivateRoute from './PrivateRoute';
 import NotAuthorized from './NotAuthorized'
 import Booking from "./Booking";
 import BookingForm from "./BookingForm";
+import DealershipForm from './DealershipForm';
 function App() {
   
   return (
@@ -28,6 +29,8 @@ function App() {
               <Route path="/booking" element={<Booking/>}/>
               <Route path="/booking/add" element={<BookingForm/>}/>
               <Route path="/booking/edit/:bookingId" element={<BookingForm/>}/>
+              <Route path="/dealership/add" element={<DealershipForm />} />
+              <Route path="/dealership/edit/:dealershipId" element={<DealershipForm />} />
               <Route path="/vehicle/add" element={<VehicleForm/>}/>
               <Route path="/vehicle/edit/:id" element={<VehicleForm/>}/>
               <Route path="/vehicles/" element={<VehicleList/>}/>

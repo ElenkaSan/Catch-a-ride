@@ -179,7 +179,7 @@ function BookingForm() {
                         </div>
                         <div className="d-flex justify-content-between mt-4">
                             <button type="submit" className="btn btn-info btn-lg">{parseInt(bookingId) > 0 ? 'Edit Booking' : 'Add Booking'}</button>
-                            <Link type="button" className="btn btn-secondary btn-lg" to={'/user'}>Cancel</Link>
+                            <Link type="button" className="btn btn-secondary btn-lg" to={'/'}>Cancel</Link>
                         </div> 
                     </fieldset>
                 </form>
