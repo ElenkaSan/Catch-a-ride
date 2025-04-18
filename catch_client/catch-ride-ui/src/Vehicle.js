@@ -140,7 +140,7 @@ function Vehicle({ showAvailableOnly = false }) {
 
       <div className="row g-4">
         {getVehicles.map((vehicle) => (
-          <div className="col-md-6 col-lg-4 mb-5" key={vehicle.vehicleId}>
+          <div className="col-md-6 col-lg-4 mb-5 px-5" key={vehicle.vehicleId}>
             <div className="card h-100 shadow border border-secondary" style={{ borderRadius: "10px", padding: "1rem", minHeight: "450px"   }}>
               {vehicle.imageUrl ? (
                 <img
@@ -150,14 +150,14 @@ function Vehicle({ showAvailableOnly = false }) {
                       : `http://localhost:8080/uploads/${vehicle.imageUrl}`
                   }
                   alt={`${vehicle.make} ${vehicle.model}`}
-                  className="card-img-top"
+                  className="card-img-top img-fluid w-100"
                   style={{ height: "180px", objectFit: "cover" }}
                 />
               ) : (
                 <img
                   src={defaultImg}
                   alt="Default Car img"
-                  className="card-img-top"
+                  className="card-img-top img-fluid w-100"
                   style={{ height: "180px", objectFit: "cover" }}
                 />
               )}
