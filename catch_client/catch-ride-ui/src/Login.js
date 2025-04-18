@@ -38,7 +38,8 @@ const LoginComponent = () => {
         localStorage.setItem('email', email);
         localStorage.setItem('locationId', locationId);
 
-        if (localStorage.getItem('roles').includes('ADMIN')){
+        
+        if (localStorage.getItem('roles').includes('ROLE_ADMIN')){
             navigate('/admin');
         }
         else{
