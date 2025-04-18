@@ -82,9 +82,10 @@ function Vehicle({ showAvailableOnly = false }) {
 
   useEffect(() => {
     const token = localStorage.getItem("token");
-    const role = localStorage.getItem("roles");
+    const roleRaw = localStorage.getItem("roles");
     setIsLoggedIn(!!token);
-    setIsAdmin(role === 'admin');
+    const roles = JSON.parse(roleRaw);
+    setIsAdmin(Array.isArray(roles) && roles.includes("ROLE_ADMIN"));
   }, []);
 
   useEffect(() => {
