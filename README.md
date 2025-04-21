@@ -486,7 +486,7 @@ An enum with two values: Rented or Leased
 
 #### Database Schema
 
-![alt text](schema-db-1.png)
+![alt text](schema-db.png)
 
 
 ## Technical Solution:
