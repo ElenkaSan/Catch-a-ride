@@ -486,7 +486,7 @@ An enum with two values: Rented or Leased
 
 #### Database Schema
 
-![catch_ride_db](https://github.com/user-attachments/assets/c4e2be91-d85c-4a15-a17f-77e25f488877)
+![alt text](schema-db-1.png)
 
 
 ## Technical Solution:
