@@ -395,6 +395,10 @@ An enum with two values: Rented or Leased
 	│   │       └───catch
 	│   │           │   App.java
 	│   │           │
+	│   │           |───config
+	│   │           │       AwsConfig.java
+	│   │           │       AwsProperties.java
+	│   │           │
 	│   │           |───controllers
 	│   │           │       ErrorResponse.java
 	│   │           │       GlobalExceptionHandler.java
@@ -409,6 +413,8 @@ An enum with two values: Rented or Leased
         │   │           │      └───mapper -> each one has mapper.java
         │   │           │      │              
 	│   │           │       DataException.java
+	│   │           │       AppUsertJdbcTemplateRepository.java
+	│   │           │       AppUserRepository.java
 	│   │           │       UsertJdbcTemplateRepository.java
 	│   │           │       UserRepository.java
 	│   │           │       VehicleJdbcTemplateRepository.java
@@ -421,48 +427,37 @@ An enum with two values: Rented or Leased
 	│   │           │       DealershipRepository.java
 	│   │           │
 	│   │           |───domain
+	│   │           │       AwsService.java
 	│   │           │       VehicleService.java
 	│   │           │       BookingService.java
-	│   │           │       Location.java
-	│   │           │       Response.java
+	│   │           │       LocationService.java
+	│   │           │       UserService.java
 	│   │           │       Result.java
         │   │           │       ResultType.java
         │   │           │       DealershipService.java
+	│   │           │       Validations.java
 	│   │           │
 	│   │           |───models
-	│   │           |       User.java
+	│   │           |       AppUser.java
 	│   │           |       Vehicle.java
+	│   │           |       User.java
+	│   │           |       BookingType.java
 	│   │           |       Booking.java
 	│   │           |       Location.java
         |   |           |       Dealership.java
         |   │           │
         │   │           └───security
-        │   |                   UserService.java
+        │   |                   AppUserService.java
+        │   |                   JwtConverter.java
+        │   |                   JwtRequestFilter.java
         │   |                   SecurityConfig.java
 	│   │
 	│   └───resources
-        │            │   application.properties
-        │            │
-        │            └───templates
-        │                 │     delete.html
-        │                 │     form.html
-        │                 │     index.html
-        │                 │     not-found.html
-        │                 │
-        │                 └───security
-        │                          login.html
+        │               application.properties
 	└───test
 	    └───java
 	        └───learn
 	        │    └───catch
-	        │       |───controllers
-                │       │       UserControllerTest.java
-	        │       │       VehicleControllerTest.java
-	        │       │       BookingControllerTest.java
-                │       │       LocationControllerTest.java
-                │       │       DealershipControllerTest.java
-	        │       │       GlobalExceptionHandlerTest.java
-                │       │ 
 	        │       ├───data
 	        │       │       UserJdbcTemplateRepositoryTest.java
 	        │       │       VehicleJdbcTemplateRepositoryTest.java
