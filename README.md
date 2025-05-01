@@ -3,6 +3,15 @@ Catch A Ride is the premier application for catching your next ride. Whether you
 Catch A Ride opens up multiple avenues to obtain your next vehicle and offloads your inventory as well. Users can create an account and then browse from a wide selection of vehicles. Here, a user may see listings in their local area and then, when the options allow, rent or lease a vehicle.
 Our service offers a fast and efficient portal for any user to obtain vehicles with minimal effort.
 
+### Project Built by 
+[Elena Nurullina](https://www.linkedin.com/in/elena-nurullina)
+[Alex Chletsos](https://github.com/chletsosa)
+[Darin Bardhaj](https://github.com/DBardhaj127)
+
+![image](https://github.com/user-attachments/assets/5fc75e82-037f-4dbc-b1f3-7b18af195ff4)
+
+![image (1)](https://github.com/user-attachments/assets/1706cf68-0e3e-4d92-8a2c-76cd0e37987b)
+
 ### Work Plan:  **Daily Schedule**
 
 # **Day 1**
